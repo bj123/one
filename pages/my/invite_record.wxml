@@ -1,0 +1,36 @@
+<import src="/pages/tpl/_nodata.wxml"></import>
+<import src="/pages/tpl/_nomore.wxml"></import>
+<view class="invite">
+    <view class="pull-left line">
+        <view class="span">成功邀请</view>
+        <view class="money">{{member.ex.invite_count}}</view>
+        <view class="span">位好友</view>
+    </view>
+    <view class="pull-left">
+        <view class="span">获得奖励</view>
+        <view class="money">{{member.ex.total_income}}</view>
+        <view class="span">元奖励</view>
+    </view>
+</view>
+<view class="invite-list">
+    <view class="item">
+        <view class="span">用户名</view>
+        <view class="span">进度状态</view>
+        <view class="span">日期</view>
+        <view class="span">收益</view>
+    </view>
+    <view class="item entry" wx:for="{{invite_list}}" wx:key="my_invite_list">
+        <view class="span">
+            <view class="tit">{{item.name}}</view>
+            <view class="id">ID:{{item.id}}</view>
+        </view>
+        <view class="span">{{item.order_detail.count>0?'第'+item.order_detail.count+'次购买':'注册'}}</view>
+        <view class="span">
+            <view class="p">{{item.order_detail.count>0?item.order_detail.date:item.date}}</view>
+            <view class="time">{{item.order_detail.count>0?item.order_detail.time:item.time}}</view>
+        </view>
+        <view class="span red">{{item.income_detail.amount?item.income_detail.amount:0}}元</view>
+    </view>
+    <template is="_nodata" data="{{content:nodata_tip,nodata_hide:nodata_hide}}" wx:if="{{!invite_list.length}}"></template>
+</view>
+<template is="_nomore" data="{{load_obj:load_obj}}"></template>

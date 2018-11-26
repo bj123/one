@@ -1,0 +1,125 @@
+<template name="_pay">
+    <view class="{{pay_hide}}">
+        <view bindtap="close_pay" class="backdrop"></view>
+        <view class="item1p">
+            <view class="inner">
+                <view class="title">
+                                   {{obj.title}}
+                                   <view bindtap="close_pay" class="close_block">
+                        <view class="close"></view>
+                    </view>
+                </view>
+                <view class="item {{pay_detail.coupon?'hide':''}}">
+                    <view class="pull-left">优惠券</view>
+                    <view class="pull-right">
+                        <view bindtap="show_coupon" class="a">
+                                                 当前无可用优惠券
+                                                 <icon class="icon-arrow" type=""></icon>
+                        </view>
+                    </view>
+                </view>
+                <view class="item {{pay_detail.coupon?'':'hide'}}">
+                    <view class="pull-left">优惠券</view>
+                    <view class="pull-right">
+                        <view bindtap="show_coupon" class="a red">
+                                                 {{pay_detail.coupon.amount}}元优惠券
+                                                 <icon class="icon-arrow" type=""></icon>
+                        </view>
+                    </view>
+                </view>
+                <view class="btn">
+                    <view bindtap="topay" class="a">确认付款 {{pay_detail.real_price}} 元</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="coupon_list {{coupon_list_hide}}">
+        <view class="backdrop"></view>
+        <view class="coupon_list_c">
+            <view bindtap="chose_coupon" class="coupon {{item.status==1?'':'invalid'}}" data-id="{{item.id}}" data-status="{{item.status}}" wx:for="{{pay_detail.coupon_list}}" wx:key="coupon_list">
+                <view class="entry">
+                    <view class="pull-left">
+                        <view class="span">
+                            <view class="money">{{item.amount}}</view>
+                                                        元
+                                                 </view>
+                        <view class="p" wx:if="{{item.prev_amount>0}}">满{{item.prev_amount}}可用</view>
+                        <view class="p" wx:else>
+                                                               通用券
+                                                        </view>
+                    </view>
+                    <view class="pull-right">
+                        <view class="p">{{item.name}}</view>
+                    </view>
+                    <view class="check" wx:if="{{item.id==pay_detail.coupon.id}}"></view>
+                    <view class="icon-invalid" wx:if="{{item.status==0}}"></view>
+                </view>
+                <view class="item">
+                    <view class="currency">
+                        <view class="btn">{{item.type==0?'通用券':item.type==1?'故事券':'课程券'}}</view>
+                    </view>
+                    <view class="time">{{item.start_time_str}}-{{item.end_time_str}}</view>
+                </view>
+            </view>
+            <view class="none-content" wx:if="{{!pay_detail.coupon_list.length}}">
+                <icon class="icon-none" type=""></icon>
+                                   没有满足使用条件的优惠券哦
+                            </view>
+        </view>
+        <view class="item1p back-box">
+            <view class="inner">
+                <view class="btn">
+                    <view bindtap="close_coupon" class="a">返回</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="item1p pay-success {{pay_success_hide}}">
+        <view bindtap="close_pay_success" class="backdrop"></view>
+        <view class="inner">
+            <view class="title">
+                            支付成功
+                            <view bindtap="close_pay_success" class="close"></view>
+            </view>
+            <view class="item">
+                <view class="pull-left">购买商品：</view>
+                <view class="pull-right">{{obj.title}}</view>
+            </view>
+            <view class="item line">
+                <view class="pull-left">消费金额：</view>
+                <view class="pull-right">¥{{pay_detail.real_price}}</view>
+            </view>
+            <view class="check" wx:if="{{pay_detail.real_price>20}}">
+                <navigator class="a" url="/pages/my/buy">查看订单信息</navigator>
+            </view>
+            <view class="entry" wx:else>
+                <navigator class="a" url="/pages/my/buy">
+                    <icon class="icon-order" type=""></icon>
+                                          查看订单
+                                   </navigator>
+            </view>
+        </view>
+    </view>
+    <view class="share_get {{share_view_hide}}">
+        <view bindtap="close_share_view" class="backdrop"></view>
+        <view class="share-earn">
+            <view class="inner">
+                <view class="close">
+                    <view bindtap="close_share_view" class="a">
+                        <icon class="icon-close"></icon>
+                    </view>
+                </view>
+                <view class="entry">
+                    <view class="p">
+                        <image class="avatar" src="https://xcx.cunzhanggushi.com/public/images/icon_earn.png"></image>
+                    </view>
+                    <view class="span">分享赚 ¥{{share_reward}}</view>
+                    <view class="p">每当有1个人通过你分享的链接购买成功，你就可以获得订单金额10%（即 ¥{{share_reward}}）的佣金奖励哦～</view>
+                </view>
+                <view class="btn">
+                    <button bindtap="hide_all" class="a" openType="share">立即赚钱</button>
+                </view>
+            </view>
+        </view>
+    </view>
+</template>

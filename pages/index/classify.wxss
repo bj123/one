@@ -1,0 +1,28 @@
+.coupon_list {
+    z-index: 901;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.pay_success,.pay-success {
+    z-index: 901;
+}
+
+.pay_success .backdrop,.pay-success .backdrop {
+    z-index: -9;
+}
+
+.coupon_list .backdrop {
+    z-index: -9;
+    background: #f5f5f5;
+}
+
+.coupon_list .coupon {
+    z-index: 903;
+}
+
+.coupon_list .coupon_list_c {
+    z-index: 902;
+}

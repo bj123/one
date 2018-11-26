@@ -1,0 +1,47 @@
+<view class="red_envelopes">
+    <view class="btn">
+        <navigator class="a" url="url"></navigator>
+    </view>
+</view>
+<view class="rule">
+    <view class="title">
+        <view class="line"></view>
+        <view class="t">
+            <image class="avatar" src="http://img.cunzhanggushi.com/public/image/xcx/rule_t.png"></image>
+        </view>
+    </view>
+    <view class="entry">
+        <view class="span">
+            <view class="number">1</view>
+            <view class="p">将红包分享给好友，好友领取红包后成为你的下线。</view>
+        </view>
+        <view class="span">
+            <view class="number">2</view>
+            <view class="p">邀请的好友在村长讲故事中每一次消费您都可以获得30%的现金提成奖励。</view>
+        </view>
+        <view class="span">
+            <view class="number">3</view>
+            <view class="p">红包可用于购物当现金抵用。</view>
+        </view>
+    </view>
+</view>
+<view class="backdrop" style="display:none;"></view>
+<view class="inviting-friends" style="display:none;">
+    <icon class="icon-invite" type=""></icon>
+</view>
+<view class="red_packet" style="display:none;">
+    <view class="entry">
+        <view class="t">恭喜获得</view>
+        <view class="money">
+            <view class="span">10</view>
+                     元
+              </view>
+        <view class="p">满199元抵扣</view>
+        <view class="btn">
+            <navigator class="a" url="url">分享给好友</navigator>
+        </view>
+        <view class="next">
+            <navigator class="a" url="url">下次再说</navigator>
+        </view>
+    </view>
+</view>

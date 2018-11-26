@@ -1,0 +1,72 @@
+<import src="/pages/tpl/_play.wxml"></import>
+<import src="/pages/tpl/_nomore.wxml"></import>
+<template is="_play" data="{{play:play,play_now:play_now,play_count:play_count,play_end:play_end,play_url:play_url,play_obj:play_obj,share_hide:share_hide,newer_hide:newer_hide,newer_coupon_hide:newer_coupon_hide,share_coupon_hide:share_coupon_hide}}"></template>
+<view class="classify-list sort-list classify-vip classify-gs">
+    <view class="item" wx:for="{{list}}" wx:key="album_list">
+        <navigator class="a" url="/pages/story/album?id={{item.id}}">
+            <image class="avatar" src="{{item.icon}}"></image>
+            <view class="body">
+                <view class="t">{{item.title}}</view>
+                <view class="p">{{item.memo}}</view>
+                <view class="story">
+                    <icon class="icon-album" type=""></icon>
+                                          {{item.chapter_count}}个故事
+                                   </view>
+            </view>
+            <view class="pull-right" hidden="{{xcx_control_hide}}">
+                <view class="btn" wx:if="{{item.price>0}}">{{item.price}}元</view>
+            </view>
+            <icon class="icon-vip" hidden="{{xcx_control_hide}}" wx:if="{{item.price>0}}"></icon>
+        </navigator>
+    </view>
+</view>
+<template is="_nodata" data wx:if="{{base.data.count==0}}"></template>
+<view class="hide">
+    <view class="backdrop"></view>
+    <view class="item1p">
+        <view class="inner">
+            <view class="title">
+                            守株待兔
+                            <navigator class="close" url="url"></navigator>
+            </view>
+            <view class="item">
+                <view class="pull-left">需付款</view>
+                <view class="pull-right">
+                    <view class="money">299</view>
+                                   元
+                            </view>
+            </view>
+            <view class="item">
+                <view class="pull-left">
+                    <icon class="icon-wechat" type=""></icon>
+                                   微信付款
+                            </view>
+                <view class="pull-right">
+                    <icon class="icon-check" type=""></icon>
+                </view>
+            </view>
+            <view class="item" style="display:none">
+                <view class="pull-left">红包</view>
+                <view class="pull-right">
+                    <navigator class="a" url="url">
+                                          当前无红包使用
+                                          <icon class="icon-arrow" type=""></icon>
+                    </navigator>
+                </view>
+            </view>
+            <view class="item">
+                <view class="pull-left">红包</view>
+                <view class="pull-right">
+                    <navigator class="a red" url="/pages/index/red_packet">
+                                          10元通用红包
+                                          <icon class="icon-arrow" type=""></icon>
+                    </navigator>
+                </view>
+            </view>
+            <view class="btn">
+                <navigator class="a" url="/pages/index/pay_success">确认付款 299 元</navigator>
+            </view>
+        </view>
+    </view>
+</view>
+<template is="_nomore" data="{{load_obj:load_obj}}"></template>

@@ -1,0 +1,51 @@
+page {
+    background: #fff!important;
+}
+
+.body-view {
+    padding-top: 9px;
+}
+
+.play-box .control {
+    background: #fff;
+    margin-top: 0!important;
+    position: absolute;
+    bottom: 15vh;
+    left: 0;
+    right: 0;
+}
+
+.play-box .control .list {
+    top: 82rpx;
+}
+
+.play-surround {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.play-box .cover .play {
+    animation: rotate_frames 50s linear infinite;
+}
+
+@keyframes rotate_frames {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.textbook_icon {
+    position: absolute;
+    right: 10rpx;
+    top: -80rpx;
+}
+
+.textbook_icon image {
+    height: 64rpx;
+    width: 64rpx;
+}

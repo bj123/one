@@ -1,0 +1,17 @@
+<template name="_ios_buy_pop">
+    <view catchtap="maskHide" class="backdrop" hidden="{{ios_buy_hide}}">
+        <view catchtap="returnClose" class="layer_tips">
+            <view class="title">
+                <view class="line"></view>
+                <view class="t">温馨提示</view>
+            </view>
+            <view class="p">点击下方按钮，回复
+                            <text class="red">“1”</text>
+                            解锁本专辑！
+                     </view>
+            <view class="btn">
+                <button openType="contact">立即解锁</button>
+            </view>
+        </view>
+    </view>
+</template>

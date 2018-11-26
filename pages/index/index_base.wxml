@@ -1,0 +1,164 @@
+<import src="/pages/tpl/_play.wxml"></import>
+<import src="/pages/tpl/_share.wxml"></import>
+<template is="_play" data="{{play:play,play_now:play_now,play_count:play_count,play_end:play_end,play_url:play_url,play_obj:play_obj,share_coupon_hide:share_coupon_hide,coupon:coupon,share_hide:share_hide,newer_hide:newer_hide,newer_coupon_hide:newer_coupon_hide}}"></template>
+<swiper autoplay="true" class="slide" duration="1000" indicatorDots="true" interval="5000">
+    <swiper-item wx:for="{{banners}}" wx:key="index_banner">
+        <image bindload="banner_load" bindtap="go_url" class="slide-image" data-url="{{item.url}}" mode="widthFix" src="{{item.icon}}"></image>
+    </swiper-item>
+</swiper>
+<button class="gudin" openType="contact" style=" background:url('https://wx.cunzhanggushi.com/public/images/bg.png') no-repeat center;background-size:contain;">
+    <text>关注公众号</text>
+    <text>免费听故事</text>
+</button>
+<view class="classify">
+    <view class="item">
+        <navigator class="a" url="/pages/story/new">
+            <icon class="icon-new" type=""></icon>
+                     最新
+              </navigator>
+    </view>
+    <view class="item">
+        <navigator class="a" url="/pages/index/classify?classify_id=6">
+            <icon class="icon-morning" type=""></icon>
+                     叫早
+              </navigator>
+    </view>
+    <view class="item">
+        <navigator class="a" url="/pages/index/classify?classify_id=5">
+            <icon class="icon-sleep" type=""></icon>
+                     哄睡
+              </navigator>
+    </view>
+    <view class="item">
+        <navigator class="a" url="/pages/index/classify">
+            <icon class="icon-sorts" type=""></icon>
+                     全部
+              </navigator>
+    </view>
+</view>
+<navigator class="red-packet hide" url="/pages/coupon/detail">
+    <image src="https://wx.cunzhanggushi.com/public/images/redpacket.png"></image>
+</navigator>
+<view class="recommend mt-15 group" hidden="{{promotion_list.length==0}}">
+    <view class="title">
+        <view class="h3">每周0元拼团</view>
+        <text>邀请好友一起拼，免费听故事</text>
+    </view>
+    <view class="entry">
+        <view class="item" wx:for="{{promotion_list}}" wx:key="index_promotion_list">
+            <view bindtap="go_promotion" class="a" data-id="{{item.id}}" data-url="/pages/promotion/detail?id={{item.id}}">
+                <view class="image">
+                    <image class="avatar" mode="widthFix" src="{{item.album.icon}}"></image>
+                    <view class="label">
+                        <icon class="icon-album" type=""></icon>
+                        <text>{{item.album.chapter_count_now}}/{{item.album.chapter_count}}个</text>
+                    </view>
+                    <view class="icon-free" style="background:url('http://wx.cunzhanggushi.com/public/images/free.png') no-repeat;background-size: 25px 25px;" wx:if="{{item.album.price>0}}"></view>
+                </view>
+                <view class="span">{{item.album.title}}</view>
+                <view class="p">
+                    <text class="remmber_count">{{item.need_count}}</text>
+                                          人团
+                                   </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="recommend mt-15">
+    <view class="title">
+        <view class="h3">今日推荐</view>
+        <text>今天听什么？村长告诉你</text>
+    </view>
+    <view class="entry">
+        <view class="item" wx:for="{{today_list}}" wx:key="index_taday_list">
+            <navigator class="a" url="/pages/story/album?id={{item.id}}">
+                <view class="image">
+                    <image class="avatar" lazyLoad="true" mode="widthFix" src="{{item.icon}}"></image>
+                    <view class="label">
+                        <icon class="icon-album" type=""></icon>
+                        <text>{{item.chapter_count_now}}/{{item.chapter_count}}个</text>
+                    </view>
+                    <view class="icon-free" style="background:url('https://wx.cunzhanggushi.com/public/images/pay.png') no-repeat;background-size: 25px 25px;" wx:if="{{item.price>0}}"></view>
+                </view>
+                <view class="span">{{item.title}}</view>
+                <view class="p">{{item.memo}}</view>
+            </navigator>
+        </view>
+    </view>
+</view>
+<view class="recommend mt-15">
+    <view class="title">
+        <view class="h3">亲子共读</view>
+        <text>每天三分钟，共享恬静亲子时光</text>
+    </view>
+    <view class="cover">
+        <navigator class="a" url="/pages/story/album?id={{parenting_first.id}}">
+            <view class="image">
+                <image class="avatar" mode="aspectFill" src="{{parenting_first.banner}}" style="width: 100%; height: 400rpx"></image>
+                <view class="label">
+                    <icon class="icon-album" type=""></icon>
+                    <text>{{parenting_first.chapter_count_now}}/{{parenting_first.chapter_count}}个</text>
+                </view>
+                <view class="icon-free" style="background:url('http://wx.cunzhanggushi.com/public/images/free.png') no-repeat;background-size: 25px 25px;" wx:if="{{parenting_first.price>0}}"></view>
+            </view>
+            <view class="span">{{parenting_first.title}}</view>
+            <view class="p">{{parenting_first.memo}}</view>
+        </navigator>
+    </view>
+    <view class="entry">
+        <view class="item" wx:for="{{parenting_list}}" wx:key="index_parenting_list">
+            <navigator class="a" url="/pages/story/album?id={{item.id}}">
+                <view class="image">
+                    <image class="avatar" mode="widthFix" src="{{item.icon}}"></image>
+                    <view class="label">
+                        <icon class="icon-album" type=""></icon>
+                        <text>{{item.chapter_count_now}}/{{item.chapter_count}}个</text>
+                    </view>
+                    <view class="icon-free" style="background:url('http://wx.cunzhanggushi.com/public/images/free.png') no-repeat;background-size: 25px 25px;" wx:if="{{item.price>0}}"></view>
+                </view>
+                <view class="span">{{item.title}}</view>
+                <view class="p">{{item.memo}}</view>
+            </navigator>
+        </view>
+    </view>
+</view>
+<view class="recommend mt-15">
+    <view class="title">
+        <view class="h3">精选专辑</view>
+        <text>情绪管理·自我认知·性格培养</text>
+        <view class="more">
+            <navigator class="a" url="/pages/story/chosen">
+                            更多
+                            <icon class="icon-arrow" type=""></icon>
+            </navigator>
+        </view>
+    </view>
+    <view class="entry">
+        <view class="item" wx:for="{{recommend_list}}" wx:key="index_recommend_list">
+            <navigator class="a" url="/pages/story/album?id={{item.id}}">
+                <view class="image">
+                    <image class="avatar" mode="widthFix" src="{{item.icon}}"></image>
+                    <view class="label">
+                        <icon class="icon-album" type=""></icon>
+                        <text>{{item.chapter_count_now}}/{{item.chapter_count}}个</text>
+                    </view>
+                    <view class="icon-free" style="background:url('http://wx.cunzhanggushi.com/public/images/free.png') no-repeat;background-size: 25px 25px;" wx:if="{{item.price>0}}"></view>
+                </view>
+                <view class="span">{{item.title}}</view>
+                <view class="p">{{item.memo}}</view>
+            </navigator>
+        </view>
+    </view>
+</view>
+<view class="{{red_show}} hide">
+    <view class="none"></view>
+    <view class="none-red">
+        <image class="bg-red" src="https://wx.cunzhanggushi.com/public/images/index-hb-bg.jpg">
+            <text class="txt-a">村长给你发了一个红包</text>
+            <text class="txt-b">点(開)领取</text>
+            <text class="txt-c">恭喜发财，大吉大利</text>
+            <image bindtap="get_hb" class="img-a" src="https://wx.cunzhanggushi.com/public/images/open.png"></image>
+        </image>
+        <text bindtap="box_none" class="x">X</text>
+    </view>
+</view>

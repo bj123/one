@@ -1,0 +1,17 @@
+<import src="/pages/tpl/_play.wxml"></import>
+<import src="/pages/tpl/_nomore.wxml"></import>
+<template is="_play" data="{{play:play,play_now:play_now,play_count:play_count,play_end:play_end,play_url:play_url,play_obj:play_obj,share_hide:share_hide,newer_hide:newer_hide,newer_coupon_hide:newer_coupon_hide,share_coupon_hide:share_coupon_hide,coupon:coupon}}"></template>
+<view class="parenting all_parent">
+    <view class="item" wx:for="{{list}}" wx:key="course_list_all">
+        <navigator class="a" url="/pages/course/detail?id={{item.id}}">
+            <image class="avatar" src="{{item.icon}}"></image>
+            <view class="body">
+                <view class="t">{{item.title}}</view>
+                <view class="span">{{item.memo}}</view>
+                <view class="p">已更新{{item.chapter_count_now}}期 | {{item.buy_count}}人订阅</view>
+            </view>
+            <view class="money">{{item.price}}元</view>
+        </navigator>
+    </view>
+</view>
+<template is="_nomore" data="{{load_obj:load_obj}}"></template>

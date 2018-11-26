@@ -1,0 +1,6 @@
+.main image {
+    width: 750rpx;
+    margin: 0;
+    line-height: 0;
+    display: block;
+}

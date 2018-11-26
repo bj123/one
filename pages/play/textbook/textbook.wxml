@@ -1,0 +1,4 @@
+<import src="/pages/wxParse/wxParse.wxml"></import>
+<view class="main">
+    <template is="wxParse" data="{{wxParseData:desc.nodes}}"></template>
+</view>

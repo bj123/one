@@ -1,0 +1,49 @@
+<import src="/pages/tpl/_nodata.wxml"></import>
+<import src="/pages/tpl/_nomore.wxml"></import>
+<view class="buy-box">
+    <view bindtap="change_tag" class="item" data-id="1">
+        <view class="a {{story_active}}">故事 ({{story_count}})</view>
+    </view>
+    <view bindtap="change_tag" class="item" data-id="2">
+        <view class="a {{chapter_active}}">微课 ({{chapter_count}})</view>
+    </view>
+</view>
+<view class="like-list {{story_hide}}">
+    <view bindtap="go_play" class="item {{item.story.album.status!=1?'gray':''}}" data-id="{{item.info_id}}" data-play-type="{{item.story.album.type}}" data-status="{{item.story.album.status}}" data-type="1" wx:for="{{like_story_list}}" wx:key="{{my_like_story}}">
+        <image class="n-sale" src="https://api.cunzhanggushi.com/public/images/n_sale.png" wx:if="{{item.story.album.status==0}}"></image>
+        <image class="avatar" mode="aspectFill" src="{{item.story.icon}}"></image>
+        <view class="body">
+            <view class="span">{{item.story.title}}</view>
+            <view class="p">{{item.story.memo}}</view>
+            <view class="play">
+                <icon class="icon-time" type=""></icon>
+                                   {{item.story.time}}
+                            </view>
+            <view class="play">
+                <icon class="icon-play" type=""></icon>
+                                   {{item.story.play_count_format}}
+                            </view>
+        </view>
+    </view>
+    <template is="_nodata" data="{{content:story_content,nodata_hide:story_nodata_hide}}" wx:if="{{!like_story_list.length}}"></template>
+    <template is="_nomore" data="{{load_obj:load_obj}}"></template>
+</view>
+<view class="like-list like-chapter {{chapter_hide}}">
+    <view bindtap="go_play" class="item {{item.chapter.course.status!=1?'gray':''}}" data-id="{{item.info_id}}" data-play-type="{{item.chapter.course.type}}" data-status="{{item.chapter.course.status}}" data-type="2" wx:for="{{like_chapter_list}}" wx:key="{{my_like_chapter}}">
+        <image class="n-sale" mode="aspectFit" src="https://api.cunzhanggushi.com/public/images/n_sale.png" wx:if="{{item.chapter.course.status==0}}"></image>
+        <image class="avatar" mode="aspectFill" src="{{item.chapter.icon}}"></image>
+        <view class="body">
+            <view class="span">{{item.chapter.title}}</view>
+            <view class="play">
+                <icon class="icon-time" type=""></icon>
+                                   {{item.chapter.time}}
+                            </view>
+            <view class="play">
+                <icon class="icon-play" type=""></icon>
+                                   {{item.chapter.play_count_format}}
+                            </view>
+        </view>
+    </view>
+    <template is="_nodata" data="{{content:course_content,nodata_hide:course_nodata_hide}}" wx:if="{{!like_chapter_list.length}}"></template>
+    <template is="_nomore" data="{{load_obj:load_obj}}"></template>
+</view>

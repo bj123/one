@@ -1,0 +1,43 @@
+<view class="section tc">
+    <video controls src="{{src}}"></video>
+</view>
+<view class="play-video">
+    <view class="title">{{play_obj.title}}</view>
+    <view class="control">
+        <view class="item">
+            <view bindtap="like" class="a {{like=='1'?'active':''}}">
+                <icon class="icon-heart"></icon>
+            </view>
+        </view>
+        <view class="item">
+            <view bindtap="show_timer" class="a">
+                <icon class="icon-time"></icon>
+            </view>
+        </view>
+        <view class="item">
+            <navigator class="a" url="/pages/comment/index?id={{play_obj.id}}&type={{play_obj.info_type}}">
+                <icon class="icon-comment"></icon>
+                <view class="number">{{play_obj.comment_count}}</view>
+            </navigator>
+        </view>
+        <view class="item">
+            <navigator class="a" url="url">
+                <icon class="icon-list" type=""></icon>
+            </navigator>
+        </view>
+    </view>
+    <view class="record hide">
+        <navigator class="a" url="url">
+                     上次听到这里11:52
+                     <icon class="icon-play" type=""></icon>
+        </navigator>
+    </view>
+    <view class="entry">
+        <view class="p">
+            <strong>第一部以故宫为背景的童话故事</strong>
+        </view>
+        <view class="p">故宫（紫禁城）位于北京中轴线的中心，明清两代的皇家宫殿，中国古代宫廷建筑之精华。2015年恰逢故宫博物院90年院庆，作为国内第一部以故宫为背景的系列童话，《故宫里的大怪兽》以一种独特的方式传播特有的传统中国文化魅力。作者讲述了一个小学四年级女生和故宫上百种吉兽、神兽的故事，巧妙地将故宫的历史知识、民俗典故融入其中，让孩子们在不知不觉中深入了解中国传统文化与典故。</view>
+        <view class="p">1、不仅有毕淑敏、曹文轩、沈石溪等著名童话作家、儿童教育家联推荐，刘瑜、谢玺璋、梁鸿等文化名人、评论家也赞不绝口。</view>
+        <view class="p">常怡写的童书，犹如山间小溪，清澈美好，蹦蹦跳跳不拘常法地向前行进，干净而有力量。当你以为水珠如此单纯的时候，它已经胸有成竹地汇入了任性的江河，奔向蔚蓝大海。</view>
+    </view>
+</view>

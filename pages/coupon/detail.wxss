@@ -1,0 +1,427 @@
+.cp {
+    background: #8a0c2a;
+    padding-bottom: 20rpx;
+    font-size: 14px;
+}
+
+.weixin-icon {
+    width: 40rpx;
+    height: 34rpx;
+    margin-right: 6rpx;
+    background: url('https://wx.cunzhanggushi.com/public/images/weixin.png') no-repeat;
+    background-size: cover;
+}
+
+.cp .top {
+    height: 480rpx;
+    background: url("https://wx.cunzhanggushi.com/public/images/cp-index-top-bg.png") no-repeat;
+    background-size: cover;
+}
+
+.cp .cp-rule {
+    width: 150rpx;
+    font-size: 14px;
+    position: absolute;
+    top: 48rpx;
+    right: 0;
+    color: #fff;
+    height: 60rpx;
+    line-height: 60rpx;
+}
+
+.cp .cp-rule .cp-rule-bg {
+    width: 100%;
+    height: 100%;
+    border-radius: 30rpx 0 0 30rpx;
+    background: #000;
+    opacity: 0.5;
+}
+
+.cp .cp-rule text {
+    position: absolute;
+    top: 0;
+    right: 10rpx;
+}
+
+.cp .member-get {
+    width: 196rpx;
+    height: 72rpx;
+    padding-right: 26rpx;
+    color: #fff;
+    font-size: 12px;
+    position: absolute;
+    top: 360rpx;
+    padding-left: 10rpx;
+    background: url("https://wx.cunzhanggushi.com/public/images/cp-member-bg.png") no-repeat;
+    background-size: contain;
+}
+
+.cp .member-get text {
+    margin-top: 4rpx;
+    float: left;
+}
+
+.cp .cp-body {
+    width: 696rpx;
+    height: 466rpx;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 10rpx;
+}
+
+.cp .cp-body>.member-list {
+    width: 90%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 20rpx;
+    padding-top: 60rpx;
+}
+
+.cp .cp-body>.member-list .item {
+    display: inline-block;
+    margin-right: 20rpx;
+}
+
+.cp .cp-body>.member-list image {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+    border: 1px solid #dcdcdc;
+}
+
+.cp .cp-body>.member-list .no-member {
+    border: 1px dashed #dcdcdc;
+}
+
+.cp .cp-body .hb-info {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 30rpx;
+}
+
+.cp .cp-body .time-up {
+    color: #999999;
+    margin-top: 20rpx;
+}
+
+.cp .cp-body .control {
+    margin-top: 40rpx;
+}
+
+.cp .cp-body .control .cp-btn-success {
+    width: 560rpx;
+    height: 78rpx;
+    line-height: 78rpx;
+    font-size: 14px;
+    color: #fff;
+    background: #f6134c;
+    border-radius: 60rpx;
+}
+
+.cp .cp-body .hb-tip {
+    width: 426rpx;
+    margin: 0 auto;
+    position: fixed;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+    padding: 20rpx;
+    color: #fff;
+    z-index: 2;
+}
+
+.cp .cp-body .hb-tip .cbg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.8;
+    border-radius: 10rpx;
+}
+
+.cp .cp-body .hb-tip .tip-content {
+    color: #fff;
+    position: relative;
+    text-align: center;
+}
+
+.cp .cp-bottom {
+    width: 100%;
+}
+
+.cp .cp-bottom .left {
+    width: 25%;
+    height: 1px;
+    margin-right: 5px;
+    background: linear-gradient(to left,#fff,#fd6363);
+    position: absolute;
+    top: 20rpx;
+    left: 70rpx;
+}
+
+.cp .cp-bottom .right {
+    width: 25%;
+    height: 1px;
+    margin-left: 5px;
+    background: linear-gradient(to right,#fff,#fd6363);
+    position: absolute;
+    top: 20rpx;
+    right: 70rpx;
+}
+
+.cp .cp-bottom {
+    width: 100%;
+    text-align: center;
+    margin-top: 40rpx;
+    position: relative;
+}
+
+.cp .cp-buttom .stars {
+    width: 84rpx;
+    height: 84rpx;
+}
+
+.cp .cp-buttom .cp-title {
+    color: #fff;
+    font-size: 16px;
+    display: inline-block;
+}
+
+.cp .cp-recommend {
+    margin: 0 auto;
+    margin-top: 40rpx;
+    text-align: center;
+}
+
+.cp .cp-recommend .item {
+    width: 346rpx;
+    height: 534rpx;
+    display: inline-block;
+    margin: 10rpx;
+    background: #fff;
+    position: relative;
+}
+
+.cp .cp-recommend .item .vip {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 25px;
+    height: 25px;
+}
+
+.cp .cp-recommend .item .icon {
+    width: 346rpx;
+    height: 346rpx;
+}
+
+.cp .cp-recommend .item .title,.cp .cp-recommend .item .desc {
+    text-align: left;
+    color: #000;
+    margin-left: 16rpx;
+}
+
+.cp .cp-recommend .item .title {
+    margin-top: 10rpx;
+}
+
+.cp .cp-recommend .item .desc {
+    color: #aaaaaa;
+}
+
+.cp .cp-recommend .item .cp-button {
+    width: 326rpx;
+    height: 60rpx;
+    background: #fd6363;
+    border-radius: 30rpx;
+    color: #fff;
+    line-height: 58rpx;
+    font-size: 16px;
+    margin: 0 auto;
+    margin-top: 20rpx;
+}
+
+.cp .cp-recommend .item .chapter-info {
+    position: absolute;
+    top: 274rpx;
+    left: 0;
+    width: 132rpx;
+    height: 38rpx;
+}
+
+.cp .cp-recommend .item .chapter-info .cbg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.5;
+    border-radius: 0 19rpx 19rpx 0;
+}
+
+.cp .cp-recommend .item .chapter-info .chapter-icon {
+    width: 24rpx;
+    height: 24rpx;
+    background: url("https://wx.cunzhanggushi.com/public/images/chapter-icon.png") no-repeat;
+    background-size: cover;
+    position: absolute;
+    left: 10rpx;
+    top: 6rpx;
+}
+
+.cp .cp-recommend .item .chapter-info text {
+    position: absolute;
+    left: 44rpx;
+    color: #fff;
+    font-size: 12px;
+    margin-top: 2rpx;
+}
+
+.guize_modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: rgba(0,0,0,0.5);
+}
+
+.guize_modal .left {
+    width: 25%;
+    height: 1px;
+    margin-right: 5px;
+    background: linear-gradient(to left,#fd6363,#fff);
+    position: absolute;
+    top: 60rpx;
+    left: 30rpx;
+}
+
+.guize_modal .right {
+    width: 25%;
+    height: 1px;
+    margin-left: 5px;
+    background: linear-gradient(to right,#fd6363,#fff);
+    position: absolute;
+    top: 60rpx;
+    right: 30rpx;
+}
+
+.guize_modal .guize_content .icon-close {
+    position: absolute;
+    right: 0px;
+    top: -35px;
+    width: 26px;
+    height: 26px;
+}
+
+.guize_modal .guize_box {
+    position: relative;
+    height: 100%;
+}
+
+.guize_modal .guize_content {
+    margin: 0 auto;
+    width: 583rpx;
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+}
+
+.guize_modal .guize_content .guize_wrap {
+    background: #fff;
+    border-radius: 6px;
+    padding: 15px;
+}
+
+.guize_modal .guize_content .guize_wrap .title {
+    text-align: center;
+    margin: 3px 0px 15px 0px;
+    font-size: 32rpx;
+    color: #fd6363;
+}
+
+.guize_modal .guize_content .guize_wrap .guize_wrap_detail {
+    line-height: 40rpx;
+    margin-bottom: 10rpx;
+}
+
+.hb-pop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+.hb-pop .icon-close {
+    position: absolute;
+    top: 224rpx;
+    right: 116rpx;
+    width: 26px;
+    height: 26px;
+}
+
+.hb-pop .hb-pop-bg {
+    width: 670rpx;
+    height: 742rpx;
+    position: fixed;
+    left: 52rpx;
+    top: 256rpx;
+    background: url("https://wx.cunzhanggushi.com/public/images/cp-pop-bg.png") no-repeat;
+    background-size: cover;
+}
+
+.hb-pop .hb-pop-bg text {
+    color: #fff;
+    display: block;
+}
+
+.hb-pop .hb-pop-bg .info {
+    width: 450rpx;
+    margin: 242rpx 0 0 100rpx;
+}
+
+.hb-pop .hb-pop-bg .price {
+    margin-top: 10rpx;
+}
+
+.hb-pop .hb-pop-bg .price .num {
+    font-size: 84px;
+    margin-left: -20rpx;
+    display: inline-block;
+}
+
+.hb-pop .hb-pop-bg .price .yuan {
+    font-size: 20px;
+    display: inline-block;
+}
+
+.hb-pop .hb-pop-bg .hb-pop-btn {
+    position: absolute;
+    bottom: 20rpx;
+}
+
+.hb-pop .hb-pop-bg .hb-pop-btn .btn {
+    width: 440rpx;
+    height: 90rpx;
+    line-height: 80rpx;
+    text-align: center;
+    background: url("https://wx.cunzhanggushi.com/public/images/cp-pop-btn.png") no-repeat;
+    background-size: cover;
+    border-radius: 18px;
+    color: #000;
+    margin-bottom: 20rpx;
+    font-size: 14px;
+    margin-left: 112rpx;
+}
+
+.hb-pop .hb-pop-bg .hb-pop-btn .btn text {
+    color: #000;
+    margin-left: 38rpx;
+}
+
+.mt-15 {
+    margin-top: 15rpx;
+}

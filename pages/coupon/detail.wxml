@@ -1,0 +1,144 @@
+<view class="cp">
+    <view class="guize_modal {{rule_hide}}">
+        <view bindtap="close_rule" class="guize_box">
+            <view class="guize_content">
+                <icon class="icon-close" style="background:url('https://wx.cunzhanggushi.com/public/images/x.png') no-repeat ;background-size:26px 26px"></icon>
+                <view class="guize_wrap">
+                    <view class="title">
+                        <icon class="left"></icon>
+                                          拼团活动规则
+                                          <icon class="right"></icon>
+                    </view>
+                    <view class="guize_wrap_detail">
+                                          1) 活动时间:{{promotion.start_time_format_point}}-{{promotion.end_time_format_point}}
+                                   </view>
+                    <view class="guize_wrap_detail">
+                                          2) 0元拼团仅限新用户参团，老用户可开团邀请新用户一起参与拼团；新用户是指从未使用/注册过村长讲故事的用户；
+                                   </view>
+                    <view class="guize_wrap_detail">
+                                          3) 拼团成功后，所有参团人员均可解锁免费收听该专辑；
+                                   </view>
+                    <view class="guize_wrap_detail">
+                                          4）每个拼团发起后24小时未组满5人即失败，不能享受免费收听该专辑;拼团失败后在活动时间内，还可再次发起拼团；
+                                   </view>
+                    <view class="guize_wrap_detail">
+                                          5) 村长讲故事对活动规则保留最终解释权。
+                                   </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="top">
+        <view bindtap="show_rule" class="cp-rule">
+            <view class="cp-rule-bg"></view>
+            <text>活动规则</text>
+        </view>
+        <view class="member-get">
+            <text>xxx 刚领取 xx 元现金红包</text>
+        </view>
+    </view>
+    <view class="cp-body">
+        <view class="member-list">
+            <view class="item">
+                <image src="https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eriadvXSxcNaY6ib9usHJCtzRumQicyjJrOYyQU6nHYsxbpVG53u7ibEPUNYyb1q1yO8PzicN6QC4nH3Tg/0"></image>
+            </view>
+            <view class="item">
+                <image class="no-member" src="https://wx.cunzhanggushi.com/public/images/pp.png"></image>
+            </view>
+        </view>
+        <view class="hb-info">
+            <view class="detail">
+                            在
+                            <text class="red">4</text>
+                            个微信群集齐好友头像即可开红包
+                     </view>
+            <view class="time-up">21:23:55后结束</view>
+        </view>
+        <view class="control">
+            <button class="cp-btn-success" openType="share">
+                <icon class="weixin-icon"></icon>
+                            邀请微信群好友一起拆
+                     </button>
+        </view>
+        <view class="hb-tip hide">
+            <view class="cbg"></view>
+            <view class="tip-content">您的红包仅差4人即可打开，赶紧邀请好友一起来拆吧！</view>
+        </view>
+    </view>
+    <view style="height: 18rpx;"></view>
+    <view class="cp-body">
+        <view class="member-list">
+            <view class="item">
+                <image src="https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eriadvXSxcNaY6ib9usHJCtzRumQicyjJrOYyQU6nHYsxbpVG53u7ibEPUNYyb1q1yO8PzicN6QC4nH3Tg/0"></image>
+            </view>
+            <view class="item">
+                <image class="no-member" src="https://wx.cunzhanggushi.com/public/images/pp.png"></image>
+            </view>
+        </view>
+        <view class="hb-info">
+            <view class="detail">
+                            在
+                            <text class="red">4</text>
+                            个微信群集齐好友头像即可开红包
+                     </view>
+            <view class="time-up">21:23:55后结束</view>
+        </view>
+        <view class="control">
+            <button class="cp-btn-success" openType="share">
+                <icon class="weixin-icon"></icon>
+                            邀请微信群好友一起拆
+                     </button>
+        </view>
+        <view class="hb-tip hide">
+            <view class="cbg"></view>
+            <view class="tip-content">您的红包仅差4人即可打开，赶紧邀请好友一起来拆吧！</view>
+        </view>
+    </view>
+    <view class="cp-bottom">
+        <view class="title">
+            <icon class="left"></icon>
+            <image class="stars" src="https://wx.cunzhanggushi.com/public/images/star.png" style="width:42rpx; height:42rpx; vertical-align: middle; margin-right: 10rpx;  margin-top: -6rpx; "></image>
+            <text class="cp-title" style="color:#fff; font-size: 16px; line-height: 36rpx; ">精品推荐</text>
+            <icon class="right"></icon>
+        </view>
+        <view class="cp-recommend">
+            <view class="item">
+                <image class="vip" src="http://wx.cunzhanggushi.com/public/images/free.png"></image>
+                <image class="icon" src="https://img.cunzhanggushi.com/uploads/images/2017-12-28/5a44bc2e20b2a.jpg"></image>
+                <view class="chapter-info">
+                    <view class="cbg"></view>
+                    <icon class="chapter-icon"></icon>
+                    <text>4/6个</text>
+                </view>
+                <view class="title">睡前故事</view>
+                <view class="desc">神奇哄睡</view>
+                <view class="cp-button">去看看</view>
+            </view>
+            <view class="item">
+                <image class="vip" src="http://wx.cunzhanggushi.com/public/images/free.png"></image>
+                <image class="icon" src="https://img.cunzhanggushi.com/uploads/images/2017-12-28/5a44bc2e20b2a.jpg"></image>
+                <view class="title">睡前故事</view>
+                <view class="desc">神奇哄睡</view>
+                <view class="cp-button">去看看</view>
+            </view>
+        </view>
+    </view>
+    <view class="hb-pop {{hb_pop_hide}}">
+        <icon class="icon-close" style="background:url('https://wx.cunzhanggushi.com/public/images/x.png') no-repeat ;background-size:26px 26px"></icon>
+        <view class="hb-pop-bg">
+            <view class="info">
+                <text>您已获得1个现金红包，还差4人即可拆开</text>
+                <text>赶紧邀请好友，一起瓜分50元！</text>
+            </view>
+            <view class="price">
+                <text class="num">50</text>
+                <text class="yuan">元</text>
+            </view>
+            <view class="hb-pop-btn">
+                <button class="btn" openType="share">
+                    <text>邀请微信好友一起拆</text>
+                </button>
+            </view>
+        </view>
+    </view>
+</view>

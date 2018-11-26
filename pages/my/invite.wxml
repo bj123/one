@@ -1,0 +1,44 @@
+<view class="invitation">
+    <view class="banner">
+        <image class="avatar" src="http://xcx.cunzhanggushi.com/public/images/invite_bg.png"></image>
+    </view>
+    <view class="btn">
+        <button class="a" openType="share">转发到群聊</button>
+    </view>
+    <view class="generate {{is_test?'':'hide'}}">
+        <view bindtap="img_preview" class="a">
+            <icon class="icon-share" type=""></icon>
+                     生成朋友圈分享图
+              </view>
+    </view>
+    <view class="record-box">
+        <view class="title">
+            <view class="line"></view>
+            <view class="t">邀请战绩</view>
+        </view>
+        <view class="entry">
+            <view class="item">
+                <view class="p">成功邀请</view>
+                <view class="span">{{member.ex.invite_count}}</view>
+                <view class="p">位好友</view>
+            </view>
+            <view class="item">
+                <view class="p">获得奖励</view>
+                <view class="span">{{member.ex.total_income}}</view>
+                <view class="p">元奖励</view>
+            </view>
+        </view>
+    </view>
+    <view class="check">
+        <navigator class="a" url="/pages/my/invite_record">查看我的邀请记录</navigator>
+    </view>
+    <view class="activity-rules">
+        <view class="title">活动规则</view>
+        <view class="entry">
+            <view class="span">奖励规则：</view>
+            <view class="p">1.好友通过您分享的任意链接，进入村长讲故事并登陆成功，即算您成功邀请。</view>
+            <view class="p">2.成功邀请的好友通过村长讲故事进行消费时，每一笔订单您可获得最高30%，最低10%的提成奖励，奖励不设上限。</view>
+            <view class="p">3.提成奖励将在好友购买付款成功后即刻发放。如果在好友购买成功后的第二个工作日内仍未收到提成奖励，建议联系客服确认。</view>
+        </view>
+    </view>
+</view>

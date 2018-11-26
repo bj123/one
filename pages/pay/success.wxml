@@ -1,0 +1,30 @@
+<view class="pay_success">
+    <view class="entry">
+        <icon class="icon-success" type=""></icon>
+        <view class="p">支付成功</view>
+    </view>
+    <view class="item">
+        <view class="pull-left">购买商品：</view>
+        <view class="pull-right">{{title}}</view>
+    </view>
+    <view class="item">
+        <view class="pull-left">消费金额</view>
+        <view class="pull-right">¥{{order.amount}}</view>
+    </view>
+    <view class="item">
+        <view class="pull-left">支付方式：</view>
+        <view class="pull-right">微信钱包支付</view>
+    </view>
+    <view class="check" wx:if="{{order.amount<=20}}">
+        <navigator class="a" url="/pages/my/coupon">
+                            查看礼物
+                            <icon class="icon-arrow" type=""></icon>
+        </navigator>
+    </view>
+    <view class="check">
+        <navigator class="a" url="/pages/my/order">
+                     查看我的订单
+                     <icon class="icon-arrow" type=""></icon>
+        </navigator>
+    </view>
+</view>

@@ -1,0 +1,6 @@
+<template name="_nodata">
+    <view class="none-content {{nodata_hide}}">
+        <icon class="icon-none" type=""></icon>
+              {{content?content:'还没有详细内容~'}}
+       </view>
+</template>

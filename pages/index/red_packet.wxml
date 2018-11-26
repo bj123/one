@@ -1,0 +1,61 @@
+<view class="coupon">
+    <view class="entry">
+        <view class="pull-left">
+            <view class="span">
+                <view class="money">50</view>
+                            元
+                     </view>
+            <view class="p">满198可用</view>
+        </view>
+        <view class="pull-right">
+            <view class="p">新人专用（全场通用）</view>
+        </view>
+    </view>
+    <view class="item">
+        <view class="currency">
+            <view class="btn">通用券</view>
+        </view>
+        <view class="time">2017/08/14 08:15-2017/02/05 08:20</view>
+    </view>
+</view>
+<view class="coupon">
+    <view class="entry">
+        <view class="pull-left">
+            <view class="span">
+                <view class="money">20</view>
+                            元
+                     </view>
+            <view class="p">满88可用</view>
+        </view>
+        <view class="pull-right">
+            <view class="p">新人专用（全场通用）</view>
+        </view>
+    </view>
+    <view class="item">
+        <view class="currency">
+            <view class="btn">通用券</view>
+        </view>
+        <view class="time">2017/08/14 08:15-2017/02/05 08:20</view>
+    </view>
+</view>
+<view class="coupon invalid">
+    <view class="entry">
+        <view class="pull-left">
+            <view class="span">
+                <view class="money">18</view>
+                            元
+                     </view>
+            <view class="p">满98可用</view>
+        </view>
+        <view class="pull-right">
+            <view class="p">新人专用（全场通用）</view>
+        </view>
+        <view class="icon-invalid"></view>
+    </view>
+    <view class="item">
+        <view class="currency">
+            <view class="btn">通用券</view>
+        </view>
+        <view class="time">2017/08/14 08:15-2017/02/05 08:20</view>
+    </view>
+</view>

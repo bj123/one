@@ -1,0 +1,35 @@
+<template name="_share">
+    <view class="{{newer_hide}}">
+        <view class="backdrop"></view>
+        <view class="unpacking">
+            <view class="inner">
+                <view class="close">
+                    <view bindtap="close_newer_view" class="a"></view>
+                </view>
+                <view class="btn">
+                    <view bindtap="take_new_coupon" class="a">立即拆红包</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="winning {{newer_coupon_hide}}">
+        <view class="backdrop"></view>
+        <view class="inner">
+            <view class="item">
+                <view class="symbol">¥</view>
+                <view class="money">{{coupon.amount}}</view>
+                <view class="coupon">优惠券</view>
+            </view>
+            <view class="close">
+                <view bindtap="close_coupon" class="a"></view>
+            </view>
+            <view class="entry">
+                <view class="span">恭喜你中了{{coupon.amount}}元优惠券</view>
+                <view class="p">爸爸妈妈可以给孩子买有趣的故事啦！</view>
+            </view>
+            <view class="btn">
+                <view bindtap="close_coupon" class="a">立即使用 </view>
+            </view>
+        </view>
+    </view>
+</template>

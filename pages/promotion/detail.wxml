@@ -1,0 +1,172 @@
+<import src="/pages/wxParse/wxParse.wxml"></import>
+<view>
+    <view class="guize_modal {{rule_hide}}">
+        <view bindtap="close_rule" class="guize_box">
+            <view class="guize_content">
+                <icon bindtap="close_rule" class="icon-close" style="background:url('https://wx.cunzhanggushi.com/public/images/x.png') no-repeat ;background-size:26px 26px"></icon>
+                <view class="guize_wrap">
+                    <view class="title">
+                        <icon class="left"></icon>
+                                          拼团活动规则
+                                          <icon class="right"></icon>
+                    </view>
+                    <view class="guize_wrap_detail">
+                                          1) 活动时间:{{promotion.start_time_format_point}}-{{promotion.end_time_format_point}}
+                                   </view>
+                    <view class="guize_wrap_detail">
+                                          2) 0元拼团仅限新用户参团，新用户仅限参团一次。老用户可开团，邀请新用户一起参与拼团；新用户是指从未使用/注册过村长讲故事的用户；
+                                   </view>
+                    <view class="guize_wrap_detail">
+                                          3) 拼团成功后，所有参团人员均可解锁免费收听该专辑；
+                                   </view>
+                    <view class="guize_wrap_detail">
+                                          4）每个拼团发起后24小时未组满{{promotion.need_count}}人即失败，不能享受免费收听该专辑;拼团失败后在活动时间内，还可再次发起拼团；
+                                   </view>
+                    <view class="guize_wrap_detail">
+                                          5) 村长讲故事对活动规则保留最终解释权。
+                                   </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="guize_modal no_bg tip {{share_tip_hide}}">
+        <view class="guize_box">
+            <view class="guize_content .tip">
+                <view class="guize_wrap bg_black">
+                    <view class="guize_wrap_detail white">
+                                          {{pop_tip}}
+                                   </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="topbar">
+        <image class="img_bar" mode="widthFix" src="{{promotion.parent.banner}}"></image>
+        <view class="top_user">
+            <view class="pupo-list {{item.hide}}" wx:for="{{suc_member_list}}" wx:key="promotion_suc_member_list">
+                <image class="head_img" src="{{item.icon}}"></image>
+                <view class="content ellipsis guojiang">
+                    <text>{{item.name}}</text>
+                                          获得
+                                          <text>免费听{{promotion.parent.title}}</text>
+                </view>
+            </view>
+        </view>
+        <text bindtap="show_rule" class="guize">活动规则</text>
+    </view>
+    <view class="date">
+        <view class="invited">邀请好友一起拼，免费听故事</view>
+        <view class="invited_date">
+                     活动时间：
+                     <text>{{promotion.start_time_format}}</text>
+                     -
+                     <text>{{promotion.end_time_format}}</text>
+        </view>
+    </view>
+    <icon class="icon-success" wx:if="{{task.status==1}}"></icon>
+    <icon class="icon-success icon-fail" wx:if="{{task.status==-1}}"></icon>
+    <view class="invite_remmber">
+        <view class="remmber_wrap">
+            <view class="remmber_box clearfix">
+                <view wx:for="{{need_count}}" wx:for-index="need_index" wx:key="need_count_list">
+                    <block wx:if="{{task_detail[need_index]}}">
+                        <image class="head_imgs" src="{{task_detail[need_index].member.icon}}"></image>
+                        <icon class="icon-tuan" wx:if="{{task_detail[need_index].is_group==1}}"></icon>
+                    </block>
+                    <image class="head_imgs no-member" src="https://wx.cunzhanggushi.com/public/images/pp.png" wx:else></image>
+                </view>
+            </view>
+            <button class="wei_friend no_success" wx:if="{{promotion.status==-1}}">
+                <text>活动已结束</text>
+            </button>
+            <view wx:elif="{{task.status==0&&task.end_time_stamp>time_stamp&&member.id==task.member_id}}">
+                <view class="invite_cha">还差
+                                          <text class="invite_sum">{{promotion.need_count-task.now_count<0?0:promotion.need_count-task.now_count}}</text>
+                                          人即可成团，快邀请好友来拼
+                                   </view>
+                <view class="end-time">
+                    <text>{{end_time}}</text>
+                                          后结束
+                                   </view>
+                <button class="wei_friend" openType="share">
+                    <icon class="weixin-icon"></icon>
+                    <text>邀请微信群好友来参团</text>
+                </button>
+                <view bindtap="show_play_list" class="shi_ting">
+                    <icon class="bofang-icon"></icon>
+                    <text style="color:black;">试听</text>
+                </view>
+            </view>
+            <view wx:elif="{{task.status==0&&task.end_time_stamp>time_stamp&&member.id!=task.member_id}}">
+                <view class="invite_cha">还差
+                                          <text class="invite_sum">{{promotion.need_count-task.now_count<0?0:promotion.need_count-task.now_count}}</text>
+                                          人即可 成团，快邀请好友来拼
+                                   </view>
+                <view class="end-time">
+                    <text>{{end_time}}</text>
+                                          后结束
+                                   </view>
+                <button class="wei_friend" openType="share" wx:if="{{is_group==1}}">
+                    <icon class="weixin-icon"></icon>
+                    <text>邀请微信群好友来参团</text>
+                </button>
+                <button bindtap="add_group" class="wei_friend" wx:else>
+                    <text>一起来拼团</text>
+                </button>
+                <button bindtap="create_new_group" class="wei_friend new_group">
+                    <text>组一个新团</text>
+                </button>
+            </view>
+            <block wx:elif="{{task.status==1}}">
+                <button class="wei_friend no_success">
+                    <text>已成团</text>
+                </button>
+                <view bindtap="show_play_list" class="wei_friend" wx:if="{{is_group==1}}">
+                                          马上去听故事
+                                   </view>
+                <button bindtap="create_new_group" class="wei_friend" wx:else>
+                    <text>我来开团</text>
+                </button>
+            </block>
+            <block wx:elif="{{task.status==0&&task.end_time_stamp<time_stamp||task.status==-1}}">
+                <button class="wei_friend no_success">
+                    <text>拼团失败</text>
+                </button>
+                <button bindtap="create_new_group" class="wei_friend new_group">
+                    <text>组一个新团</text>
+                </button>
+            </block>
+        </view>
+    </view>
+    <view class="tab_type">
+        <view bindtap="change_tag" class="a {{desc_active}}" data-type="1">简介</view>
+        <view bindtap="change_tag" class="a {{story_active}}" data-type="2">故事{{story_count}}</view>
+    </view>
+    <view class="synopsis" hidden="{{desc_hide==='hide'}}">
+        <view class="entry">
+            <template is="wxParse" data="{{wxParseData:desc.nodes}}"></template>
+        </view>
+    </view>
+    <view class="classify-list pd-48 sort-list classify-lb" hidden="{{story_hide==='hide'}}">
+        <view class="item" wx:for="{{promotion.play_list}}" wx:key="promotion_play_list">
+            <view bindtap="go_play" class="a" data-id="{{item.id}}">
+                <image class="avatar" src="{{item.icon}}"></image>
+                <view class="body">
+                    <view class="t {{album.price>0?'':'free'}}">{{item.title}}</view>
+                    <view class="p">{{item.memo}}</view>
+                    <view class="time">
+                        <icon class="icon-time" type=""></icon>
+                                          {{item.time_length_format}}
+                                   </view>
+                    <view class="play">
+                        <icon class="icon-play" type=""></icon>
+                                          {{item.play_count_format}}
+                                   </view>
+                </view>
+                <view class="pull-right" wx:if="{{item.try_listen==1&&task.status!=1}}">
+                    <view class="btn">试听</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

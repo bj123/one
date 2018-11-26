@@ -1,0 +1,8 @@
+<template name="_buy_tip">
+    <view class="buy_tip">
+        <view class="red">【购买须知】</view>
+        <view>1. 内容一经购买，长期有效，可以反复收听、播放。</view>
+        <view>2. 本产品为虚拟内容服务，一经购买成功不可退款、转让，请您理解。</view>
+        <view>3. 在购买的过程中，如您有任何紧急或者购买的问题，可以咨询客服，具体方法如下：点击“我的”，选择“联系客服”。</view>
+    </view>
+</template>

@@ -1,0 +1,88 @@
+<import src="/pages/wxParse/wxParse.wxml"></import>
+<import src="/pages/tpl/_nodata.wxml"></import>
+<view hidden="{{hide}}">
+    <view class="cover-box">
+        <view animation="{{animationData}}" class="label">{{member_rand.name}} {{member_rand.time_str}}已领取成功</view>
+        <image class="avatar unlock_cover" mode="widthFix" src="{{free_album.banner_detail}}"></image>
+    </view>
+    <view class="synopsis-option">
+        <view bindtap="change_tag" class="a {{desc_active}}" data-type="1">简介</view>
+        <view bindtap="change_tag" class="a {{story_active}}" data-type="2">故事 {{album.chapter_count}}</view>
+    </view>
+    <view class="synopsis {{desc_hide}}">
+        <view class="entry">
+            <template is="wxParse" data="{{wxParseData:desc.nodes}}"></template>
+        </view>
+    </view>
+    <view class="{{story_hide}}">
+        <view class="sort">
+            <view class="pull-left">已更新{{album.chapter_count_now}}个故事</view>
+            <view class="pull-right">
+                <view class="pull-right">
+                    <view bindtap="sort" class="a" data-type="{{story_sort}}">
+                        <icon class="icon-just {{sort_asc_hide}}" type=""></icon>
+                        <icon class="icon-back {{sort_desc_hide}}" type=""></icon>
+                                          排序
+                                   </view>
+                </view>
+            </view>
+        </view>
+        <view class="classify-list pd-48 sort-list classify-lb">
+            <view class="item" wx:for="{{story_list}}" wx:key="album_detail_story_list">
+                <view bindtap="go_play" class="a" data-id="{{item.id}}">
+                    <image class="avatar" src="{{item.icon}}"></image>
+                    <view class="body">
+                        <view class="t {{album.price>0?'':'free'}}">{{item.title}}</view>
+                        <view class="p">{{item.memo}}</view>
+                        <view class="time">
+                            <icon class="icon-time" type=""></icon>
+                                                 {{item.time}}
+                                          </view>
+                        <view class="play">
+                            <icon class="icon-play" type=""></icon>
+                                                 {{item.play_count_format}}
+                                          </view>
+                    </view>
+                    <view class="pull-right" wx:if="{{item.try_listen==1&&is_unlock!=1}}">
+                        <view class="btn">试听</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="button_view" hidden="{{is_unlock==1}}">
+        <view bindtap="try_listen" class="b st">
+            <image src="https://wx.cunzhanggushi.com/public/images/bofang.png"></image>
+            <text>试听</text>
+        </view>
+        <view bindtap="freeUnlock" class="b unlock">
+            <image src="../image/icon_lock.png"></image>
+            <text>免费解锁</text>
+        </view>
+    </view>
+    <view class="screen {{unlock_success}}">
+        <view class="bj"></view>
+        <view catchtap="closeModal" class="main">
+            <view catchtap="returnClose" class="unlock_success">
+                <view class="header">
+                    <text>恭喜</text>
+                    <view catchtap="closeModal" class="close">
+                        <image src="../image/icon_close.png"></image>
+                    </view>
+                </view>
+                <view class="h1 c">您已抢到免费领取VIP故事名额！</view>
+                <view class="h2 c">ID：<view class="red" style="display: inline-block;">{{member.id}}</view>
+                </view>
+                <view class="h2 c">将ID提供给客服，即可解锁专辑！</view>
+                <view class="h3 c">复制微信号添加客服为好友</view>
+                <view class="button">
+                    <view class="text">
+                        <image class="wechat" src="../image/black_wechat.png"></image>
+                        <text>客服微信号：{{wechat}}</text>
+                    </view>
+                    <view catchtap="copy_account" class="copy">复制</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

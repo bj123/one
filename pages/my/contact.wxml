@@ -1,0 +1,20 @@
+<view class="contact">
+    <view bindtap="copy" class="item" data-content="2694665928">
+        <icon class="icon-qq" type=""></icon>
+              客服QQ：
+              <view class="red">2694665928</view>
+    </view>
+    <view bindtap="copy" class="item" data-content="czgushi">
+        <icon class="icon-wechat" type=""></icon>
+              客服微信：
+              <view class="red">czgushi</view>
+    </view>
+    <view bindtap="copy" class="item line" data-content="521531618">
+        <icon class="icon-group" type=""></icon>
+              官方交流群：521531618
+       </view>
+    <view class="entry">
+        <view class="p">客服工作时间：周一至周六9:00-18:00</view>
+        <view class="p">节假日情况以官方客服公告为准</view>
+    </view>
+</view>

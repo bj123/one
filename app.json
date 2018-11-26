@@ -1,0 +1,65 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/coupon/detail",
+        "pages/index/classify",
+        "pages/pay/success",
+        "pages/index/red_packet",
+        "pages/story/new",
+        "pages/story/album",
+        "pages/story/chosen",
+        "pages/comment/index",
+        "pages/course/index",
+        "pages/course/detail",
+        "pages/course/all",
+        "pages/my/index",
+        "pages/my/modify",
+        "pages/my/cash",
+        "pages/my/buy",
+        "pages/my/like",
+        "pages/my/invite",
+        "pages/my/invite_record",
+        "pages/my/coupon",
+        "pages/my/contact",
+        "pages/my/group",
+        "pages/play/play",
+        "pages/play/recent",
+        "pages/promotion/detail",
+        "pages/story/free_unlock",
+        "pages/play/textbook/textbook"
+    ],
+    "window": {
+        "backgroundTextStyle": "dark",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "村长讲故事",
+        "navigationBarTextStyle": "black",
+        "enablePullDownRefresh": true
+    },
+    "tabBar": {
+        "color": "#999",
+        "selectedColor": "#fd6363",
+        "borderStyle": "black",
+        "backgroundColor": "#ffffff",
+        "position": "bottom",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "故事",
+                "iconPath": "pages/image/icon_story.png",
+                "selectedIconPath": "pages/image/icon_story_h.png"
+            },
+            {
+                "pagePath": "pages/course/index",
+                "text": "亲子",
+                "iconPath": "pages/image/icon_parenting.png",
+                "selectedIconPath": "pages/image/icon_parenting_h.png"
+            },
+            {
+                "pagePath": "pages/my/index",
+                "text": "我的",
+                "iconPath": "pages/image/icon_my.png",
+                "selectedIconPath": "pages/image/icon_my_h.png"
+            }
+        ]
+    }
+}

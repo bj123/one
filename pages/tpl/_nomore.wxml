@@ -1,0 +1,8 @@
+<template name="_nomore">
+    <view class="txt-center {{load_obj.loading}}">
+              加载中...
+       </view>
+    <view class="txt-center {{load_obj.nomore}}">
+              没有更多了
+       </view>
+</template>

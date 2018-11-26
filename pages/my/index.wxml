@@ -1,0 +1,68 @@
+<import src="/pages/tpl/_play.wxml"></import>
+<template is="_play" data="{{play:play,play_now:play_now,play_count:play_count,play_end:play_end,play_url:play_url,play_obj:play_obj,share_hide:share_hide,newer_hide:newer_hide,newer_coupon_hide:newer_coupon_hide,share_coupon_hide:share_coupon_hide,coupon:coupon}}"></template>
+<view class="user-hero">
+    <image class="avatar" src="{{member.icon}}"></image>
+    <view class="name">
+              {{member.name}}
+              <icon class="icon-man" type="" wx:if="{{member.ex.baby_sex==1}}"></icon>
+        <icon class="icon-girl" type="" wx:else></icon>
+    </view>
+    <view bindtap="to_url" class="a" data-url="/pages/my/modify">
+              宝宝生日：{{member.ex.baby_birth?member.ex.baby_birth:'暂未设置'}}
+              <icon class="icon-change" type=""></icon>
+    </view>
+    <view class="id">ID: {{member.id}}</view>
+</view>
+<view class="user-list">
+    <view class="item mt-15" hidden="{{xcx_control_hide}}">
+        <icon class="icon-cash" type=""></icon>
+        <view bindtap="to_url" class="a" data-url="/pages/my/cash">
+                     我的现金
+                     <view class="pull-right red">{{member.ex?member.ex.balance+'元':''}}</view>
+        </view>
+    </view>
+    <view class="item mt-15" hidden="{{xcx_control_hide}}">
+        <icon class="icon-buy" type=""></icon>
+        <view bindtap="to_url" class="a" data-url="/pages/my/buy">
+                     已购买的
+                     <view class="pull-right">{{order_count}}</view>
+            <view class="line"></view>
+        </view>
+    </view>
+    <view class="item">
+        <icon class="icon-group" style="background:url('https://wx.cunzhanggushi.com/public/images/group.png') no-repeat ;background-size:20px 20px; " type=""></icon>
+        <view bindtap="to_url" class="a" data-url="/pages/my/group">
+                     我的拼团
+                     <view class="pull-right">{{promotion_task_count}}</view>
+            <view class="line"></view>
+        </view>
+    </view>
+    <view class="item">
+        <icon class="icon-like" type=""></icon>
+        <view bindtap="to_url" class="a" data-url="/pages/my/like">
+                     我喜欢的
+                     <view class="pull-right">{{like_count}}</view>
+        </view>
+    </view>
+    <view class="item mt-15">
+        <icon class="icon-redpacket" type=""></icon>
+        <navigator class="a" url="/pages/my/invite">
+                     邀请好友
+                     <view class="pull-right red">最高奖励30%</view>
+            <view class="line"></view>
+        </navigator>
+    </view>
+    <view class="item" hidden="{{xcx_control_hide}}">
+        <icon class="icon-myred" type=""></icon>
+        <navigator class="a" url="/pages/my/coupon">
+                     我的优惠券
+                     <view class="line"></view>
+        </navigator>
+    </view>
+    <view class="item">
+        <icon class="icon-service" type=""></icon>
+        <view bindtap="to_url" class="a" data-url="/pages/my/contact">
+                     联系客服
+              </view>
+    </view>
+</view>

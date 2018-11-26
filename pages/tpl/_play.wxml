@@ -1,0 +1,74 @@
+<template name="_play">
+    <view class="play-layer {{play_count?'':'hide'}} {{share_hide}}">
+        <navigator class="image" url="{{play_url}}">
+            <image class="avatar" src="{{play_obj.icon}}"></image>
+        </navigator>
+        <navigator class="body" url="{{play_url}}">
+            <view class="pull-left">
+                <view class="span">{{play_obj.title}}</view>
+                <view class="p">{{play_count}}/{{play_end}}</view>
+            </view>
+        </navigator>
+        <view bindtap="play" class="pull-right">
+            <view class="a">
+                <icon class="{{play?'icon-play':'icon-stop'}}" type=""></icon>
+            </view>
+        </view>
+    </view>
+    <view class="{{play_count?'':'hide'}} {{share_hide}}" style="height: 54px;"></view>
+    <view class="{{newer_hide}}">
+        <view class="backdrop"></view>
+        <view class="unpacking">
+            <view class="inner">
+                <view class="close">
+                    <view bindtap="close_newer_view" class="a"></view>
+                </view>
+                <view class="btn">
+                    <view bindtap="take_new_coupon" class="a">立即拆红包</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="winning {{newer_coupon_hide}}">
+        <view class="backdrop"></view>
+        <view class="inner">
+            <view class="item">
+                <view class="symbol">¥</view>
+                <view class="money">{{coupon.amount}}</view>
+                <view class="coupon">优惠券</view>
+            </view>
+            <view class="close">
+                <view bindtap="close_coupon" class="a">
+                    <icon class="icon-close"></icon>
+                </view>
+            </view>
+            <view class="entry">
+                <view class="span">恭喜你中了{{coupon.amount}}元优惠券</view>
+                <view class="p">爸爸妈妈可以给孩子买有趣的故事啦！</view>
+            </view>
+            <view class="btn hide">
+                <view bindtap="close_coupon" class="a">立即使用</view>
+            </view>
+        </view>
+    </view>
+    <view class="{{share_coupon_hide}}">
+        <view class="backdrop"></view>
+        <view class="get-coupon">
+            <view class="inner">
+                <view class="close">
+                    <view bindtap="close_coupon_tip" class="a"></view>
+                </view>
+                <view class="item">
+                    <image class="avatar" src="http://xcx.cunzhanggushi.com/public/images/icon_juan.png"></image>
+                    <view class="p">{{coupon.amount}}元</view>
+                </view>
+                <view class="entry">
+                    <view class="p">分享成功，送给您
+                                          <text class="red">{{coupon.amount}}</text>
+                                          元优惠券
+                                   </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</template>

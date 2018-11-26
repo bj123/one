@@ -1,0 +1,104 @@
+<view class="classify-list">
+    <view class="item">
+        <navigator class="a" url="url">
+            <image class="avatar" src="/pages/image/img7.jpg"></image>
+            <view class="body">
+                <view class="t">笨汉汉斯</view>
+                <view class="p">学问好不一定代表聪明</view>
+                <view class="time">
+                    <icon class="icon-time" type=""></icon>
+                                   09:10
+                            </view>
+                <view class="play">
+                    <icon class="icon-play" type=""></icon>
+                                   2395
+                            </view>
+            </view>
+        </navigator>
+    </view>
+    <view class="item">
+        <navigator class="a" url="url">
+            <image class="avatar" src="/pages/image/img7.jpg"></image>
+            <view class="body">
+                <view class="t">指鹿为马</view>
+                <view class="p">要坚持真理，不能人云亦云</view>
+                <view class="time">
+                    <icon class="icon-time" type=""></icon>
+                                   12:03
+                            </view>
+                <view class="play">
+                    <icon class="icon-play" type=""></icon>
+                                   1721
+                            </view>
+            </view>
+        </navigator>
+    </view>
+    <view class="item">
+        <navigator class="a" url="url">
+            <image class="avatar" src="/pages/image/img7.jpg"></image>
+            <view class="body">
+                <view class="t">叶公好龙</view>
+                <view class="p">表面上爱好某事物，实际上并不真爱好</view>
+                <view class="time">
+                    <icon class="icon-time" type=""></icon>
+                                   17:23
+                            </view>
+                <view class="play">
+                    <icon class="icon-play" type=""></icon>
+                                   3521
+                            </view>
+            </view>
+        </navigator>
+    </view>
+    <view class="item">
+        <navigator class="a" url="url">
+            <image class="avatar" src="/pages/image/img7.jpg"></image>
+            <view class="body">
+                <view class="t">笨汉汉斯</view>
+                <view class="p">学问好不一定代表聪明</view>
+                <view class="time">
+                    <icon class="icon-time" type=""></icon>
+                                   09:10
+                            </view>
+                <view class="play">
+                    <icon class="icon-play" type=""></icon>
+                                   2395
+                            </view>
+            </view>
+        </navigator>
+    </view>
+    <view class="item">
+        <navigator class="a" url="url">
+            <image class="avatar" src="/pages/image/img7.jpg"></image>
+            <view class="body">
+                <view class="t">指鹿为马</view>
+                <view class="p">要坚持真理，不能人云亦云</view>
+                <view class="time">
+                    <icon class="icon-time" type=""></icon>
+                                   12:03
+                            </view>
+                <view class="play">
+                    <icon class="icon-play" type=""></icon>
+                                   1721
+                            </view>
+            </view>
+        </navigator>
+    </view>
+    <view class="item">
+        <navigator class="a" url="url">
+            <image class="avatar" src="/pages/image/img7.jpg"></image>
+            <view class="body">
+                <view class="t">叶公好龙</view>
+                <view class="p">表面上爱好某事物，实际上并不真爱好</view>
+                <view class="time">
+                    <icon class="icon-time" type=""></icon>
+                                   17:23
+                            </view>
+                <view class="play">
+                    <icon class="icon-play" type=""></icon>
+                                   3521
+                            </view>
+            </view>
+        </navigator>
+    </view>
+</view>

@@ -1,0 +1,35 @@
+<import src="/pages/tpl/_nodata.wxml"></import>
+<import src="/pages/tpl/_nomore.wxml"></import>
+<view class="cash">
+    <view class="balance">
+        <icon class="icon-money" type=""></icon>
+        <text>{{member.ex.balance}}</text>
+    </view>
+    <view class="explain">提现说明：“姓名”要和“微信”绑定的“银行卡”姓名一致，如有疑问倾联系客服。</view>
+    <form bindsubmit="to_cash">
+        <view class="item">
+            <input maxlength="10" name="real_name" placeholder="请填写真实姓名" value="{{member.real_name}}"></input>
+            <view class="span">真实姓名</view>
+        </view>
+        <view class="item">
+            <input maxlength="5" name="amount" placeholder="输入提现金额，最低30元" value="{{amount_value}}"></input>
+            <view class="span">提现金额</view>
+        </view>
+        <view class="btn">
+            <button class="a" formType="submit">提现到微信</button>
+        </view>
+    </form>
+</view>
+<view class="cash-detailed">
+    <view class="title">
+        <icon class="icon-ye" type=""></icon>
+              余额明细
+       </view>
+    <view class="item" wx:for="{{list}}" wx:key="my_cash_io_detail">
+        <view class="span">{{item.desc}}</view>
+        <view class="p">{{item.time}}</view>
+        <view class="money">{{item.io==1?'+':'-'}}{{item.amount}}</view>
+    </view>
+</view>
+<template is="_nodata" data="{{nodata_hide:nodata_hide}}" wx:if="{{!list.length}}"></template>
+<template is="_nomore" data="{{load_obj:load_obj}}"></template>

@@ -1,0 +1,45 @@
+<import src="/pages/tpl/_nodata.wxml"></import>
+<block wx:for="{{coupon_list}}" wx:key="my_coupon_list">
+    <view class="{{item.status==1?'coupon':'invalid'}} hide">
+        <view class="entry">
+            <view class="pull-left">
+                <view class="span">
+                    <view class="money">{{item.amount}}</view>
+                                   元
+                            </view>
+                <view class="p">满{{item.prev_amount}}可用</view>
+            </view>
+            <view class="pull-right">
+                <view class="p">{{item.name}}</view>
+            </view>
+        </view>
+        <view class="item">
+            <view class="currency">
+                <view class="btn">通用券</view>
+            </view>
+            <view class="time">{{item.start_time}} - {{item.end_time}}</view>
+        </view>
+    </view>
+    <view class="{{item.status==1?'coupon':'invalid'}}">
+        <view class="entry">
+            <view class="pull-left">
+                <view class="span">
+                    <view class="money">{{item.amount}}</view>
+                                   元
+                            </view>
+                <view class="p">满{{item.prev_amount}}可用</view>
+            </view>
+            <view class="pull-right">
+                <view class="p">{{item.name}}</view>
+            </view>
+            <view class="icon-invalid" wx:if="{{item.status!=1}}"></view>
+        </view>
+        <view class="item">
+            <view class="currency">
+                <view class="btn">通用券</view>
+            </view>
+            <view class="time">{{item.start_time}} - {{item.end_time}}</view>
+        </view>
+    </view>
+</block>
+<template is="_nodata" data="{{content:'还没有优惠券哦',nodata_hide:nodata_hide}}" wx:if="{{!coupon_list.length}}"></template>

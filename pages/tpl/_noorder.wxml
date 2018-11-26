@@ -1,0 +1,6 @@
+<template name="_noorder">
+    <view class="no-order">
+        <icon class="icon-order" style="background:url('https://wx.cunzhanggushi.com/public/images/noorder.png') no-repeat;background-size:144px 144px;"></icon>
+        <view class="font">暂无订单</view>
+    </view>
+</template>

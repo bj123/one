@@ -1,0 +1,28 @@
+<form bindsubmit="save">
+    <view class="modify">
+        <view class="item">
+            <input name="member_name" placeholder="请填写昵称" value="{{member.name}}"></input>
+            <view class="span">昵称</view>
+            <view bindtap="clear_name" class="icon-close"></view>
+        </view>
+        <view class="item">
+            <picker bindchange="bindSexChange" class="choice" indicatorStyle="height: 46px;" mode="selector" name="sex" range="{{sexarray}}" value="{{sexindex}}">
+                <view class="picker">{{sexarray[sexindex]}}</view>
+            </picker>
+            <view class="span">宝宝性别</view>
+            <icon class="icon-arrow" type=""></icon>
+        </view>
+        <view class="item">
+            <picker bindchange="bindDateChange" class="choice" end="2018-12-31" mode="date" name="birth" start="2000-01-01" value="{{date}}">
+                <view class="picker">
+                                   {{date}}
+                            </view>
+            </picker>
+            <view class="span">宝宝生日</view>
+            <icon class="icon-arrow" type=""></icon>
+        </view>
+    </view>
+    <view class="modify-btn">
+        <button class="a" formType="submit">保存</button>
+    </view>
+</form>

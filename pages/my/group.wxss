@@ -1,0 +1,121 @@
+page {
+    background: #f5f5f5;
+}
+
+.tab_type {
+    border-bottom: 1px solid #dcdcdc;
+    background: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 45px;
+    line-height: 45px;
+    color: #333;
+    font-size: 32rpx;
+    padding: 0px 30rpx;
+}
+
+.tab_type .a.active {
+    font-size: 32rpx;
+    color: #fd6363;
+    border-bottom: 2px solid #fd6363;
+    margin-bottom: -1px;
+}
+
+.order_content .order_status {
+    padding: 0px 15px;
+    background: #fff;
+    border-bottom: 1px solid #f2f2f2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    line-height: 36px;
+}
+
+.order_content .order-list {
+    margin-bottom: 10px;
+}
+
+.order_content .order_status .order_time {
+    font-size: 13px;
+    color: #c3c3c3;
+    line-height: 36px;
+}
+
+.order_content .order_status .order-status {
+    color: #fd6363;
+    font-size: 14px;
+}
+
+.order_content .order_list {
+    padding: 10px 15px;
+    background: #fff;
+}
+
+.order_list .store_logo {
+    float: left;
+}
+
+.order_list .store_logo image {
+    width: 70px;
+    height: 70px;
+}
+
+.price_box {
+    display: flex;
+    flex-direction: row;
+}
+
+.order_list .order-list-detail {
+    padding-left: 78px;
+}
+
+.order-detail-title {
+    font-size: 15px;
+    color: #333;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 5px;
+}
+
+.order-detail-dec {
+    font-size: 12px;
+    color: #aaa;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.price_box .actual_amount {
+    color: #fd6363;
+    margin-right: 5px;
+}
+
+.price_box .actual_amount text {
+    font-size: 13px;
+    margin-right: 3px;
+}
+
+.price_box .actual_amount .strong {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.price_box .yuan_amount {
+    font-size: 13px;
+    color: #adadad;
+    text-decoration: line-through;
+    margin-right: 5px;
+    line-height: 33px;
+    margin-bottom: -4px;
+}
+
+.price_box .tuan_remmber {
+    font-size: 13px;
+    color: #adadad;
+    line-height: 33px;
+    margin-bottom: -4px;
+}

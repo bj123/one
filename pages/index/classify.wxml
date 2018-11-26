@@ -1,0 +1,29 @@
+<import src="/pages/tpl/_play.wxml"></import>
+<import src="/pages/tpl/_nomore.wxml"></import>
+<template is="_play" data="{{play:play,play_now:play_now,play_count:play_count,play_end:play_end,play_url:play_url,play_obj:play_obj,share_hide:share_hide,newer_hide:newer_hide,newer_coupon_hide:newer_coupon_hide,share_coupon_hide:share_coupon_hide}}"></template>
+<import src="/pages/tpl/_pay.wxml"></import>
+<view class="classify-list classify-vip">
+    <view class="item" wx:for="{{list}}" wx:key="classify_list_jiaozao">
+        <navigator class="a clearfix" url="/pages/story/album?id={{item.id}}">
+            <image class="avatar" mode="aspectFit" src="{{item.icon}}"></image>
+            <view class="body">
+                <view class="t">{{item.title}}</view>
+                <view class="p">{{item.memo}}</view>
+                <view class="story">
+                    <icon class="icon-album" type=""></icon>
+                                          {{item.chapter_count}}个故事
+                                   </view>
+            </view>
+            <view class="pull-right" hidden="{{xcx_control_hide}}">
+                <view class="btn" wx:if="{{item.price>0}}">{{item.price}}元</view>
+            </view>
+            <icon class="icon-vip" hidden="{{xcx_control_hide}}" wx:if="{{item.price>0}}"></icon>
+        </navigator>
+    </view>
+</view>
+<view class="none-content {{nodata_hide}}">
+    <icon class="icon-none" type=""></icon>
+       还没有详细内容~
+</view>
+<template is="_pay" data="{{pay_hide:pay_hide,obj:buy_obj,pay_detail:pay_detail,coupon_list_hide:coupon_list_hide,pay_success_hide:pay_success_hide,share_coupon_hide:share_coupon_hide,share_view_hide:share_view_hide,share_reward:share_reward,coupon:coupon}}"></template>
+<template is="_nomore" data="{{load_obj:load_obj}}"></template>

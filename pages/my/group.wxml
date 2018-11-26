@@ -1,0 +1,115 @@
+<import src="/pages/tpl/_noorder.wxml"></import>
+<view>
+    <view class="tab_type">
+        <view bindtap="change_tab" class="a {{all_active}}" data-type="1">全部订单</view>
+        <view bindtap="change_tab" class="a {{ing_active}}" data-type="2">拼团中</view>
+        <view bindtap="change_tab" class="a {{suc_active}}" data-type="3">已成团</view>
+        <view bindtap="change_tab" class="a {{fail_active}}" data-type="4">拼团失败</view>
+    </view>
+    <view class="order_content all {{all_hide}}">
+        <view bindtap="go_promotion" class="order-list" data-id="{{item.promotion_id}}" wx:for="{{task_list}}" wx:key="my_group_all_list">
+            <view class="order_status">
+                <view class="order_time">开始时间：{{item.create_time}}</view>
+                <view class="order-status">{{item.status_text}}</view>
+            </view>
+            <view class="order_list clearfix">
+                <view class="store_logo">
+                    <image src="{{item.promotion.parent.icon}}"></image>
+                </view>
+                <view class="order-list-detail">
+                    <view class="order-detail-title">{{item.promotion.parent.title}}</view>
+                    <view class="order-detail-dec">{{item.promotion.parent.memo}}</view>
+                    <view class="price_box">
+                        <view class="actual_amount">
+                            <text>¥</text>
+                            <text class="strong">0</text>
+                        </view>
+                        <text class="yuan_amount">¥{{item.promotion.parent.price}}</text>
+                        <view class="tuan_remmber">{{item.promotion.need_count}}人团</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view hidden="{{all_nodata_hide}}">
+            <template is="_noorder" data></template>
+        </view>
+    </view>
+    <view class="order_content shoping {{ing_hide}}">
+        <view bindtap="go_promotion" class="order-list" data-id="{{item.promotion_id}}" wx:for="{{ing_list}}" wx:key="my_group_ing_list">
+            <view class="order_status">
+                <view class="order_time">开始时间：{{item.create_time}}</view>
+                <view class="order-status">{{item.status_text}}</view>
+            </view>
+            <view class="order_list clearfix">
+                <view class="store_logo">
+                    <image src="{{item.promotion.parent.icon}}"></image>
+                </view>
+                <view class="order-list-detail">
+                    <view class="order-detail-title">{{item.promotion.parent.title}}</view>
+                    <view class="order-detail-dec">{{item.promotion.parent.memo}}</view>
+                    <view class="price_box">
+                        <view class="actual_amount">
+                            <text>¥</text>
+                            <text class="strong">0</text>
+                        </view>
+                        <text class="yuan_amount">¥{{item.promotion.parent.price}}</text>
+                        <view class="tuan_remmber">{{item.promotion.need_count}}人团</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <template is="_noorder" data wx:if="{{!ing_list.length}}"></template>
+    </view>
+    <view class="order_content success {{suc_hide}}">
+        <view bindtap="go_promotion" class="order-list" data-id="{{item.promotion_id}}" wx:for="{{suc_list}}" wx:key="my_group_suc_list">
+            <view class="order_status">
+                <view class="order_time">开始时间：{{item.create_time}}</view>
+                <view class="order-status">{{item.status_text}}</view>
+            </view>
+            <view class="order_list clearfix">
+                <view class="store_logo">
+                    <image src="{{item.promotion.parent.icon}}"></image>
+                </view>
+                <view class="order-list-detail">
+                    <view class="order-detail-title">{{item.promotion.parent.title}}</view>
+                    <view class="order-detail-dec">{{item.promotion.parent.memo}}</view>
+                    <view class="price_box">
+                        <view class="actual_amount">
+                            <text>¥</text>
+                            <text class="strong">0</text>
+                        </view>
+                        <text class="yuan_amount">¥{{item.promotion.parent.price}}</text>
+                        <view class="tuan_remmber">{{item.promotion.need_count}}人团</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <template is="_noorder" data wx:if="{{!suc_list.length}}"></template>
+    </view>
+    <view class="order_content fail {{fail_hide}}">
+        <view bindtap="go_promotion" class="order-list" data-id="{{item.promotion_id}}" wx:for="{{fail_list}}" wx:key="my_group_fail_list">
+            <view class="order_status">
+                <view class="order_time">开始时间：{{item.create_time}}</view>
+                <view class="order-status">{{item.status_text}}</view>
+            </view>
+            <view class="order_list clearfix">
+                <view class="store_logo">
+                    <image src="{{item.promotion.parent.icon}}"></image>
+                </view>
+                <view class="order-list-detail">
+                    <view class="order-detail-title">{{item.promotion.parent.title}}</view>
+                    <view class="order-detail-dec">{{item.promotion.parent.memo}}</view>
+                    <view class="price_box">
+                        <view class="actual_amount">
+                            <text>¥</text>
+                            <text class="strong">0</text>
+                        </view>
+                        <text class="yuan_amount">¥{{item.promotion.parent.price}}</text>
+                        <view class="tuan_remmber">{{item.promotion.need_count}}人团</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <template is="_noorder" data wx:if="{{!fail_list.length}}"></template>
+    </view>
+</view>

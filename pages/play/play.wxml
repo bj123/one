@@ -1,0 +1,180 @@
+<view class="{{play_obj.parent.type==2?'':'play-surround'}}" hidden="{{hide}}">
+    <view class="{{play_obj.parent.type==2?'':'play-box'}}">
+        <view class="section tc" wx:if="{{play_obj.parent.type==2}}">
+            <video controls autoplay="true" bindended="next" id="video" objectFit="fill" src="{{play_obj.file_path}}"></video>
+        </view>
+        <view class="cover" wx:else>
+            <view class="avatar" style="overflow: hidden;">
+                <image class="avatar {{play?'play':''}}" src="{{play_obj.icon}}"></image>
+            </view>
+        </view>
+        <view class="last_time hide">
+            <view class="a">
+                            上次听到这里11:52
+                            <icon class="icon-bf"></icon>
+            </view>
+        </view>
+        <block wx:if="{{play_obj.parent.type!='2'}}">
+            <view class="schedule">
+                <navigator class="textbook_icon" url="./textbook/textbook?id={{play_obj.id}}" wx:if="{{play_obj.desc}}">
+                    <image src="https://cj.cunzhanggushi.com/public/images/svg/player_icon_teachingmaterial.svg"></image>
+                </navigator>
+                <view class="pull-left">{{play_count}}</view>
+                <view class="body-view">
+                    <progress color="#fd6363" percent="{{play_percent}}" strokeWidth="3"></progress>
+                </view>
+                <view class="pull-right">{{play_end}}</view>
+            </view>
+            <view class="title">{{play_obj.title}}</view>
+            <view class="control">
+                <button class="item">
+                    <icon bindtap="prev" class="icon-on {{no_prev_hide}}"></icon>
+                </button>
+                <button class="item">
+                    <icon bindtap="play" class="{{play?'icon-suspend':'icon-play'}}"></icon>
+                </button>
+                <button class="item">
+                    <icon bindtap="next" class="icon-next {{no_next_hide}}"></icon>
+                </button>
+            </view>
+            <view class="entry">
+                <view class="item">
+                    <view bindtap="like" class="a {{play_obj.like=='1'?'active':''}}">
+                        <icon class="icon-heart"></icon>
+                    </view>
+                </view>
+                <view class="item">
+                    <view bindtap="show_timer" class="a">
+                        <icon class="icon-time"></icon>
+                    </view>
+                </view>
+                <view class="item">
+                    <navigator class="a" url="/pages/comment/index?id={{play_obj.id}}&type={{play_obj.info_type}}">
+                        <icon class="icon-comment"></icon>
+                        <view class="number">{{play_obj.comment_count}}</view>
+                    </navigator>
+                </view>
+                <view class="item">
+                    <view bindtap="open_playoption" class="a">
+                        <icon class="icon-list"></icon>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <block wx:if="{{play_obj.parent.type=='2'}}">
+            <view class="control-box">
+                <view class="pull-left">
+                    <navigator class="a" url="/pages/comment/index?id={{play_obj.id}}&type={{play_obj.parent.type}}">
+                        <icon class="icon-pl"></icon>
+                                          {{play_obj.comment_count}}
+                                   </navigator>
+                </view>
+                <view class="pull-right">
+                    <view bindtap="like" class="a {{play_obj.like==1?'active':''}}">
+                        <icon class="icon-heart"></icon>
+                    </view>
+                </view>
+            </view>
+            <view class="video-list">
+                <view class="title">
+                    <view class="t">视频列表</view>
+                    <view bindtap="hide_video" class="shrink {{shrink_hide}}">
+                        <view class="a"></view>
+                    </view>
+                </view>
+                <view bindtap="chose_play" class="item {{item.hide}}" data-id="{{item.id}}" wx:for="{{play_list}}" wx:key="video_play_list">
+                    <view class="a">
+                        <view class="picture">
+                            <image class="avatar" src="{{item.icon}}"></image>
+                            <view class="time">{{item.time}}</view>
+                        </view>
+                        <view class="body {{item.play_now?'active':''}}">
+                            <view class="t">{{item.title}}</view>
+                            <view class="p">{{item.memo}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="check {{show_btn_hide}} {{play_list.length>3?'':'hide'}}">
+                    <view bindtap="show_all_video" class="a">查看全部</view>
+                </view>
+            </view>
+            <view class="video-list like-box hide">
+                <view class="title">
+                    <view class="t">猜你喜欢</view>
+                </view>
+                <view class="item" wx:for="{{rand_list}}" wx:key="video_rank_list">
+                    <navigator class="a" url="/pages/course/detail?id={{item.id}}">
+                        <view class="picture">
+                            <image class="avatar avatar-guess" src="{{item.icon}}"></image>
+                        </view>
+                        <view class="body">
+                            <view class="t">{{item.title}}</view>
+                            <view class="p">{{item.memo}}</view>
+                        </view>
+                    </navigator>
+                </view>
+            </view>
+        </block>
+    </view>
+    <view class="{{timer_hide}}">
+        <view class="backdrop"></view>
+        <view class="item1p timing">
+            <view class="inner">
+                <view bindtap="set_timer_option" class="item" data-type="0">
+                    <view class="a {{no_countdown}}">不开启</view>
+                </view>
+                <view bindtap="set_timer_option" class="item" data-type="1">
+                    <view class="a {{countdown_end}}">当前故事完毕后停止播放</view>
+                </view>
+                <view bindtap="set_timer_option" class="item" data-type="2">
+                    <view class="a {{countdown_15}}">15分钟后停止播放</view>
+                </view>
+                <view bindtap="set_timer_option" class="item" data-type="3">
+                    <view class="a {{countdown_30}}">30分钟后停止播放</view>
+                </view>
+                <view bindtap="set_timer_option" class="item" data-type="4">
+                    <view class="a {{countdown_60}}">60分钟后停止播放</view>
+                </view>
+                <view bindtap="set_timer_option" class="item" data-type="5">
+                    <view class="a {{countdown_90}}">90分钟后停止播放</view>
+                </view>
+                <view bindtap="close_timer" class="item close">
+                    <view class="a">关闭</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="list-play {{play_list_hide}}">
+        <view class="inner">
+            <view bindtap="set_playoption" class="title {{turn_op_hide}}" data-type="1">
+                <icon class="icon-play"></icon>
+                            顺序播放
+                     </view>
+            <view bindtap="set_playoption" class="title {{cycle_op_hide}}" data-type="2">
+                <icon class="icon-cycle"></icon>
+                            循环播放
+                     </view>
+            <view bindtap="set_playoption" class="title {{single_op_hide}}" data-type="3">
+                <icon class="icon-singles"></icon>
+                            单曲循环
+                     </view>
+            <view class="recently-heard hide">
+                <navigator class="a" url="/pages/play/recent">
+                    <view class="span">最近听过的</view>
+                    <icon class="icon-arrow"></icon>
+                </navigator>
+            </view>
+            <view class="roll">
+                <view class="item" wx:for="{{play_list}}" wx:key="play_list">
+                    <view bindtap="chose_play" class="a {{item.play_now?'active':''}}" data-id="{{item.id}}">
+                        <image class="avatar" src="{{item.icon}}"></image>
+                                          {{item.title}}
+                                   </view>
+                </view>
+            </view>
+            <view class="btn">
+                <view bindtap="close_playoption" class="a">关闭</view>
+            </view>
+        </view>
+    </view>
+</view>

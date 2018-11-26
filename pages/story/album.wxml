@@ -1,0 +1,100 @@
+<import src="/pages/wxParse/wxParse.wxml"></import>
+<import src="/pages/tpl/_pay.wxml"></import>
+<import src="/pages/tpl/_buy_tip.wxml"></import>
+<import src="/pages/tpl/_nodata.wxml"></import>
+<import src="/pages/tpl/_play.wxml"></import>
+<import src="/pages/tpl/_ios_buy_pop.wxml"></import>
+<template is="_play" data="{{play:play,play_now:play_now,play_count:play_count,play_end:play_end,play_url:play_url,play_obj:play_obj,share_hide:share_hide,newer_hide:newer_hide,newer_coupon_hide:newer_coupon_hide,share_coupon_hide:share_coupon_hide,coupon:coupon}}"></template>
+<block wx:if="{{album.price>0}}">
+    <view class="cover-box">
+        <image class="avatar" mode="widthFix" src="{{album.banner}}"></image>
+    </view>
+    <view class="album-detail">
+        <view class="album-title">
+            <view class="title ellipsis">{{album.title}}</view>
+            <view class="price" hidden="{{xcx_control_hide}}">
+                <text>{{album.price?album.price:album.price}}</text> 元
+            </view>
+        </view>
+        <view bindtap="show_share_view" class="album-gift {{share_gift_hide}}" hidden="{{xcx_control_hide}}">
+            <view class="a">
+                <icon class="icon-give" type=""></icon> 赚 ¥{{share_reward}}
+            </view>
+        </view>
+    </view>
+    <view class="synopsis-option">
+        <view bindtap="change_tag" class="a {{desc_active}}" data-type="1">简介</view>
+        <view bindtap="change_tag" class="a {{story_active}}" data-type="2">故事{{story_count}}</view>
+        <view bindtap="change_tag" class="a {{comment_active}}" data-type="3">留言</view>
+    </view>
+    <view class="sort {{story_hide}}">
+        <view class="pull-left">已更新{{album.chapter_count_now}}个故事</view>
+        <view class="pull-right">
+            <view bindtap="sort" class="a" data-type="{{story_sort}}">
+                <icon class="icon-just {{sort_asc_hide}}" type=""></icon>
+                <icon class="icon-back {{sort_desc_hide}}" type=""></icon> 排序
+            </view>
+        </view>
+    </view>
+    <view class="synopsis {{desc_hide}}">
+        <view class="entry">
+            <template is="wxParse" data="{{wxParseData:desc.nodes}}"></template>
+            <template is="_buy_tip" data wx:if="{{xcx_control_hide!=1}}"></template>
+        </view>
+    </view>
+</block>
+<view class="sort" wx:if="{{album.price==0}}">
+    <view class="pull-left">已更新{{album.chapter_count_now}}个故事</view>
+</view>
+<view class="classify-list pd-48 sort-list classify-lb {{album.price>0?story_hide:''}}">
+    <view class="item" wx:for="{{story_list}}" wx:key="album_detail_story_list">
+        <view bindtap="go_play" class="a" data-id="{{item.id}}" data-pay="{{item.try_listen}}">
+            <image class="avatar" src="{{item.icon}}"></image>
+            <view class="body">
+                <view class="t {{album.price>0?'':'free'}}">{{item.title}}</view>
+                <view class="p">{{item.memo}}</view>
+                <view class="time">
+                    <icon class="icon-time" type=""></icon> {{item.time}}
+                </view>
+                <view class="play">
+                    <icon class="icon-play" type=""></icon> {{item.play_count_format}}
+                </view>
+            </view>
+            <view class="pull-right" wx:if="{{item.try_listen==1}}">
+                <view class="btn">{{album.type==1?'试听':'试播'}}</view>
+            </view>
+        </view>
+    </view>
+</view>
+<block wx:if="{{album.price>0}}">
+    <view class="message {{comment_hide}}">
+        <view class="item" wx:for="{{comment_list}}" wx:key="album_comment_list">
+            <image class="avatar" src="{{item.member.icon}}"></image>
+            <view class="body">
+                <view class="t">
+                    <view class="name">{{item.member.name}}</view>
+                    <view class="time">{{item.create_time}}</view>
+                </view>
+                <view class="text">{{item.content}}</view>
+                <view class="p">来自：{{item.story.title}}</view>
+                <view class="line"></view>
+            </view>
+        </view>
+        <template is="_nodata" data wx:if="{{!comment_list.length}}"></template>
+    </view>
+    <view class="album-buy" wx:if="{{!isiphone}}">
+        <view bindtap="change_tag" class="a listen" data-type="2">
+            <icon class="icon-play"></icon>
+                {{album.type==1?'试听':'试播'}}
+            </view>
+        <view bindtap="pay" class="a">立即购买</view>
+    </view>
+    <view class="album-buy" wx:else>
+        <view>
+            <image src="http://p.doguane.cn/11/icon_tip@2x.png"></image>
+            <text>由于相关规范，iOS用户暂无法订阅故事。</text>
+        </view>
+    </view>
+    <template is="_ios_buy_pop" data="{{ios_buy_hide:ios_buy_hide,obj:album,type:1}}"></template>
+    <template is="_pay" data="{{pay_hide:pay_hide,obj:album,pay_detail:pay_detail,coupon_list_hide:coupon_list_hide,pay_success_hide:pay_success_hide,share_coupon_hide:share_coupon_hide,share_view_hide:share_view_hide,share_reward:share_reward,coupon:coupon}}"></template>
+</block>
