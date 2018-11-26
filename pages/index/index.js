@@ -2,27 +2,27 @@ var a = getApp(), t = require("../../utils/util.js");
 
 Page({
     data: {
-        banners: {}, // 滚屏展示
-        today_list: {}, 
-        parenting_list: {},
-        recommend_list: {},
-        parenting_first: {},
-        play_now: a.globalData.play_now,
-        play_count: a.globalData.play_count,
-        play_end: a.globalData.play_end,
-        play_url: a.globalData.play_url,
-        play_obj: a.globalData.play_obj,
-        banner_height: "150",
-        coupon: {},
-        share_coupon_hide: "hide",
-        newer_hide: "hide",
-        newer_coupon_hide: "hide",
-        red_show: "hide",
-        box_none: "",
-        hide: 1,
-        img_list: [],
-        img_index: 0,
-        xcx_control_hide: 1
+      banners: [], // 滚屏展示
+      today_list: {}, 
+      parenting_list: {},
+      recommend_list: {},
+      parenting_first: {},
+      play_now: a.globalData.play_now,
+      play_count: a.globalData.play_count,
+      play_end: a.globalData.play_end,
+      play_url: a.globalData.play_url,
+      play_obj: a.globalData.play_obj,
+      banner_height: "150",
+      coupon: {},
+      share_coupon_hide: "hide",
+      newer_hide: "hide",
+      newer_coupon_hide: "hide",
+      red_show: "hide",
+      box_none: "",
+      hide: 1,
+      img_list: [],
+      img_index: 0,
+      xcx_control_hide: 1
     },
     onLoad: function(e) {
         // wx.showLoading({
@@ -34,8 +34,8 @@ Page({
         t.request_m({
             url: t.api_url,
             callback: function(a) {
-              console.log("is init")
-                if ("y" == a.data.status) {
+              console.log(a)
+                if ("200" == a.data.code) {
                     var t = "", e = "";
                     a.data.parenting_list && a.data.parenting_list.length % 2 == 1 && (e = a.data.parenting_list[0], 
                     a.data.parenting_list.splice(0, 1)), a.data.chosen_list && a.data.chosen_list.length % 2 == 1 && (t = a.data.chosen_list[0], 
@@ -45,20 +45,21 @@ Page({
                     wx.setStorageSync("index_hb_pop", {
                         is_pop: 1,
                         end_time: Date.parse(new Date()) / 1e3 + 86400
-                    })), i.setData({
-                        banners: a.data.banners,
-                        today_list: a.data.today_list,
-                        parenting_list: a.data.parenting_list,
-                        recommend_list: a.data.chosen_list,
-                        parenting_first: e,
-                        recommend_first: t,
-                        promotion_list: a.data.promotion_list,
-                        red_show: n,
-                        free_album: a.data.free_album,
-                        xcx_control_hide: 1 == a.data.global.pay_hide,
-                        free_album_hide: 1 != a.data.global.free_album_switch,
-                        hide: 0,
-                        share: a.data.share
+                    })), 
+                    i.setData({
+                        banners: a.data.data.banners,
+                        // today_list: a.data.today_list,
+                        // parenting_list: a.data.parenting_list,
+                        // recommend_list: a.data.chosen_list,
+                        // parenting_first: e,
+                        // recommend_first: t,
+                        // promotion_list: a.data.promotion_list,
+                        // red_show: n,
+                        // free_album: a.data.free_album,
+                        // xcx_control_hide: 1 == a.data.global.pay_hide,
+                        // free_album_hide: 1 != a.data.global.free_album_switch,
+                        // hide: 0,
+                        // share: a.data.share
                     });
                 }
             }
