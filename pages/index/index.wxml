@@ -35,9 +35,9 @@
               </navigator>
     </view>
 </view>
-<navigator class="red-packet hide" url="/pages/coupon/detail">
+<!-- <navigator class="red-packet hide" url="/pages/coupon/detail">
     <image src="https://wx.cunzhanggushi.com/public/images/redpacket.png"></image>
-</navigator>
+</navigator> -->
 <form bindsubmit="formSubmit" reportSubmit="true">
     <view class="recommend mt-15">
         <view class="title">
@@ -48,15 +48,15 @@
             <view class="item" wx:for="{{today_list}}" wx:key="index_taday_list">
                 <button class="a" data-id="{{item.id}}" data-url="/pages/story/album?id={{item.id}}" formType="submit">
                     <view class="image">
-                        <image class="avatar index_img" data-original="{{item.icon}}" mode="widthFix" src="{{item.icon}}"></image>
+                        <image class="avatar index_img" data-original="{{item.templateurl}}" mode="widthFix" src="{{item.templateurl}}"></image>
                         <view class="label">
                             <icon class="icon-album" type=""></icon>
-                            <text>{{item.chapter_count_now}}/{{item.chapter_count}}个</text>
+                            <text>{{item.chaptercountnow}}/{{item.chaptercount}}个</text>
                         </view>
-                        <view class="icon-free" hidden="{{xcx_control_hide}}" style="background:url('https://wx.cunzhanggushi.com/public/images/pay.png') no-repeat;background-size: 25px 25px;" wx:if="{{item.price>0}}"></view>
+                        <view class="icon-free" hidden="{{xcx_control_hide}}" style="background:url('https://wx.cunzhanggushi.com/public/images/pay.png') no-repeat;background-size: 25px 25px;" wx:if="{{item.saleprice>0}}"></view>
                     </view>
-                    <view class="span">{{item.title}}</view>
-                    <view class="p">{{item.memo}}</view>
+                    <view class="span">{{item.templatename}}</view>
+                    <view class="p">{{item.templatedesc}}</view>
                 </button>
             </view>
         </view>
@@ -94,7 +94,7 @@
             <view class="h3">亲子共读</view>
             <text>每天三分钟，共享恬静亲子时光</text>
         </view>
-        <view class="cover" hidden="{{parenting_first?0:1}}">
+        <!-- <view class="cover" hidden="{{parenting_first?0:1}}">
             <button class="a" data-id="{{item.id}}" data-url="/pages/story/album?id={{parenting_first.id}}" formType="submit">
                 <view class="image">
                     <image class="avatar" mode="aspectFill" src="{{parenting_first.banner}}" style="width: 100%; height: 400rpx"></image>
@@ -107,20 +107,20 @@
                 <view class="span">{{parenting_first.title}}</view>
                 <view class="p">{{parenting_first.memo}}</view>
             </button>
-        </view>
+        </view> -->
         <view class="entry">
             <view class="item" wx:for="{{parenting_list}}" wx:key="index_parenting_list">
                 <button class="a" data-id="{{item.id}}" data-url="/pages/story/album?id={{item.id}}" formType="submit">
                     <view class="image">
-                        <image class="avatar index_img" data-original="{{item.icon}}" mode="widthFix" src="{{item.icon}}"></image>
+                        <image class="avatar index_img" data-original="{{item.templateurl}}" mode="widthFix" src="{{item.templateurl}}"></image>
                         <view class="label">
                             <icon class="icon-album" type=""></icon>
-                            <text>{{item.chapter_count_now}}/{{item.chapter_count}}个</text>
+                            <text>{{item.chaptercountnow}}/{{item.chaptercount}}个</text>
                         </view>
                         <view class="icon-free" hidden="{{xcx_control_hide}}" style="background:url('http://wx.cunzhanggushi.com/public/images/free.png') no-repeat;background-size: 25px 25px;" wx:if="{{item.price>0}}"></view>
                     </view>
-                    <view class="span">{{item.title}}</view>
-                    <view class="p">{{item.memo}}</view>
+                    <view class="span">{{item.templatename}}</view>
+                    <view class="p">{{item.templatedesc}}</view>
                 </button>
             </view>
         </view>

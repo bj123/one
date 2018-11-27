@@ -48,16 +48,16 @@ Page({
                     })), 
                     i.setData({
                         banners: a.data.data.banners,
-                        // today_list: a.data.today_list,
-                        // parenting_list: a.data.parenting_list,
+                        today_list: a.data.data.today_list,
+                        parenting_list: a.data.data.parenting_list,
                         // recommend_list: a.data.chosen_list,
                         // parenting_first: e,
                         // recommend_first: t,
                         // promotion_list: a.data.promotion_list,
                         // red_show: n,
                         // free_album: a.data.free_album,
-                        // xcx_control_hide: 1 == a.data.global.pay_hide,
-                        // free_album_hide: 1 != a.data.global.free_album_switch,
+                        xcx_control_hide: false,
+                        free_album_hide: true,
                         // hide: 0,
                         // share: a.data.share
                     });
