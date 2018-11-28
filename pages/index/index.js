@@ -37,9 +37,21 @@ Page({
               console.log(a)
                 if ("200" == a.data.code) {
                     var t = "", e = "";
-                    a.data.parenting_list && a.data.parenting_list.length % 2 == 1 && (e = a.data.parenting_list[0], 
-                    a.data.parenting_list.splice(0, 1)), a.data.chosen_list && a.data.chosen_list.length % 2 == 1 && (t = a.data.chosen_list[0], 
-                    a.data.chosen_list.splice(0, 1));
+                    a.data.parenting_list && a.data.parenting_list.length % 2 == 1 
+                    && (e = a.data.parenting_list[0], a.data.parenting_list.splice(0, 1)), 
+                    a.data.chosen_list && a.data.chosen_list.length % 2 == 1 
+                    && (t = a.data.chosen_list[0], a.data.chosen_list.splice(0, 1));
+
+                  if (a.data.data.parenting_list && a.data.data.parenting_list.length % 2 == 1) {
+                      e = a.data.data.parenting_list[0];
+                      a.data.data.parenting_list.splice(0, 1);
+                  }
+
+                  if (a.data.data.recommend_list && a.data.data.recommend_list.length % 2 == 1) {
+                      t = a.data.data.recommend_list[0];
+                      a.data.data.recommend_list.splice(0, 1);
+                  }
+
                     var n = "hide", o = wx.getStorageSync("index_hb_pop");
                     a.data.hb_record || o && !(o.end_time < Date.parse(new Date()) / 1e3) || (n = "", 
                     wx.setStorageSync("index_hb_pop", {
@@ -47,17 +59,19 @@ Page({
                         end_time: Date.parse(new Date()) / 1e3 + 86400
                     })), 
                     i.setData({
-                        banners: a.data.data.banners,
-                        today_list: a.data.data.today_list,
-                        parenting_list: a.data.data.parenting_list,
-                        // recommend_list: a.data.chosen_list,
-                        // parenting_first: e,
-                        // recommend_first: t,
+                      banners: a.data.data.banners,
+                      today_list: a.data.data.today_list,
+
+                      parenting_first: e,
+                      recommend_first: t,
+                      parenting_list: a.data.data.parenting_list,
+                      recommend_list: a.data.data.recommend_list,
+
                         // promotion_list: a.data.promotion_list,
                         // red_show: n,
                         // free_album: a.data.free_album,
-                        xcx_control_hide: false,
-                        free_album_hide: true,
+                      xcx_control_hide: false,
+                      free_album_hide: true,
                         // hide: 0,
                         // share: a.data.share
                     });

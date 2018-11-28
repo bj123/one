@@ -2,7 +2,7 @@
 <template is="_play" data="{{play:play,play_now:play_now,play_count:play_count,play_end:play_end,play_url:play_url,play_obj:play_obj,share_hide:share_hide,newer_hide:newer_hide,newer_coupon_hide:newer_coupon_hide,share_coupon_hide:share_coupon_hide,coupon:coupon}}"></template>
 <swiper autoplay="true" class="slide" duration="1000" hidden="{{hide}}" indicatorDots="true" interval="5000" style="height: {{banner_height}}px;">
     <swiper-item wx:for="{{banners}}" wx:key="course_index_banner">
-        <image bindload="banner_load" bindtap="go_url" class="slide-image" data-url="/pages/course/detail?id={{item.info_id}}&banner_id={{item.id}}" src="{{item.icon}}"></image>
+        <image bindload="banner_load" bindtap="go_url" class="slide-image" data-url="/pages/course/detail?id={{item.introductionid}}&banner_id={{item.id}}" src="{{item.templateurl}}"></image>
     </swiper-item>
 </swiper>
 <form bindsubmit="formSubmit" reportSubmit="true">
@@ -12,24 +12,24 @@
         </view>
         <view class="item" wx:for="{{news}}" wx:key="course_index_news">
             <button class="a" data-id="{{item.id}}" data-url="/pages/course/detail?id={{item.id}}" formType="submit" hoverClass="hover">
-                <image class="avatar" src="{{item.icon}}"></image>
+                <image class="avatar" src="{{item.templateurl}}"></image>
                 <view class="body">
-                    <view class="t">{{item.title}}</view>
+                    <view class="t">{{item.templatename}}</view>
                     <view class="span">
-                                          {{item.memo}}
+                                          {{item.templatedesc}}
                                    </view>
                     <view class="info">
                         <view class="pull-left">
                             <view class="play">
                                 <icon class="icon-play" type=""></icon>
-                                                        {{item.play_count_format}}
+                                                        {{item.subcount}}
                                                  </view>
-                            <view class="play">
+                            <!-- <view class="play">
                                 <icon class="icon-comment" type=""></icon>
                                                         {{item.comment_count}}
-                                                 </view>
+                                                 </view> -->
                         </view>
-                        <view class="pull-right">{{item.time}}</view>
+                        <view class="pull-right">{{item.createtime}}</view>
                     </view>
                 </view>
             </button>
@@ -41,13 +41,13 @@
         </view>
         <view class="item" wx:for="{{all}}" wx:key="course_index_all">
             <button class="a" data-id="{{item.id}}" data-url="/pages/course/detail?id={{item.id}}" formType="submit">
-                <image class="avatar" src="{{item.icon}}"></image>
+                <image class="avatar" src="{{item.templateurl}}"></image>
                 <view class="body">
-                    <view class="t">{{item.title}}</view>
-                    <view class="span">{{item.memo}}</view>
-                    <view class="p">{{item.chapter_count_now==item.chapter_count?'已完结共':'已更新'}}{{item.chapter_count_now}}期 | {{item.buy_count_format}}人订阅</view>
+                    <view class="t">{{item.templatename}}</view>
+                    <view class="span">{{item.templatedesc}}</view>
+                    <view class="p">{{item.chaptercountnow==item.chaptercount?'已完结共':'已更新'}}{{item.chaptercountnow}}期 | {{item.subcount}}人订阅</view>
                 </view>
-                <view class="money" hidden="{{xcx_control_hide}}">{{item.price}}元</view>
+                <view class="money" hidden="{{xcx_control_hide}}">{{item.saleprice}}元</view>
             </button>
         </view>
     </view>

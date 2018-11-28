@@ -19,7 +19,7 @@ Page({
         wx.showLoading({
             title: "加载中..."
         }), wx.request({
-          url: t.api_url + "/stroy/getCourse.json",
+          url: t.api_url + "/story/getCourse.json",
           data: {
               version: e.globalData.version
           },

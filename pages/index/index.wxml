@@ -94,20 +94,20 @@
             <view class="h3">亲子共读</view>
             <text>每天三分钟，共享恬静亲子时光</text>
         </view>
-        <!-- <view class="cover" hidden="{{parenting_first?0:1}}">
-            <button class="a" data-id="{{item.id}}" data-url="/pages/story/album?id={{parenting_first.id}}" formType="submit">
+        <view class="cover" hidden="{{parenting_first?0:1}}">
+            <button class="a" data-id="{{parenting_first.id}}" data-url="/pages/story/album?id={{parenting_first.id}}" formType="submit">
                 <view class="image">
-                    <image class="avatar" mode="aspectFill" src="{{parenting_first.banner}}" style="width: 100%; height: 400rpx"></image>
+                    <image class="avatar" mode="aspectFill" src="{{parenting_first.templateurl}}" style="width: 100%; height: 400rpx"></image>
                     <view class="label">
                         <icon class="icon-album" type=""></icon>
-                        <text>{{parenting_first.chapter_count_now}}/{{parenting_first.chapter_count}}个</text>
+                        <text>{{parenting_first.chaptercountnow}}/{{parenting_first.chaptercount}}个</text>
                     </view>
-                    <view class="icon-free" hidden="{{xcx_control_hide}}" style="background:url('http://wx.cunzhanggushi.com/public/images/free.png') no-repeat;background-size: 25px 25px;" wx:if="{{parenting_first.price>0}}"></view>
+                    <view class="icon-free" hidden="{{xcx_control_hide}}" style="background:url('http://wx.cunzhanggushi.com/public/images/free.png') no-repeat;background-size: 25px 25px;" wx:if="{{parenting_first.saleprice>0}}"></view>
                 </view>
-                <view class="span">{{parenting_first.title}}</view>
-                <view class="p">{{parenting_first.memo}}</view>
+                <view class="span">{{parenting_first.templatename}}</view>
+                <view class="p">{{parenting_first.templatedesc}}</view>
             </button>
-        </view> -->
+        </view>
         <view class="entry">
             <view class="item" wx:for="{{parenting_list}}" wx:key="index_parenting_list">
                 <button class="a" data-id="{{item.id}}" data-url="/pages/story/album?id={{item.id}}" formType="submit">
@@ -117,7 +117,7 @@
                             <icon class="icon-album" type=""></icon>
                             <text>{{item.chaptercountnow}}/{{item.chaptercount}}个</text>
                         </view>
-                        <view class="icon-free" hidden="{{xcx_control_hide}}" style="background:url('http://wx.cunzhanggushi.com/public/images/free.png') no-repeat;background-size: 25px 25px;" wx:if="{{item.price>0}}"></view>
+                        <view class="icon-free" hidden="{{xcx_control_hide}}" style="background:url('http://wx.cunzhanggushi.com/public/images/free.png') no-repeat;background-size: 25px 25px;" wx:if="{{item.saleprice>0}}"></view>
                     </view>
                     <view class="span">{{item.templatename}}</view>
                     <view class="p">{{item.templatedesc}}</view>
@@ -136,33 +136,33 @@
                 </navigator>
             </view>
         </view>
-        <!-- <view class="cover" hidden="{{recommend_first?0:1}}">
-            <button class="a" data-id="{{item.id}}" data-url="/pages/story/album?id={{recommend_first.id}}" formType="submit">
+        <view class="cover" hidden="{{recommend_first?0:1}}">
+            <button class="a" data-id="{{recommend_first.id}}" data-url="/pages/story/album?id={{recommend_first.id}}" formType="submit">
                 <view class="image">
-                    <image class="avatar" mode="aspectFill" src="{{recommend_first.banner}}" style="width: 100%; height: 400rpx"></image>
+                    <image class="avatar" mode="aspectFill" src="{{recommend_first.templateurl}}" style="width: 100%; height: 400rpx"></image>
                     <view class="label">
                         <icon class="icon-album" type=""></icon>
-                        <text>{{recommend_first.chapter_count_now}}/{{recommend_first.chapter_count}}个</text>
+                        <text>{{recommend_first.chaptercountnow}}/{{recommend_first.chaptercount}}个</text>
                     </view>
                     <view class="icon-free" hidden="{{xcx_control_hide}}" style="background:url('http://wx.cunzhanggushi.com/public/images/free.png') no-repeat;background-size: 25px 25px;" wx:if="{{recommend_first.price>0}}"></view>
                 </view>
-                <view class="span">{{recommend_first.title}}</view>
-                <view class="p">{{recommend_first.memo}}</view>
+                <view class="span">{{recommend_first.templatename}}</view>
+                <view class="p">{{recommend_first.templatedesc}}</view>
             </button>
-        </view> -->
+        </view>
         <view class="entry">
             <view class="item" wx:for="{{recommend_list}}" wx:key="index_recommend_list">
                 <button class="a" data-id="{{item.id}}" data-url="/pages/story/album?id={{item.id}}" formType="submit">
                     <view class="image">
-                        <image class="avatar index_img" data-original="{{item.icon}}" mode="widthFix" src="{{item.icon}}"></image>
+                        <image class="avatar index_img" data-original="{{item.templateurl}}" mode="widthFix" src="{{item.templateurl}}"></image>
                         <view class="label">
                             <icon class="icon-album" type=""></icon>
-                            <text>{{item.chapter_count_now}}/{{item.chapter_count}}个</text>
+                            <text>{{item.chaptercountnow}}/{{item.chaptercount}}个</text>
                         </view>
-                        <view class="icon-free" hidden="{{xcx_control_hide}}" style="background:url('http://wx.cunzhanggushi.com/public/images/free.png') no-repeat;background-size: 25px 25px;" wx:if="{{item.price>0}}"></view>
+                        <view class="icon-free" hidden="{{xcx_control_hide}}" style="background:url('http://wx.cunzhanggushi.com/public/images/free.png') no-repeat;background-size: 25px 25px;" wx:if="{{item.saleprice>0}}"></view>
                     </view>
-                    <view class="span">{{item.title}}</view>
-                    <view class="p">{{item.memo}}</view>
+                    <view class="span">{{item.templatename}}</view>
+                    <view class="p">{{item.templatedesc}}</view>
                 </button>
             </view>
         </view>

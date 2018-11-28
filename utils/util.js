@@ -117,7 +117,7 @@ function i(a) {
                 success: function(i) {
                   var r = i.encryptedData, u = i.iv;
                     wx.request({
-                      url: j + "/stroy/decrypt.json",
+                      url: j + "/story/decrypt.json",
                         data: {
                             code: s,
                             encryptdata: r,
