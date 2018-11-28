@@ -134,7 +134,7 @@ function i(a) {
                           if ("200" == i.data.code) {
                                 var s = Date.parse(new Date()), u = c(s + "czgs_token"), p = wx.getSystemInfoSync();
                                 wx.request({
-                                  url: j + "/step/onlogin.json",
+                                  url: j + "/story/onlogin.json",
                                   data: {
                                       key: s,
                                       token: u,

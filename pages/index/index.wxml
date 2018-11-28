@@ -136,7 +136,7 @@
                 </navigator>
             </view>
         </view>
-        <view class="cover" hidden="{{recommend_first?0:1}}">
+        <!-- <view class="cover" hidden="{{recommend_first?0:1}}">
             <button class="a" data-id="{{item.id}}" data-url="/pages/story/album?id={{recommend_first.id}}" formType="submit">
                 <view class="image">
                     <image class="avatar" mode="aspectFill" src="{{recommend_first.banner}}" style="width: 100%; height: 400rpx"></image>
@@ -149,7 +149,7 @@
                 <view class="span">{{recommend_first.title}}</view>
                 <view class="p">{{recommend_first.memo}}</view>
             </button>
-        </view>
+        </view> -->
         <view class="entry">
             <view class="item" wx:for="{{recommend_list}}" wx:key="index_recommend_list">
                 <button class="a" data-id="{{item.id}}" data-url="/pages/story/album?id={{item.id}}" formType="submit">

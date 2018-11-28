@@ -5,13 +5,13 @@ t.api_url;
 Page({
     data: {
       banners: [],
-        news: [],
-        all: [],
-        share_coupon_hide: "hide",
-        newer_hide: "hide",
-        newer_coupon_hide: "hide",
-        load_over: 1,
-        xcx_control_hide: 1
+      news: [],
+      all: [],
+      share_coupon_hide: "hide",
+      newer_hide: "hide",
+      newer_coupon_hide: "hide",
+      load_over: 1,
+      xcx_control_hide: 1
     },
     onLoad: function(a) {
         console.log("12322222222")
@@ -19,23 +19,23 @@ Page({
         wx.showLoading({
             title: "加载中..."
         }), wx.request({
-            url: t.api_url + "/index/course",
-            data: {
-                version: e.globalData.version
-            },
-            success: function(e) {
-                "y" == e.data.status && n.setData({
-                    banners: e.data.banners,
-                    news: e.data.news,
-                    all: e.data.all,
-                    xcx_control_hide: 1 == e.data.global.pay_hide
-                });
-            },
-            complete: function(e) {
-                wx.hideLoading(), n.setData({
-                    load_over: 0
-                });
-            }
+          url: t.api_url + "/stroy/getCourse.json",
+          data: {
+              version: e.globalData.version
+          },
+          success: function(e) {
+              "200" == e.data.code && n.setData({
+                banners: e.data.data.banners,
+                news: e.data.data.news,
+                all: e.data.data.all,
+                xcx_control_hide: false
+              });
+          },
+          complete: function(e) {
+              wx.hideLoading(), n.setData({
+                  load_over: 0
+              });
+          }
         });
     },
     go_url: function(e) {
