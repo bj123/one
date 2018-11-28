@@ -14,7 +14,6 @@ Page({
       xcx_control_hide: 1
     },
     onLoad: function(a) {
-        console.log("12322222222")
         var n = this;
         wx.showLoading({
             title: "加载中..."
@@ -83,14 +82,15 @@ Page({
         });
     },
     banner_load: function(e) {
-        var t = e.detail.width, a = e.detail.height, n = 0;
-        wx.getSystemInfo({
-            success: function(e) {
-                var i = e.screenWidth / t;
-                n = a * i;
-            }
-        }), this.setData({
-            banner_height: n
+        // var t = e.detail.width, a = e.detail.height, n = 0;
+        // wx.getSystemInfo({
+        //     success: function(e) {
+        //         var i = e.screenWidth / t;
+        //         n = a * i;
+        //     }
+        // }), 
+        this.setData({
+            banner_height: '25%'
         });
     },
     formSubmit: function(e) {

@@ -1,4 +1,5 @@
 .slide-image {
+    height: 260rpx;
     background: #000;
 }
 

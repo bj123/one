@@ -48,7 +48,7 @@
             <view class="item" wx:for="{{today_list}}" wx:key="index_taday_list">
                 <button class="a" data-id="{{item.id}}" data-url="/pages/story/album?id={{item.id}}" formType="submit">
                     <view class="image">
-                        <image class="avatar index_img" data-original="{{item.templateurl}}" mode="widthFix" src="{{item.templateurl}}"></image>
+                        <image class="avatar index_img" data-original="{{item.templateurl}}" mode="scaleToFill" src="{{item.templateurl}}"></image>
                         <view class="label">
                             <icon class="icon-album" type=""></icon>
                             <text>{{item.chaptercountnow}}/{{item.chaptercount}}个</text>
@@ -97,7 +97,7 @@
         <view class="cover" hidden="{{parenting_first?0:1}}">
             <button class="a" data-id="{{parenting_first.id}}" data-url="/pages/story/album?id={{parenting_first.id}}" formType="submit">
                 <view class="image">
-                    <image class="avatar" mode="aspectFill" src="{{parenting_first.templateurl}}" style="width: 100%; height: 400rpx"></image>
+                    <image class="avatar" mode="scaleToFill" src="{{parenting_first.templateurl}}" style="width: 100%; height: 400rpx"></image>
                     <view class="label">
                         <icon class="icon-album" type=""></icon>
                         <text>{{parenting_first.chaptercountnow}}/{{parenting_first.chaptercount}}个</text>
@@ -112,7 +112,7 @@
             <view class="item" wx:for="{{parenting_list}}" wx:key="index_parenting_list">
                 <button class="a" data-id="{{item.id}}" data-url="/pages/story/album?id={{item.id}}" formType="submit">
                     <view class="image">
-                        <image class="avatar index_img" data-original="{{item.templateurl}}" mode="widthFix" src="{{item.templateurl}}"></image>
+                        <image class="avatar index_img" data-original="{{item.templateurl}}" mode="scaleToFill" src="{{item.templateurl}}"></image>
                         <view class="label">
                             <icon class="icon-album" type=""></icon>
                             <text>{{item.chaptercountnow}}/{{item.chaptercount}}个</text>
@@ -139,7 +139,7 @@
         <view class="cover" hidden="{{recommend_first?0:1}}">
             <button class="a" data-id="{{recommend_first.id}}" data-url="/pages/story/album?id={{recommend_first.id}}" formType="submit">
                 <view class="image">
-                    <image class="avatar" mode="aspectFill" src="{{recommend_first.templateurl}}" style="width: 100%; height: 400rpx"></image>
+                    <image class="avatar" mode="scaleToFill" src="{{recommend_first.templateurl}}" style="width: 100%; height: 400rpx"></image>
                     <view class="label">
                         <icon class="icon-album" type=""></icon>
                         <text>{{recommend_first.chaptercountnow}}/{{recommend_first.chaptercount}}个</text>
@@ -154,7 +154,7 @@
             <view class="item" wx:for="{{recommend_list}}" wx:key="index_recommend_list">
                 <button class="a" data-id="{{item.id}}" data-url="/pages/story/album?id={{item.id}}" formType="submit">
                     <view class="image">
-                        <image class="avatar index_img" data-original="{{item.templateurl}}" mode="widthFix" src="{{item.templateurl}}"></image>
+                        <image class="avatar index_img" data-original="{{item.templateurl}}" mode="scaleToFill" src="{{item.templateurl}}"></image>
                         <view class="label">
                             <icon class="icon-album" type=""></icon>
                             <text>{{item.chaptercountnow}}/{{item.chaptercount}}个</text>
