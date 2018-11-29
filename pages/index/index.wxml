@@ -35,9 +35,9 @@
               </navigator>
     </view>
 </view>
-<!-- <navigator class="red-packet hide" url="/pages/coupon/detail">
+<navigator class="red-packet {{hide}}" url="/pages/coupon/detail">
     <image src="https://wx.cunzhanggushi.com/public/images/redpacket.png"></image>
-</navigator> -->
+</navigator>
 <form bindsubmit="formSubmit" reportSubmit="true">
     <view class="recommend mt-15">
         <view class="title">
@@ -130,7 +130,7 @@
             <view class="h3">精选专辑</view>
             <text>情绪管理·自我认知·性格培养</text>
             <view class="more">
-                <navigator class="a" url="/pages/story/chosen">
+                <navigator class="a" url="/pages/story/chosen?chosen=3">
                                    更多
                                    <icon class="icon-arrow" type=""></icon>
                 </navigator>
@@ -168,7 +168,7 @@
         </view>
     </view>
 </form>
-<view class="{{red_show}} hide">
+<view class="{{red_show}}">
     <view class="none"></view>
     <view class="none-red">
         <image class="bg-red" src="https://wx.cunzhanggushi.com/public/images/index-hb-bg.jpg">

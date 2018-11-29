@@ -1,7 +1,7 @@
 <form bindsubmit="save">
     <view class="modify">
         <view class="item">
-            <input name="member_name" placeholder="请填写昵称" value="{{member.name}}"></input>
+            <input name="member_name" placeholder="请填写昵称" value="{{childname}}"></input>
             <view class="span">昵称</view>
             <view bindtap="clear_name" class="icon-close"></view>
         </view>

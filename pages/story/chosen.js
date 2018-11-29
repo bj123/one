@@ -15,18 +15,18 @@ Page({
         }
     },
     onLoad: function(i) {
-        var o = "";
-        void 0 != i.chosen && (o = i.chosen, this.setData({
-            chosen: o
-        })), e.get_info({
-            url: a,
-            data: {
-                chosen: o,
-                version: t.globalData.version
-            },
-            that: this,
-            clear: !0
-        });
+      var o = "";
+      void 0 != i.chosen && (o = i.chosen, this.setData({
+          chosen: o
+      })), e.get_info({
+          url: a,
+          data: {
+              chosen: o,
+              version: t.globalData.version
+          },
+          that: this,
+          clear: !0
+      });
     },
     onReachBottom: function() {
         var i = this.data.pid + 1;

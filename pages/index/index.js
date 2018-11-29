@@ -37,10 +37,10 @@ Page({
               console.log(a)
                 if ("200" == a.data.code) {
                     var t = "", e = "";
-                    a.data.parenting_list && a.data.parenting_list.length % 2 == 1 
-                    && (e = a.data.parenting_list[0], a.data.parenting_list.splice(0, 1)), 
-                    a.data.chosen_list && a.data.chosen_list.length % 2 == 1 
-                    && (t = a.data.chosen_list[0], a.data.chosen_list.splice(0, 1));
+                    // a.data.parenting_list && a.data.parenting_list.length % 2 == 1 
+                    // && (e = a.data.parenting_list[0], a.data.parenting_list.splice(0, 1)), 
+                    // a.data.chosen_list && a.data.chosen_list.length % 2 == 1 
+                    // && (t = a.data.chosen_list[0], a.data.chosen_list.splice(0, 1));
 
                   if (a.data.data.parenting_list && a.data.data.parenting_list.length % 2 == 1) {
                       e = a.data.data.parenting_list[0];
@@ -68,11 +68,11 @@ Page({
                       recommend_list: a.data.data.recommend_list,
 
                         // promotion_list: a.data.promotion_list,
-                        // red_show: n,
+                      red_show: a.data.data.showConfig.IS_RED_SHOW,
                         // free_album: a.data.free_album,
-                      xcx_control_hide: false,
-                      free_album_hide: true,
-                        // hide: 0,
+                      xcx_control_hide: a.data.data.showConfig.IS_NOT_XCX_CONTROL_HIDE,
+                      free_album_hide: a.data.data.showConfig.IS_NOT_FREE_ALBUM_HIDE,
+                      hide: a.data.data.showConfig.IS_RED_PACKET,
                         // share: a.data.share
                     });
                 }

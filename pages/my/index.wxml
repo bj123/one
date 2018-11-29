@@ -1,14 +1,14 @@
 <import src="/pages/tpl/_play.wxml"></import>
 <template is="_play" data="{{play:play,play_now:play_now,play_count:play_count,play_end:play_end,play_url:play_url,play_obj:play_obj,share_hide:share_hide,newer_hide:newer_hide,newer_coupon_hide:newer_coupon_hide,share_coupon_hide:share_coupon_hide,coupon:coupon}}"></template>
 <view class="user-hero">
-    <image class="avatar" src="{{member.icon}}"></image>
+    <image class="avatar" src="{{member.avatarurl}}"></image>
     <view class="name">
-              {{member.name}}
-              <icon class="icon-man" type="" wx:if="{{member.ex.baby_sex==1}}"></icon>
+              {{member.nickname}}
+              <icon class="icon-man" type="" wx:if="{{member.childsex==1}}"></icon>
         <icon class="icon-girl" type="" wx:else></icon>
     </view>
     <view bindtap="to_url" class="a" data-url="/pages/my/modify">
-              宝宝生日：{{member.ex.baby_birth?member.ex.baby_birth:'暂未设置'}}
+              {{member.childname?member.childname:'宝宝'}} 的生日：{{member.childbirthday?member.childbirthday:'暂未设置'}}
               <icon class="icon-change" type=""></icon>
     </view>
     <view class="id">ID: {{member.id}}</view>

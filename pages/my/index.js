@@ -14,29 +14,36 @@ Page({
     onLoad: function(t) {
         var a = this;
         o.request_m({
-            url: o.api_url + "/my",
-            data: {
-                xcx: 1,
-                version: e.globalData.version
-            },
-            callback: function(t) {
-                if ("y" === t.data.status) {
-                    var n = e.globalData.member;
-                    1 == t.data.is_new && a.setData({
-                        newer_hide: ""
-                    }), a.setData({
-                        member: n,
-                        order_count: t.data.order_count,
-                        like_count: t.data.like_count,
-                        promotion_task_count: t.data.promotion_count,
-                        xcx_control_hide: 1 == t.data.global.pay_hide
-                    });
-                } else o.error(t.data.info, "", function() {
-                    wx.switchTab({
-                        url: "/pages/index/index"
-                    });
-                });
-            }
+          url: o.api_url + "/getUserInfo.json",
+          data: {
+              xcx: 1,
+              version: e.globalData.version
+          },
+          callback: function(userInfo) {
+            if (userInfo) {
+              // var n = e.globalData.member;
+
+              if (1 == userInfo.is_new) {
+                a.setData({
+                  newer_hide: ""
+                })
+              };
+              a.setData({
+                member: userInfo,
+                xcx_control_hide: false
+
+                  // member: n,
+                  // order_count: t.data.order_count,
+                  // like_count: t.data.like_count,
+                  // promotion_task_count: t.data.promotion_count,
+                  // xcx_control_hide: 1 == t.data.global.pay_hide
+              });
+            } else o.error(t.data.info, "", function() {
+              wx.switchTab({
+                  url: "/pages/index/index"
+              });
+            });
+          }
         });
         var n = wx.getSystemInfoSync();
         console.log(n);

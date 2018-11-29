@@ -37,7 +37,7 @@ function o(a, t) {
     wx.showModal({
         title: "成功",
         content: a,
-        showCancel: !1,
+        showCancel: false,
         complete: function() {
             void 0 !== t && t();
         }
@@ -45,41 +45,51 @@ function o(a, t) {
 }
 
 function n(a) {
-  console.log('nnnn')
-    var t = a.url, e = a.data, o = a.callback, n = wx.getStorageSync("member_id"), r = wx.getStorageSync("member_token");
-    wx.checkSession({
-        success: function() {},
-        fail: function() {
-            n = "", r = "";
-        }
-    }), n && r ? (e ? (e.version = h.globalData.version, e.xcx = 1) : e = {
-        version: h.globalData.version,
-        xcx: 1
-    }, h.globalData.member ? l({
-        url: t,
-        data: e,
-        member_id: n,
-        member_token: r,
-        callback: o
-    }) : wx.request({
-        url: j + "/login/myself",
-        data: {},
-        dataType: "json",
-        header: {
-            "member-id": n,
-            "member-token": r
-        },
-        success: function(a) {
-            "y" == a.data.status && (h.globalData.member = a.data.member, h.globalData.member_id = n, 
-            h.globalData.member_token = r), l({
-                url: t,
-                data: e,
-                member_id: n,
-                member_token: r,
-                callback: o
-            });
-        }
-    })) : i(a);
+
+    // var t = a.url, e = a.data, o = a.callback, n = wx.getStorageSync("member_id"), r = wx.getStorageSync("member_token");
+    // wx.checkSession({
+    //     success: function() {},
+    //     fail: function() {
+    //         n = "", r = "";
+    //     }
+    // }), n && r ? (e ? (e.version = h.globalData.version, e.xcx = 1) : e = {
+    //     version: h.globalData.version,
+    //     xcx: 1
+    // }, h.globalData.member ? l({
+    //     url: t,
+    //     data: e,
+    //     member_id: n,
+    //     member_token: r,
+    //     callback: o
+    // }) : wx.request({
+    //     url: j + "/login/myself",
+    //     data: {},
+    //     dataType: "json",
+    //     header: {
+    //         "member-id": n,
+    //         "member-token": r
+    //     },
+    //     success: function(a) {
+    //         "y" == a.data.status && (h.globalData.member = a.data.member, h.globalData.member_id = n, 
+    //         h.globalData.member_token = r), l({
+    //             url: t,
+    //             data: e,
+    //             member_id: n,
+    //             member_token: r,
+    //             callback: o
+    //         });
+    //     }
+    // })) : i(a);
+
+  var t = a.url, e = a.data, o = a.callback, member = h.globalData.member
+
+  if (t.indexOf("getUserInfo") != -1) {
+    o(h.globalData.member)
+  } else if (member) {
+    l({ url: t, data: e, member_id: member.id, member_token: member.openid, callback: o});
+  } else {
+    i(a);
+  }
 }
 
 function l(a) {
@@ -109,91 +119,91 @@ function l(a) {
 
 function i(a) {
   console.log('ilogin')
-    var t = a.url, o = a.url, l = a.callback;
-    wx.login({
-        success: function(r) {
-            var s = r.code;
-            s && wx.getUserInfo({
-                success: function(i) {
-                  var r = i.encryptedData, u = i.iv;
-                    wx.request({
-                      url: j + "/story/decrypt.json",
-                        data: {
-                            code: s,
-                            encryptdata: r,
-                            iv: u
-                        },
-                        dataType: "json",
-                        success: function(i) {
-                            r = i.data.data;
-                            // try {
-                            //     var r = i.data.replace("\ufeff", "");
-                            //     r = JSON.parse(r);
-                            // } catch (a) {}
+  var t = a.url, o = a.url, l = a.callback;
+  wx.login({
+      success: function(r) {
+          var s = r.code;
+          s && wx.getUserInfo({
+              success: function(i) {
+                var r = i.encryptedData, u = i.iv;
+                  wx.request({
+                    url: j + "/story/decrypt.json",
+                      data: {
+                          code: s,
+                          encryptdata: r,
+                          iv: u
+                      },
+                      dataType: "json",
+                      success: function(i) {
+                          r = i.data.data;
+                          // try {
+                          //     var r = i.data.replace("\ufeff", "");
+                          //     r = JSON.parse(r);
+                          // } catch (a) {}
 
-                          if ("200" == i.data.code) {
-                                var s = Date.parse(new Date()), u = c(s + "czgs_token"), p = wx.getSystemInfoSync();
-                                wx.request({
-                                  url: j + "/story/onlogin.json",
-                                  data: {
-                                      key: s,
-                                      token: u,
-                                      unionid: r.unionId,
-                                      openid: r.openId,
-                                      nickName: r.nickName,
-                                      avatarUrl: r.avatarUrl,
-                                      province: r.province,
-                                      country: r.country,
-                                      city: r.city,
-                                      gender: r.gender,
-                                      by: h.globalData.by,
-                                      xcx: 1,
-                                      terminal_type: JSON.stringify(p)
-                                  },
-                                  success: function(i) {
-                                    if ("200" == i.data.code) {
-                                      var res = i.data.data;
-                                      h.globalData.member = res.member;
-                                      h.globalData.member_id = res.member_id;
-                                      h.globalData.member_token = res.member_token;
-                                      wx.setStorageSync("member_id", res.member_id);
-                                      wx.setStorageSync("member_token", res.member_token);
-                                      // t && o ? n(a) : l && l(i);
-                                      l && l(i);
-                                    } else {
-                                      e("登录失败，请稍后再试 2");
-                                    }
-                                      // "y" == i.data.status ? (h.globalData.member = i.data.member, h.globalData.member_id = i.data.member_id, 
-                                      // h.globalData.member_token = i.data.member_token, wx.setStorageSync("member_id", i.data.member_id), 
-                                      // wx.setStorageSync("member_token", i.data.member_token), t && o ? n(a) : l && l(i)) : e("登录失败，请稍后再试 2");
-                                  },
-                                  fail: function(a) {
-                                      e("登录失败，请稍后再试 1 ");
+                        if ("200" == i.data.code) {
+                              var s = Date.parse(new Date()), u = c(s + "czgs_token"), p = wx.getSystemInfoSync();
+                              wx.request({
+                                url: j + "/story/onlogin.json",
+                                data: {
+                                    key: s,
+                                    token: u,
+                                    unionid: r.unionId,
+                                    openid: r.openId,
+                                    nickName: r.nickName,
+                                    avatarUrl: r.avatarUrl,
+                                    province: r.province,
+                                    country: r.country,
+                                    city: r.city,
+                                    gender: r.gender,
+                                    by: h.globalData.by,
+                                    xcx: 1,
+                                    terminal_type: JSON.stringify(p)
+                                },
+                                success: function(i) {
+                                  if ("200" == i.data.code) {
+                                    var res = i.data.data;
+                                    h.globalData.member = res.user;
+                                    h.globalData.member_id = res.user.id;
+                                    h.globalData.member_token = res.user.openid;
+                                    wx.setStorageSync("member_id", res.user.id);
+                                    wx.setStorageSync("member_token", res.user.openid);
+                                    // t && o ? n(a) : l && l(i);
+                                    l && l(i);
+                                  } else {
+                                    e("登录失败，请稍后再试 2");
                                   }
-                                });
-                            } else e("登录失败，请稍后再试。");
-                        }
-                    });
-                },
-                fail: function(t) {
-                  e("未能获取到您的授权，请允许'村长讲故事'使用您的用户信息", "", function() {
-                    wx.openSetting({
-                      success: function(a) {},
-                      fail: function(a) {},
-                      complete: function(t) {
-                        console.log(t), wx.showLoading({
-                            title: "加载中..."
-                        }), i(a);
+                                    // "y" == i.data.status ? (h.globalData.member = i.data.member, h.globalData.member_id = i.data.member_id, 
+                                    // h.globalData.member_token = i.data.member_token, wx.setStorageSync("member_id", i.data.member_id), 
+                                    // wx.setStorageSync("member_token", i.data.member_token), t && o ? n(a) : l && l(i)) : e("登录失败，请稍后再试 2");
+                                },
+                                fail: function(a) {
+                                    e("登录失败，请稍后再试 1 ");
+                                }
+                              });
+                          } else e("登录失败，请稍后再试。");
                       }
-                    });
                   });
-                }
-            });
-        },
-        fail: function(a) {
-            console.info(a);
-        }
-    });
+              },
+              fail: function(t) {
+                e("未能获取到您的授权，请允许'村长讲故事'使用您的用户信息", "", function() {
+                  wx.openSetting({
+                    success: function(a) {},
+                    fail: function(a) {},
+                    complete: function(t) {
+                      console.log(t), wx.showLoading({
+                          title: "加载中..."
+                      }), i(a);
+                    }
+                  });
+                });
+              }
+          });
+      },
+      fail: function(a) {
+          console.info(a);
+      }
+  });
 }
 
 function r(a, t) {
