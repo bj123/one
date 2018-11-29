@@ -7,6 +7,7 @@ Page({
       parenting_list: {},
       recommend_list: {},
       parenting_first: {},
+      promotion_list:[],
       play_now: a.globalData.play_now,
       play_count: a.globalData.play_count,
       play_end: a.globalData.play_end,

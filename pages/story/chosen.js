@@ -25,7 +25,7 @@ Page({
               version: t.globalData.version
           },
           that: this,
-          clear: !0
+          clear: true
       });
     },
     onReachBottom: function() {

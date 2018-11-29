@@ -29,7 +29,7 @@
             <view class="line"></view>
         </view>
     </view>
-    <view class="item">
+    <view class="item" hidden='true'>
         <icon class="icon-group" style="background:url('https://wx.cunzhanggushi.com/public/images/group.png') no-repeat ;background-size:20px 20px; " type=""></icon>
         <view bindtap="to_url" class="a" data-url="/pages/my/group">
                      我的拼团
