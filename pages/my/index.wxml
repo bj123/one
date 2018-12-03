@@ -52,7 +52,7 @@
             <view class="line"></view>
         </navigator>
     </view>
-    <view class="item" hidden="{{xcx_control_hide}}">
+    <view class="item" hidden="true">
         <icon class="icon-myred" type=""></icon>
         <navigator class="a" url="/pages/my/coupon">
                      我的优惠券

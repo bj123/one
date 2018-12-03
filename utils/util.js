@@ -84,7 +84,7 @@ function n(a) {
   var t = a.url, e = a.data, o = a.callback, member = h.globalData.member
 
   if (t.indexOf("getUserInfo") != -1) {
-    o(h.globalData.member)
+    o(member)
   } else if (member) {
     l({ url: t, data: e, member_id: member.id, member_token: member.openid, callback: o});
   } else {
@@ -533,68 +533,156 @@ module.exports = {
         });
     },
     get_info: function(a) {
-        var t = a.url, e = a.data, o = a.that, l = a.clear, i = a.callback;
-        if (k = o.data.pid ? o.data.pid : k, S = o.data.psize ? o.data.psize : S, e ? e.version = h.globalData.version : e = {
-            version: h.globalData.version
-        }, !o.data.next) return o.setData({
-            load_obj: {
-                loading: "hide",
-                nomore: ""
-            }
-        }), !1;
+      var t = a.url, e = a.data, o = a.that, l = a.clear, i = a.callback;
+      var templateType = (e.templateType ? "templateType="+e.templateType+"&" : "");
+
+      k = o.data.pid ? o.data.pid : k;
+      S = o.data.psize ? o.data.psize : S;
+      e ? e.version = h.globalData.version : e = {version: h.globalData.version}
+
+      if (o.data.next) {
         o.setData({
-            load_obj: {
-                loading: "",
-                nomore: "hide"
+          load_obj: {
+              loading: "",
+              nomore: "hide"
+          }
+        })
+      } else {
+        o.setData({
+          load_obj: {
+            loading: "hide",
+            nomore: ""
+          }
+        })
+      }
+
+      n({
+        url: t + "?" + templateType  +"pid=" + k + "&psize=" + S,
+        data: e,
+        callback: function(a) {
+          // o.setData({
+          //     base: a,
+          //     m: a.data.member
+          // });
+
+          console.log(a)
+
+          // try {
+          //     void 0 !== o.data.m && o.data.m.name && (o.data.m.name = o.data.m.name.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, ""));
+          // } catch (a) {}
+          if ("200" != a.data.code){
+            wx.showToast({
+              title: a.data.data.message
+            }); 
+          } else if ((!a.data.data || 0 === a.data.data.length) && 1 === o.data.pid) {
+            o.setData({
+              next: false,
+              list: {}
+            });
+            void (i && i(a.data));
+          } else if (void 0 !== a.data.data.length) {
+            if (a.data.data.length < S){
+              o.setData({
+                next: false,
+                load_obj: {
+                  loading: "hide",
+                  nomore: ""
+                }
+              })
+              o.setData({
+                list: a.data.data,
+                list_state: "",
+                xcx_control_hide: a.data.global ? 1 == a.data.global.pay_hide : 0
+              });
+            } else {
+              var t = o.data.data.concat(a.data.data);
+              o.setData({
+                  list: t,
+                  list_state: "",
+                  xcx_control_hide: a.data.global ? 1 == a.data.global.pay_hide : 0
+              });
             }
-        }), n({
-            url: t + "?pid=" + k + "&psize=" + S,
-            data: e,
-            callback: function(a) {
-                o.setData({
-                    base: a,
-                    m: a.data.member
-                });
-                try {
-                    void 0 !== o.data.m && o.data.m.name && (o.data.m.name = o.data.m.name.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, ""));
-                } catch (a) {}
-                if ("n" === a.data.status) wx.showToast({
-                    title: a.data.info
-                }); else if (void 0 !== a.data.list) {
-                    if ((void 0 === a.data.list || 0 === a.data.list.length) && 1 === o.data.pid) return o.setData({
-                        next: !1,
-                        list: {}
-                  }), void (i && i(a.data));
-                    if (a.data.list.length < (o.data.psize ? o.data.psize : S) && o.setData({
-                        next: !1,
-                        load_obj: {
-                            loading: "hide",
-                            nomore: ""
-                        }
-                    }), l) o.setData({
-                        list: a.data.list,
-                        list_state: "",
-                        xcx_control_hide: a.data.global ? 1 == a.data.global.pay_hide : 0
-                    }); else {
-                        var t = o.data.list.concat(a.data.list);
-                        o.setData({
-                            list: t,
-                            list_state: "",
-                            xcx_control_hide: a.data.global ? 1 == a.data.global.pay_hide : 0
-                        });
-                    }
-                    i && i(a.data);
-              } else i && i(a.data); 
-            },
-            fail: function(a) {},
-            complete: function(a) {
-                wx.stopPullDownRefresh();
-                var t = o.data.load_obj;
-                t.loading = "hide", o.setData({
-                    load_obj: t
-                });
-            }
-        });
+            i && i(a.data);
+          } else {
+            i && i(a.data); 
+          }
+        },
+        fail: function(a) {
+
+        },
+        complete: function(a) {
+            wx.stopPullDownRefresh();
+            var t = o.data.load_obj;
+            t.loading = "hide";
+            o.setData({
+                load_obj: t
+            });
+        }
+    });
+
+
+
+        // if (k = o.data.pid ? o.data.pid : k, S = o.data.psize ? o.data.psize : S, e ? e.version = h.globalData.version : e = {
+        //     version: h.globalData.version
+        // }, !o.data.next) return o.setData({
+        //     load_obj: {
+        //         loading: "hide",
+        //         nomore: ""
+        //     }
+        // }), !1;
+        // o.setData({
+        //     load_obj: {
+        //         loading: "",
+        //         nomore: "hide"
+        //     }
+        // }), n({
+        //     url: t + "?" + templateType  +"pid=" + k + "&psize=" + S,
+        //     data: e,
+        //     callback: function(a) {
+        //         o.setData({
+        //             base: a,
+        //             m: a.data.member
+        //         });
+        //         try {
+        //             void 0 !== o.data.m && o.data.m.name && (o.data.m.name = o.data.m.name.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, ""));
+        //         } catch (a) {}
+        //         if ("n" === a.data.status) wx.showToast({
+        //             title: a.data.info
+        //         }); else if (void 0 !== a.data.list) {
+        //             if ((void 0 === a.data.list || 0 === a.data.list.length) && 1 === o.data.pid) return o.setData({
+        //                 next: !1,
+        //                 list: {}
+        //           }), void (i && i(a.data));
+        //             if (a.data.list.length < (o.data.psize ? o.data.psize : S) && o.setData({
+        //                 next: !1,
+        //                 load_obj: {
+        //                     loading: "hide",
+        //                     nomore: ""
+        //                 }
+        //             }), l) o.setData({
+        //                 list: a.data.list,
+        //                 list_state: "",
+        //                 xcx_control_hide: a.data.global ? 1 == a.data.global.pay_hide : 0
+        //             }); else {
+        //                 var t = o.data.list.concat(a.data.list);
+        //                 o.setData({
+        //                     list: t,
+        //                     list_state: "",
+        //                     xcx_control_hide: a.data.global ? 1 == a.data.global.pay_hide : 0
+        //                 });
+        //             }
+        //             i && i(a.data);
+        //       } else i && i(a.data); 
+        //     },
+        //     fail: function(a) {},
+        //     complete: function(a) {
+        //         wx.stopPullDownRefresh();
+        //         var t = o.data.load_obj;
+        //         t.loading = "hide", o.setData({
+        //             load_obj: t
+        //         });
+        //     }
+        // });
     },
     check: function(a, t) {
         switch (t) {

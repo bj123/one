@@ -7,7 +7,7 @@ function a(a, i, e) {
     }) : a[i] = e, a;
 }
 
-var i, e = getApp(), t = require("../../utils/util.js"), s = t.api_url + "/index/classify";
+var i, e = getApp(), t = require("../../utils/util.js"), s = t.api_url + "/story/getTemplatelistByTypeAndPage.json";
 
 Page({
     data: (i = {
@@ -15,7 +15,7 @@ Page({
         list: {},
         classify_id: "",
         buy_obj: {},
-        next: !0,
+        next: true,
         nodata_hide: "hide",
         pay_detail: {},
         buy_hide: "",
@@ -32,20 +32,19 @@ Page({
         nomore: "hide"
     }), a(i, "xcx_control_hide", 1), i),
     onLoad: function(a) {
+      // 1 叫早 2 哄睡 100 全部
         var i = this, o = a.classify_id ? a.classify_id : "";
         o && this.setData({
             classify_id: o
         });
         var n = "";
         switch (parseInt(o)) {
-          case 5:
+          case 2:
             n = "哄睡故事";
             break;
-
-          case 6:
+          case 1:
             n = "叫早故事";
             break;
-
           default:
             n = "全部故事";
         }
@@ -55,11 +54,11 @@ Page({
             url: s,
             data: {
                 pid: 1,
-                classify_id: o,
+                templateType: o,
                 version: e.globalData.version
             },
             that: this,
-            clear: !0,
+            clear: true,
             callback: function(a) {
                 for (var e = a.list, s = 0; s < e.length; s++) e[s].time = t.sec2min(e[s].time_length);
                 i.setData({

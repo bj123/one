@@ -19,12 +19,12 @@
         <view class="entry">
             <view class="item">
                 <view class="p">成功邀请</view>
-                <view class="span">{{member.ex.invite_count}}</view>
+                <view class="span">{{member.shareList.length}}</view>
                 <view class="p">位好友</view>
             </view>
             <view class="item">
                 <view class="p">获得奖励</view>
-                <view class="span">{{member.ex.total_income}}</view>
+                <view class="span">{{member.myUser.rewardcoin}}</view>
                 <view class="p">元奖励</view>
             </view>
         </view>

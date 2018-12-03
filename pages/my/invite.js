@@ -1,6 +1,6 @@
 getApp();
 
-var e = require("../../utils/util.js"), i = e.api_url + "/my/invite/";
+var e = require("../../utils/util.js"), i = e.api_url + "/story/getShareInfo.json";
 
 Page({
     data: {
@@ -9,22 +9,40 @@ Page({
         is_test: ""
     },
     onLoad: function(t) {
-        var a = this;
-        e.request_m({
-            url: i,
-            data: {
-                pid: a.data.pid
-            },
-            callback: function(e) {
+      var a = this;
+      e.request_m({
+        url: e.api_url + "/getUserInfo.json",
+        data: {
+          xcx: 1
+        },
+        callback: function (userInfo) {
+          if (userInfo) {
+            var userId = userInfo.id;
+            e.request_m({
+              url: i,
+              data: {
+                pid: userId
+              },
+              callback: function (e) {
+                console.log(e)
                 a.setData({
-                    member: e.data.member,
-                    is_test: e.data.is_test
+                  member: e.data.data,
+                  is_test: e.data.data.isShowfriendImg
                 });
-            }
-        });
+              }
+            });
+          } else o.error(t.data.info, "", function () {
+            wx.switchTab({
+              url: "/pages/index/index"
+            });
+          });
+        }
+      });
+
+      
     },
     img_preview: function(i) {
-        var t = this.data.member;
+        var t = {id:12};
         if (t) {
             var a = e.api_url + "/opera/qrcode?scene=member_id=" + t.id + "&member_id=" + t.id, r = [ a ];
             wx.previewImage({

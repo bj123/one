@@ -2,9 +2,9 @@
 <import src="/pages/tpl/_nomore.wxml"></import>
 <template is="_play" data="{{play:play,play_now:play_now,play_count:play_count,play_end:play_end,play_url:play_url,play_obj:play_obj,share_hide:share_hide,newer_hide:newer_hide,newer_coupon_hide:newer_coupon_hide,share_coupon_hide:share_coupon_hide,coupon:coupon}}"></template>
 <view class="classify-list sort-list classify-vip {{story_hide}}">
-    <view class="item" wx:for="{{story_list}}" wx:key="story_list_new">
+    <view class="item" wx:for="{{list}}" wx:key="story_list_new">
         <navigator class="a" url="{{item.album.price==0?'/pages/play/play?id='+item.id+'&type=1':'/pages/story/album?id='+item.album_id}}">
-            <image class="avatar" mode="aspectFill" src="{{item.icon}}"></image>
+            <!-- <image class="avatar" mode="aspectFill" src="{{item.icon}}"></image>
             <view class="body">
                 <view class="t">{{item.title}}</view>
                 <view class="p">{{item.memo}}</view>
@@ -24,7 +24,21 @@
             </view>
             <view class="pull-right" hidden="{{xcx_control_hide}}">
                 <view class="btn" wx:if="{{item.album.price>0}}">{{item.album.price}}元</view>
+            </view> -->
+
+            <image class="avatar" src="{{item.templateurl}}"></image>
+            <view class="body">
+                <view class="t">{{item.templatename}}</view>
+                <view class="p">{{item.templatedesc}}</view>
+                <view class="story">
+                    <icon class="icon-album" type=""></icon>
+                                          {{item.chaptercount}}个故事
+                                   </view>
             </view>
+            <view class="pull-right" hidden="{{xcx_control_hide}}">
+                <view class="btn" wx:if="{{item.saleprice>0}}">{{item.saleprice}}元</view>
+            </view>
+            <icon class="icon-vip" hidden="{{xcx_control_hide}}" wx:if="{{item.saleprice>0}}"></icon>
         </navigator>
     </view>
 </view>

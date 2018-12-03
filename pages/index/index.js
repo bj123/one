@@ -35,7 +35,6 @@ Page({
         t.request_m({
             url: t.api_url,
             callback: function(a) {
-              console.log(a)
                 if ("200" == a.data.code) {
                     var t = "", e = "";
                     // a.data.parenting_list && a.data.parenting_list.length % 2 == 1 

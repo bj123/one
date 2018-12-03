@@ -17,19 +17,19 @@
               </navigator>
     </view>
     <view class="item">
-        <navigator class="a" url="/pages/index/classify?classify_id=6">
+        <navigator class="a" url="/pages/index/classify?classify_id=1">
             <icon class="icon-morning" type=""></icon>
                      叫早
               </navigator>
     </view>
     <view class="item">
-        <navigator class="a" url="/pages/index/classify?classify_id=5">
+        <navigator class="a" url="/pages/index/classify?classify_id=2">
             <icon class="icon-sleep" type=""></icon>
                      哄睡
               </navigator>
     </view>
     <view class="item">
-        <navigator class="a" url="/pages/index/classify">
+        <navigator class="a" url="/pages/index/classify?classify_id=100">
             <icon class="icon-sorts" type=""></icon>
                      全部
               </navigator>

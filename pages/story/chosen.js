@@ -1,9 +1,9 @@
-var t = getApp(), e = require("../../utils/util.js"), a = e.api_url + "/index/album_list";
+var t = getApp(), e = require("../../utils/util.js"), a = e.api_url + "/story/getTemplatelistByShowModuleTypeAndPage.json";
 
 Page({
     data: {
         pid: 1,
-        next: !0,
+        next: true,
         list: {},
         chosen: "",
         share_coupon_hide: "hide",
@@ -22,7 +22,8 @@ Page({
           url: a,
           data: {
               chosen: o,
-              version: t.globalData.version
+              version: t.globalData.version,
+              templateType: "4"
           },
           that: this,
           clear: true
@@ -42,7 +43,7 @@ Page({
     },
     onPullDownRefresh: function() {
         this.setData({
-            next: !0,
+            next: true,
             pid: 1
         });
         var e = {};

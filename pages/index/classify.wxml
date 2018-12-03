@@ -5,19 +5,19 @@
 <view class="classify-list classify-vip">
     <view class="item" wx:for="{{list}}" wx:key="classify_list_jiaozao">
         <navigator class="a clearfix" url="/pages/story/album?id={{item.id}}">
-            <image class="avatar" mode="aspectFit" src="{{item.icon}}"></image>
+            <image class="avatar" mode="aspectFit" src="{{item.templateurl}}"></image>
             <view class="body">
-                <view class="t">{{item.title}}</view>
-                <view class="p">{{item.memo}}</view>
+                <view class="t">{{item.templatename}}</view>
+                <view class="p">{{item.templatedesc}}</view>
                 <view class="story">
                     <icon class="icon-album" type=""></icon>
-                                          {{item.chapter_count}}个故事
+                                          {{item.chaptercount}}个故事
                                    </view>
             </view>
             <view class="pull-right" hidden="{{xcx_control_hide}}">
-                <view class="btn" wx:if="{{item.price>0}}">{{item.price}}元</view>
+                <view class="btn" wx:if="{{item.saleprice>0}}">{{item.saleprice}}元</view>
             </view>
-            <icon class="icon-vip" hidden="{{xcx_control_hide}}" wx:if="{{item.price>0}}"></icon>
+            <icon class="icon-vip" hidden="{{xcx_control_hide}}" wx:if="{{item.saleprice>0}}"></icon>
         </navigator>
     </view>
 </view>
