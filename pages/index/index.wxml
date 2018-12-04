@@ -11,7 +11,7 @@
 </swiper>
 <view class="classify">
     <view class="item">
-        <navigator class="a" url="/pages/story/new">
+        <navigator class="a" url="/pages/story/new?classify_id=200">
             <icon class="icon-new" type=""></icon>
                      最新
               </navigator>

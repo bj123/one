@@ -572,7 +572,9 @@ module.exports = {
           // } catch (a) {}
           if ("200" != a.data.code){
             wx.showToast({
-              title: a.data.data.message
+              icon: 'none',
+              duration: 2000,
+              title: a.data.message
             }); 
           } else if ((!a.data.data || 0 === a.data.data.length) && 1 === o.data.pid) {
             o.setData({
