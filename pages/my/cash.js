@@ -41,18 +41,19 @@ Page({
         if (parseInt(r) < 30) return t.error("提现金额必须大于30元"), !1;
         var o = new Date().getTime(), n = t.md5(o + "czgs_token");
         t.request_m({
-            url: t.api_url + "/opera/cash",
-            data: {
-                real_name: e,
-                amount: r,
-                key: o,
-                token: n
-            },
-            callback: function(a) {
-                "y" === a.data.status ? (t.success("提现成功，3个工作日内到帐，请注意查收"), i.setData({
-                    amount_value: ""
-                })) : t.error(a.data.info);
-            }
+          url: t.api_url + "/story/returnCash.jso",
+          data: {
+            real_name: e,
+            amount: r,
+            userId: a.globalData.member.id,
+            key: o,
+            token: n
+          },
+          callback: function(a) {
+              "200" === a.data.code ? (t.success("提现成功，3个工作日内到帐，请注意查收"), i.setData({
+                  amount_value: ""
+              })) : t.error(a.data.info);
+          }
         });
     },
     onReachBottom: function() {

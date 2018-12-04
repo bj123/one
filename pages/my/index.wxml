@@ -18,7 +18,7 @@
         <icon class="icon-cash" type=""></icon>
         <view bindtap="to_url" class="a" data-url="/pages/my/cash">
                      我的现金
-                     <view class="pull-right red">{{member.ex?member.ex.balance+'元':''}}</view>
+                     <view class="pull-right red">{{member.rewardcoin?member.rewardcoin:'0'}}元</view>
         </view>
     </view>
     <view class="item mt-15" hidden="{{xcx_control_hide}}">

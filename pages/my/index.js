@@ -9,7 +9,8 @@ Page({
         share_coupon_hide: "hide",
         newer_hide: "hide",
         newer_coupon_hide: "hide",
-        xcx_control_hide: 1
+        xcx_control_hide: 1,
+        sumCoin:0
     },
     onLoad: function(t) {
         var a = this;
@@ -28,10 +29,30 @@ Page({
                   newer_hide: ""
                 })
               };
+
+              console.log(userInfo)
+
+              var orderCount = 0;
+              if (userInfo.buytemplateid) {
+                var orders = userInfo.buytemplateid.split(",");
+                if (orders) {
+                  orderCount = orders.length;
+                }
+              }
+              var likeCount = 0;
+              if (userInfo.likeid) {
+                var likes = userInfo.likeid.split(",");
+                if (likes) {
+                  likeCount = likes.length;
+                }
+              }
+            
               a.setData({
                 member: userInfo,
-                xcx_control_hide: false
-
+                xcx_control_hide: false,
+                order_count: orderCount,
+                like_count: likeCount,
+                sumCoin: userInfo.rewardcoin + userInfo.coinnum
                   // member: n,
                   // order_count: t.data.order_count,
                   // like_count: t.data.like_count,
