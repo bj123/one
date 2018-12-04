@@ -29,55 +29,73 @@ Page({
         // wx.showLoading({
         //     title: "加载中..."
         // });
-        var n = wx.getSystemInfoSync();
-        a.globalData.sys_info = n;
-        var i = this;
-        t.request_m({
-            url: t.api_url,
-            callback: function(a) {
-                if ("200" == a.data.code) {
-                    var t = "", e = "";
-                    // a.data.parenting_list && a.data.parenting_list.length % 2 == 1 
-                    // && (e = a.data.parenting_list[0], a.data.parenting_list.splice(0, 1)), 
-                    // a.data.chosen_list && a.data.chosen_list.length % 2 == 1 
-                    // && (t = a.data.chosen_list[0], a.data.chosen_list.splice(0, 1));
 
-                  if (a.data.data.parenting_list && a.data.data.parenting_list.length % 2 == 1) {
-                      e = a.data.data.parenting_list[0];
-                      a.data.data.parenting_list.splice(0, 1);
-                  }
+      var invitedUserId = options.invitedUserId;
 
-                  if (a.data.data.recommend_list && a.data.data.recommend_list.length % 2 == 1) {
-                      t = a.data.data.recommend_list[0];
-                      a.data.data.recommend_list.splice(0, 1);
-                  }
+      var n = wx.getSystemInfoSync();
+      a.globalData.sys_info = n;
+      var i = this;
+      t.request_m({
+          url: t.api_url,
+          callback: function(a) {
+            if ("200" == a.data.code) {
+                var t = "", e = "";
+                // a.data.parenting_list && a.data.parenting_list.length % 2 == 1 
+                // && (e = a.data.parenting_list[0], a.data.parenting_list.splice(0, 1)), 
+                // a.data.chosen_list && a.data.chosen_list.length % 2 == 1 
+                // && (t = a.data.chosen_list[0], a.data.chosen_list.splice(0, 1));
 
-                    var n = "hide", o = wx.getStorageSync("index_hb_pop");
-                    a.data.hb_record || o && !(o.end_time < Date.parse(new Date()) / 1e3) || (n = "", 
-                    wx.setStorageSync("index_hb_pop", {
-                        is_pop: 1,
-                        end_time: Date.parse(new Date()) / 1e3 + 86400
-                    })), 
-                    i.setData({
-                      banners: a.data.data.banners,
-                      today_list: a.data.data.today_list,
+              if (a.data.data.parenting_list && a.data.data.parenting_list.length % 2 == 1) {
+                e = a.data.data.parenting_list[0];
+                a.data.data.parenting_list.splice(0, 1);
+              }
 
-                      parenting_first: e,
-                      recommend_first: t,
-                      parenting_list: a.data.data.parenting_list,
-                      recommend_list: a.data.data.recommend_list,
+              if (a.data.data.recommend_list && a.data.data.recommend_list.length % 2 == 1) {
+                t = a.data.data.recommend_list[0];
+                a.data.data.recommend_list.splice(0, 1);
+              }
 
-                        // promotion_list: a.data.promotion_list,
-                      red_show: a.data.data.showConfig.IS_RED_SHOW,
-                        // free_album: a.data.free_album,
-                      xcx_control_hide: a.data.data.showConfig.IS_NOT_XCX_CONTROL_HIDE,
-                      free_album_hide: a.data.data.showConfig.IS_NOT_FREE_ALBUM_HIDE,
-                      hide: a.data.data.showConfig.IS_RED_PACKET,
-                        // share: a.data.share
-                    });
+              var n = "hide", o = wx.getStorageSync("index_hb_pop");
+              a.data.hb_record || o && !(o.end_time < Date.parse(new Date()) / 1e3) || (n = "", 
+              wx.setStorageSync("index_hb_pop", {
+                is_pop: 1,
+                end_time: Date.parse(new Date()) / 1e3 + 86400
+              })), 
+              i.setData({
+                banners: a.data.data.banners,
+                today_list: a.data.data.today_list,
+
+                parenting_first: e,
+                recommend_first: t,
+                parenting_list: a.data.data.parenting_list,
+                recommend_list: a.data.data.recommend_list,
+
+                  // promotion_list: a.data.promotion_list,
+                red_show: a.data.data.showConfig.IS_RED_SHOW,
+                  // free_album: a.data.free_album,
+                xcx_control_hide: a.data.data.showConfig.IS_NOT_XCX_CONTROL_HIDE,
+                free_album_hide: a.data.data.showConfig.IS_NOT_FREE_ALBUM_HIDE,
+                hide: a.data.data.showConfig.IS_RED_PACKET,
+                  // share: a.data.share
+              });
+
+              if (invitedUserId) {
+                var paramsShare = {
+                  invitedUserId: invitedUserId,
+                  beInvitedUserId: a.data.data.user.id
                 }
+                wx.request({
+                  url: 'http://127.0.0.1:8888/story/createShare.json',
+                  data: paramsShare,
+                  method: 'GET',
+                  success: function (res) {
+                    console.log(res);
+                  }
+                });
+              } 
             }
-        });
+          }
+      });
     },
     box_none: function() {
         this.setData({

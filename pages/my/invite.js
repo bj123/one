@@ -6,7 +6,8 @@ Page({
     data: {
         member: "",
         share_coupon_hide: "hide",
-        is_test: ""
+        is_test: "",
+        userId:0
     },
     onLoad: function(t) {
       var a = this;
@@ -18,6 +19,10 @@ Page({
         callback: function (userInfo) {
           if (userInfo) {
             var userId = userInfo.id;
+            a.setData({
+              userId: userId
+            });
+
             e.request_m({
               url: i,
               data: {
@@ -51,16 +56,42 @@ Page({
             });
         }
     },
-    onShareAppMessage: function(i) {
-        this.setData({
-            share_hide: "hide"
-        });
-        var t = this.data.member, a = e.api_url + "/opera/qrcode?scene=member_id=" + t.id + "&member_id=" + t.id;
-        return e.share_info({
-            img: a,
-            title: "邀请好友听故事",
-            that: this
-        });
+    onShareAppMessage: function (ops) {
+      // this.setData({
+      //   share_hide: "hide"
+      // });
+      // var t = this.data.member;
+      // a = e.api_url + "/opera/qrcode?scene=member_id=" + t.id + "&member_id=" + t.id;
+      // return e.share_info({
+      //   img: a,
+      //   title: "邀请好友听故事",
+      //   that: this
+      // });
+
+      var self = this
+      if (ops.from === 'button') {
+        // 来自页面内转发按钮
+        console.log(ops.target)
+      }
+      return {
+        title: '邀请好友听故事',
+        path: '/pages/index/index?invitedUserId=' + self.data.userId,
+        imageUrl: 'https://aiw19920706.oss-cn-beijing.aliyuncs.com/stroys/img/fx.png',
+        success: function (res) {
+          // 转发成功
+          console.log("转发成功:" + JSON.stringify(res));
+        },
+        fail: function (res) {
+          console.log("转发失败:" + JSON.stringify(res));
+          if (res.errMsg == 'shareAppMessage:fail cancel') {
+            // 用户取消转发
+            console.log(res.errMsg);
+          } else if (res.errMsg == 'shareAppMessage:fail') {
+            // 转发失败，其中 detail message 为详细失败信息
+            console.log("转发失败:" + JSON.stringify(res));
+          }
+        }
+      }
     },
     close_coupon_tip: function(e) {
         this.setData({
