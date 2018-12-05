@@ -4,7 +4,7 @@ Page({
     data: {
       pid: 1,
       next: true,
-      list: {},
+      list: [],
       share_coupon_hide: "hide",
       newer_hide: "hide",
       newer_coupon_hide: "hide",
@@ -26,12 +26,12 @@ Page({
           that: this,
           clear: true,
           callback: function(t) {
-              for (var a = o.data.list, i = 0; i < a.length; i++) a[i].time = e.sec2min(a[i].time_length);
-              o.setData({
-                  story_list: a,
-                  xcx_control_hide: 1 == t.global.pay_hide,
-                  share: t.share
-              });
+              // for (var a = o.data.list, i = 0; i < a.length; i++) a[i].time = e.sec2min(a[i].time_length);
+              // o.setData({
+              //     story_list: a,
+              //     xcx_control_hide: 1 == t.global.pay_hide,
+              //     share: t.share
+              // });
           }
       });
     },
@@ -44,6 +44,7 @@ Page({
       }, 1e3);
     },
     onReachBottom: function() {
+      console.log("onReachBottom")
       var i = this.data.pid + 1, o = this;
       this.setData({
           pid: i
@@ -55,10 +56,10 @@ Page({
           that: this,
           clear: false,
           callback: function(t) {
-              for (var a = o.data.list, i = 0; i < a.length; i++) a[i].time = e.sec2min(a[i].time_length);
-              o.setData({
-                  story_list: a
-              });
+              // for (var a = o.data.list, i = 0; i < a.length; i++) a[i].time = e.sec2min(a[i].time_length);
+              // o.setData({
+              //     story_list: a
+              // });
           }
       });
     },

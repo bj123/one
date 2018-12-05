@@ -4,7 +4,7 @@ Page({
     data: {
         pid: 1,
         next: true,
-        list: {},
+        list: [],
         chosen: "",
         share_coupon_hide: "hide",
         newer_hide: "hide",

@@ -591,20 +591,15 @@ module.exports = {
                   nomore: ""
                 }
               })
-              o.setData({
-                list: a.data.data,
-                list_state: "",
-                xcx_control_hide: a.data.global ? 1 == a.data.global.pay_hide : 0
-              });
-            } else {
-              var t = o.data.data.concat(a.data.data);
-              o.setData({
-                  list: t,
-                  list_state: "",
-                  xcx_control_hide: a.data.global ? 1 == a.data.global.pay_hide : 0
-              });
             }
-            i && i(a.data);
+            var t = o.data.list.concat(a.data.data);
+            console.log(t)
+            o.setData({
+              list: t,
+              list_state: "",
+              xcx_control_hide: a.data.global ? 1 == a.data.global.pay_hide : 0
+            });
+            // i && i(a.data);
           } else {
             i && i(a.data); 
           }

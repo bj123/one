@@ -12,7 +12,7 @@ var i, e = getApp(), t = require("../../utils/util.js"), s = t.api_url + "/story
 Page({
     data: (i = {
         pid: 1,
-        list: {},
+        list: [],
         classify_id: "",
         buy_obj: {},
         next: true,
