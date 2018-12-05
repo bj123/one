@@ -26,9 +26,10 @@
               余额明细
        </view>
     <view class="item" wx:for="{{list}}" wx:key="my_cash_io_detail">
-        <view class="span">{{item.desc}}</view>
-        <view class="p">{{item.time}}</view>
-        <view class="money">{{item.io==1?'+':'-'}}{{item.amount}}</view>
+        <view class="span">{{item.type}}</view>
+        <view class="p">{{item.createtime}}</view>
+        <view class="money">{{item.balance>0?item.balance:""}}{{item.cashback>0?item.cashback:""}}
+        {{item.monetary>0?item.monetary:""}}{{item.withdraw>0?item.withdraw:""}}</view>
     </view>
 </view>
 <template is="_nodata" data="{{nodata_hide:nodata_hide}}" wx:if="{{!list.length}}"></template>

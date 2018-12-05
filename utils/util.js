@@ -599,7 +599,7 @@ module.exports = {
               list_state: "",
               xcx_control_hide: a.data.global ? 1 == a.data.global.pay_hide : 0
             });
-            // i && i(a.data);
+            i && i(a.data);
           } else {
             i && i(a.data); 
           }

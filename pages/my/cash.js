@@ -1,12 +1,12 @@
-var a = getApp(), t = require("../../utils/util.js"), e = t.api_url + "/my/cash";
+var a = getApp(), t = require("../../utils/util.js"), e = t.api_url + "/story/getMoneyLogs.json";
 
 Page({
     data: {
         pid: 1,
         psize: 20,
-        next: !0,
+        next: true,
         member: {},
-        list: {},
+        list: [],
         amount_value: "",
         load_obj: {
             loading: "hide",
@@ -20,41 +20,59 @@ Page({
             member: o
         }), t.get_info({
             url: e,
-            data: {},
+            data: {
+              userId: o.id
+            },
             that: this,
-            clear: !0,
+            clear: true,
             callback: function(a) {
                 var e = i.data.load_obj, r = "hide";
-                0 == a.list.length ? r = "" : a.list.length < i.data.psize && (e.nomore = ""), i.setData({
+                if (a.code == "200") {
+                  if (0 == a.data.length) {
+                    r = "";
+                  } else {
+                    if (a.data.length < i.data.psize){
+                      e.nomore = "";
+                    }
+                  }
+                  i.setData({
                     load_obj: e,
                     nodata_hide: r
-                }), "y" != a.status && t.error_back(a.data.info);
+                  });
+                } else {
+                  t.error_back(a.data.info);
+                }
             }
         });
     },
-    to_cash: function(a) {
-        var e = a.detail.value.real_name, r = a.detail.value.amount, i = this;
-        if ("" == e) return t.error("请输入真实姓名"), !1;
-        if ("" == r) return t.error("请输入提现金额"), !1;
-        if (!t.check(e, "zh")) return t.error("真实姓名只能输入中文"), !1;
-        if (!t.check(r, "n")) return t.error("提现金额只能输入整数"), !1;
-        if (parseInt(r) < 30) return t.error("提现金额必须大于30元"), !1;
-        var o = new Date().getTime(), n = t.md5(o + "czgs_token");
-        t.request_m({
-          url: t.api_url + "/story/returnCash.jso",
-          data: {
-            real_name: e,
-            amount: r,
-            userId: a.globalData.member.id,
-            key: o,
-            token: n
-          },
-          callback: function(a) {
-              "200" === a.data.code ? (t.success("提现成功，3个工作日内到帐，请注意查收"), i.setData({
-                  amount_value: ""
-              })) : t.error(a.data.info);
+    to_cash: function(option) {
+      var e = option.detail.value.real_name, r = option.detail.value.amount, i = this;
+      if ("" == e) return t.error("请输入真实姓名"), !1;
+      if ("" == r) return t.error("请输入提现金额"), !1;
+      if (!t.check(e, "zh")) return t.error("真实姓名只能输入中文"), !1;
+      if (!t.check(r, "n")) return t.error("提现金额只能输入整数"), !1;
+      if (parseInt(r) < 30) return t.error("提现金额必须大于30元"), !1;
+      var o = new Date().getTime(), n = t.md5(o + "czgs_token");
+      t.request_m({
+        url: t.api_url + "/story/returnCash.json",
+        data: {
+          real_name: e,
+          amount: r,
+          userId: a.globalData.member.id,
+          key: o,
+          token: n
+        },
+        callback: function(a) {
+          if ("200" == a.data.code) {
+            t.success("提现成功，3个工作日内到帐，请注意查收");
+            i.setData({
+              amount_value: ""
+            });
+          } else {
+            t.error(a.data.message);
           }
-        });
+        }
+      });
     },
     onReachBottom: function() {
         if (this.data.next) {
