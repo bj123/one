@@ -5,6 +5,7 @@ Page({
         album: {},
         story_list: {},
         comment_list: {},
+        desc_list:[],
         desc_tip_hide: "hide",
         desc_active: "active",
         story_active: "",
@@ -35,44 +36,66 @@ Page({
         showAppMask: 1,
         isiphone: t.globalData.isiphone
     },
-    onLoad: function(t) {
+    onLoad: function(options) {
         var a = this;
         e.request_m({
-            url: e.api_url + "/index/album",
-            data: {
-                id: t.id,
-                banner_id: t.banner_id ? t.banner_id : 0
-            },
-            callback: function(s) {
-                if ("y" == s.data.status) {
-                    var d = (.1 * s.data.album.price).toFixed(2);
-                    wx.setNavigationBarTitle({
-                        title: s.data.album.title
-                    });
-                    for (var o = s.data.story_list, h = 0; h < o.length; h++) o[h].time = e.sec2min(o[h].time_length);
-                    a.setData({
-                        pay_id: t.id,
-                        album: s.data.album,
-                        story_count: s.data.album.chapter_count,
-                        story_list: s.data.story_list,
-                        comment_list: s.data.comment_list,
-                        share_reward: d,
-                        buy_hide: s.data.is_buy ? "hide" : "",
-                        desc_hide: s.data.is_buy ? "hide" : "",
-                        story_hide: s.data.is_buy ? "" : "hide",
-                        desc_active: s.data.is_buy ? "" : "active",
-                        story_active: s.data.is_buy ? "active" : "",
-                        buy: !!s.data.is_buy,
-                        desc_tip_hide: "",
-                        para: t,
-                        xcx_control_hide: 1 == s.data.global.pay_hide,
-                        ios_buy_hide: 1,
-                        go_contact: 0
-                    }), i.wxParse("desc", "html", a.data.album.desc, a);
-                } else e.error("获取失败", "", function() {
-                    wx.navigateBack();
-                });
-            }
+          url: e.api_url + "/story/getTemplateDesc.json",
+          data: {
+            templateId: options.id,
+            banner_id: options.banner_id ? options.banner_id : 0,
+            userId: t.globalData.member.id
+          },
+          callback: function(s) {
+            console.log(s)
+            if ("200" == s.data.code) {
+              // var d = (.1 * s.data.album.price).toFixed(2);
+              wx.setNavigationBarTitle({
+                title: s.data.data.album.templatename
+              });
+              // for (var o = s.data.story_list, h = 0; h < o.length; h++){
+              //   o[h].time = e.sec2min(o[h].time_length);
+              // } 
+
+              var introductions = s.data.data.introductions;
+              for (var i = 0; i < introductions.length; i++) {
+                if (introductions[i].desction) {
+                  introductions[i].desction = introductions[i].desction.replace(/\\n/g, "\n");
+                }
+                
+              }
+
+              a.setData({
+                album: s.data.data.album,
+                xcx_control_hide: s.data.data.showConfig.IS_NOT_XCX_CONTROL_HIDE == "true" ? true : false,
+                share_reward: s.data.data.shareReward,
+                desc_list: introductions,
+                desc_hide: s.data.data.is_buy ? "hide" : "",
+                story_hide: s.data.data.is_buy ? "" : "hide",
+                story_list: s.data.data.stories,
+                buy: s.data.data.is_buy,
+                // pay_id: t.id,
+                // album: s.data.album,
+                // story_count: s.data.album.chapter_count,
+                // story_list: s.data.story_list,
+                // comment_list: s.data.comment_list,
+                // share_reward: d,
+                // buy_hide: s.data.is_buy ? "hide" : "",
+                // desc_hide: s.data.is_buy ? "hide" : "",
+                // story_hide: s.data.is_buy ? "" : "hide",
+                // desc_active: s.data.is_buy ? "" : "active",
+                // story_active: s.data.is_buy ? "active" : "",
+                // buy: !!s.data.is_buy,
+                // desc_tip_hide: "",
+                // para: t,
+                // xcx_control_hide: 1 == s.data.global.pay_hide,
+                // ios_buy_hide: 1,
+                // go_contact: 0
+              });
+              // i.wxParse("desc", "html", a.data.album.desc, a);
+            } else e.error("获取失败", "", function() {
+              wx.navigateBack();
+            });
+          }
         });
     },
     change_tag: function(t) {
@@ -138,20 +161,26 @@ Page({
     },
     go_play: function(i) {
         var a = i.currentTarget.dataset, s = this;
-        if (1 != a.pay && s.data.isiphone && 0 != s.data.album.price) wx.showModal({
+        if (1 != a.pay && s.data.isiphone && 0 != s.data.album.price) {
+          wx.showModal({
             title: "温馨提示",
             content: t.globalData.iosTip,
             showCancel: !1,
             confirmText: "我知道了",
-            success: function(t) {
-                t.confirm ? console.log("用户点击确定") : t.cancel && console.log("用户点击取消");
+            success: function (t) {
+              t.confirm ? console.log("用户点击确定") : t.cancel && console.log("用户点击取消");
             }
-        }); else {
+          });
+        } else {
             var d = a.id, o = "/pages/play/play?id=" + d + "&type=1";
-            if (s.data.buy || 0 == s.data.album.price) wx.navigateTo({
+            if (s.data.buy || 0 == s.data.album.price) {
+              wx.navigateTo({
                 url: o
-            }); else {
-                for (var h = s.data.story_list, c = !0, _ = 0; _ < h.length; _++) h[_].id.toString() == d && 1 == h[_].try_listen && (c = !1);
+              });
+            } else {
+                for (var h = s.data.story_list, c = !0, _ = 0; _ < h.length; _++) {
+                  h[_].id.toString() == d && 1 == h[_].try_listen && (c = !1);
+                }
                 if (c && 1 != this.data.xcx_control_hide) {
                     if (t.globalData.isiphone) return void e.error(t.globalData.iosTip);
                     e.error("请购买后收听");
@@ -215,6 +244,7 @@ Page({
         });
     },
     show_share_view: function(t) {
+      console.log("show_share_view")
         this.setData({
             share_view_hide: ""
         });

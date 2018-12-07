@@ -144,7 +144,7 @@
                         <icon class="icon-album" type=""></icon>
                         <text>{{recommend_first.chaptercountnow}}/{{recommend_first.chaptercount}}个</text>
                     </view>
-                    <view class="icon-free" hidden="{{xcx_control_hide}}" style="background:url('http://wx.cunzhanggushi.com/public/images/free.png') no-repeat;background-size: 25px 25px;" wx:if="{{recommend_first.price>0}}"></view>
+                    <view class="icon-free" hidden="{{xcx_control_hide}}" style="background:url('http://wx.cunzhanggushi.com/public/images/free.png') no-repeat;background-size: 25px 25px;" wx:if="{{recommend_first.saleprice>0}}"></view>
                 </view>
                 <view class="span">{{recommend_first.templatename}}</view>
                 <view class="p">{{recommend_first.templatedesc}}</view>

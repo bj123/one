@@ -20,10 +20,10 @@ Page({
       newer_coupon_hide: "hide",
       red_show: "hide",
       box_none: "",
-      hide: 1,
+      hide: true,
       img_list: [],
       img_index: 0,
-      xcx_control_hide: 1
+      xcx_control_hide: true
     },
     onLoad: function(e) {
         // wx.showLoading({
@@ -61,6 +61,7 @@ Page({
                 is_pop: 1,
                 end_time: Date.parse(new Date()) / 1e3 + 86400
               })), 
+                console.log(a.data.data)
               i.setData({
                 banners: a.data.data.banners,
                 today_list: a.data.data.today_list,
@@ -73,8 +74,8 @@ Page({
                   // promotion_list: a.data.promotion_list,
                 red_show: a.data.data.showConfig.IS_RED_SHOW,
                   // free_album: a.data.free_album,
-                xcx_control_hide: a.data.data.showConfig.IS_NOT_XCX_CONTROL_HIDE,
-                free_album_hide: a.data.data.showConfig.IS_NOT_FREE_ALBUM_HIDE,
+                xcx_control_hide: a.data.data.showConfig.IS_NOT_XCX_CONTROL_HIDE == "true"?true:false,
+                free_album_hide: a.data.data.showConfig.IS_NOT_FREE_ALBUM_HIDE == "true" ? true : false,
                 hide: a.data.data.showConfig.IS_RED_PACKET,
                   // share: a.data.share
               });
