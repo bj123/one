@@ -214,21 +214,46 @@ Page({
     onShow: function() {
         e.init_global_play(this), this.data.go_contact && this.onLoad(this.data.para);
     },
-    onShareAppMessage: function(i) {
-        this.setData({
-            share_view_hide: "hide",
-            pay_success_hide: "hide",
-            share_gift_hide: "hide",
-            share_hide: "hide"
-        });
-        var a = this.data.album, s = this.data.pay_detail.price > 0, d = a.title, o = "/pages/story/album?id=" + a.id, h = this.data.album.icon;
-        return 0 == a.status && (d = "村长讲故事", o = "/pages/index/index?member_id=" + t.globalData.member_id, 
-        h = "https://wx.cunzhanggushi.com/public/images/logo.jpg"), e.share_info({
-            title: d,
-            url: o,
-            that: this,
-            img: h
-        }, s, this);
+  onShareAppMessage: function (ops) {
+        // this.setData({
+        //     share_view_hide: "hide",
+        //     pay_success_hide: "hide",
+        //     share_gift_hide: "hide",
+        //     share_hide: "hide"
+        // });
+        // var a = this.data.album, s = this.data.pay_detail.price > 0, d = a.title, o = "/pages/story/album?id=" + a.id, h = this.data.album.icon;
+        // return 0 == a.status && (d = "村长讲故事", o = "/pages/index/index?member_id=" + t.globalData.member_id, 
+        // h = "https://wx.cunzhanggushi.com/public/images/logo.jpg"), e.share_info({
+        //     title: d,
+        //     url: o,
+        //     that: this,
+        //     img: h
+        // }, s, this);
+
+      var self = this
+      if (ops.from === 'button') {
+        // 来自页面内转发按钮
+        console.log(ops.target)
+      }
+      return {
+        title: '村长讲故事',
+        path: '/pages/index/index?invitedUserId=' + t.globalData.member.id,
+        imageUrl: 'https://aiw19920706.oss-cn-beijing.aliyuncs.com/stroys/img/fx.png',
+        success: function (res) {
+          // 转发成功
+          console.log("转发成功:" + JSON.stringify(res));
+        },
+        fail: function (res) {
+          console.log("转发失败:" + JSON.stringify(res));
+          if (res.errMsg == 'shareAppMessage:fail cancel') {
+            // 用户取消转发
+            console.log(res.errMsg);
+          } else if (res.errMsg == 'shareAppMessage:fail') {
+            // 转发失败，其中 detail message 为详细失败信息
+            console.log("转发失败:" + JSON.stringify(res));
+          }
+        }
+      }
     },
     play: function(i) {
         t.globalData.play ? e.pause(this) : e.play(this);
