@@ -75,7 +75,7 @@ Page({
       }
       return {
         title: '邀请好友听故事',
-        path: '/pages/index/index?invitedUserId=' + self.data.userId,
+        path: '/pages/auth/auth?invitedUserId=' + self.data.userId,
         imageUrl: 'https://aiw19920706.oss-cn-beijing.aliyuncs.com/stroys/img/fx.png',
         success: function (res) {
           // 转发成功

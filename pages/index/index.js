@@ -30,7 +30,7 @@ Page({
         //     title: "加载中..."
         // });
 
-      var invitedUserId = e.invitedUserId;
+      var invitedUserId = a.globalData.invitedUserId;
 
       var n = wx.getSystemInfoSync();
       a.globalData.sys_info = n;

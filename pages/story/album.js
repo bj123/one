@@ -237,7 +237,7 @@ Page({
       }
       return {
         title: '村长讲故事',
-        path: '/pages/index/index?invitedUserId=' + t.globalData.member.id,
+        path: '/pages/auth/auth?invitedUserId=' + t.globalData.member.id,
         imageUrl: 'https://aiw19920706.oss-cn-beijing.aliyuncs.com/stroys/img/fx.png',
         success: function (res) {
           // 转发成功
