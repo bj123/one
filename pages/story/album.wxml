@@ -40,7 +40,7 @@
         <view class="entry">
             <!-- <template is="wxParse" data="{{wxParseData:desc.nodes}}"></template> -->
             <view class="item" style='margin-bottom:80rpx' wx:for="{{desc_list}}" wx:key="album_desc_list">
-              <view wx:if="{{item.imgurl}}" style='margin-top:15rpx'>
+              <view wx:if="{{item.imgurl}}" style='margin-top:15rpx;align-items:center;justify-content:center;display:flex;'>
                 <image src="{{item.imgurl}}"></image>
               </view>  
               <view wx:if="{{item.title}}">
