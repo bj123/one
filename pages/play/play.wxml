@@ -1,11 +1,11 @@
-<view class="{{play_obj.parent.type==2?'':'play-surround'}}" hidden="{{hide}}">
-    <view class="{{play_obj.parent.type==2?'':'play-box'}}">
-        <view class="section tc" wx:if="{{play_obj.parent.type==2}}">
-            <video controls autoplay="true" bindended="next" id="video" objectFit="fill" src="{{play_obj.file_path}}"></video>
+<view class="{{play_obj.type==2?'':'play-surround'}}" hidden="{{hide}}">
+    <view class="{{play_obj.type==2?'':'play-box'}}">
+        <view class="section tc" wx:if="{{play_obj.type==2}}">
+            <video controls autoplay="true" bindended="next" id="video" objectFit="fill" src="{{play_obj.contenturl}}"></video>
         </view>
         <view class="cover" wx:else>
             <view class="avatar" style="overflow: hidden;">
-                <image class="avatar {{play?'play':''}}" src="{{play_obj.icon}}"></image>
+                <image class="avatar {{play?'play':''}}" src="{{play_obj.storyicon}}"></image>
             </view>
         </view>
         <view class="last_time hide">
@@ -14,18 +14,19 @@
                             <icon class="icon-bf"></icon>
             </view>
         </view>
-        <block wx:if="{{play_obj.parent.type!='2'}}">
+        <block wx:if="{{play_obj.type!='2'}}">
             <view class="schedule">
-                <navigator class="textbook_icon" url="./textbook/textbook?id={{play_obj.id}}" wx:if="{{play_obj.desc}}">
+                <!-- <navigator class="textbook_icon" url="./textbook/textbook?id={{play_obj.id}}" wx:if="{{play_obj.desc}}">
                     <image src="https://cj.cunzhanggushi.com/public/images/svg/player_icon_teachingmaterial.svg"></image>
-                </navigator>
-                <view class="pull-left">{{play_count}}</view>
+                </navigator> -->
+                
+                <view class="pull-left">{{play_obj.playcount}}</view>
                 <view class="body-view">
                     <progress color="#fd6363" percent="{{play_percent}}" strokeWidth="3"></progress>
                 </view>
-                <view class="pull-right">{{play_end}}</view>
+                <view class="pull-right">{{play_obj.storytime}}</view>
             </view>
-            <view class="title">{{play_obj.title}}</view>
+            <view class="title">{{play_obj.storyname}}</view>
             <view class="control">
                 <button class="item">
                     <icon bindtap="prev" class="icon-on {{no_prev_hide}}"></icon>

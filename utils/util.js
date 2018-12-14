@@ -861,8 +861,8 @@ module.exports = {
     stop: _,
     pause: function(a) {
         a.setData({
-            play: !1
-        }), h.globalData.play = !1, clearInterval(w), clearInterval(v), D && D.pause(), 
+            play: false
+        }), h.globalData.play = false, clearInterval(w), clearInterval(v), D && D.pause(), 
         a.videoContext && a.videoContext.pause();
     },
     init_play: g,

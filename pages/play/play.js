@@ -73,14 +73,15 @@ Page({
         countdown_90: "",
         share: {},
         parent: {},
-        hide: 1,
-        xcx_control_hide: 1
+        hide: false,
+        xcx_control_hide: 1,
+      playBack:{}
     },
     onLoad: function(a) {
-        wx.showLoading({
-            title: "加载中..."
-        });
-        var i = a.id, o = a.type, n = a.like_play ? a.like_play : 0, l = this, _ = t.globalData.play_type;
+      wx.showLoading({
+          title: "加载中..."
+      });
+      var i = a.id, templateId = a.templateId, o = a.type, n = a.like_play ? a.like_play : 0, l = this, _ = t.globalData.play_type;
         switch (_ || (_ = 1, t.globalData.play_type = _), _) {
           case 1:
             l.setData({
@@ -106,76 +107,125 @@ Page({
             });
         }
         var d = wx.getStorageSync("timer_option");
-        d && l.setData({
+        if (d) {
+          l.setData({
             no_countdown: "0" == d ? "active" : "",
             countdown_end: "1" == d ? "active" : "",
             countdown_15: "2" == d ? "active" : "",
             countdown_30: "3" == d ? "active" : "",
             countdown_60: "4" == d ? "active" : "",
             countdown_90: "5" == d ? "active" : ""
-        });
-        var s = e.api_url + "/index/play";
-        1 == n && (s = e.api_url + "/index/like_play", t.globalData.like_play = 1), e.request_m({
-            url: s,
-            data: {
-                id: i,
-                type: o
-            },
-            callback: function(n) {
-                if ("y" == n.data.status) {
-                    wx.hideLoading();
-                    var _ = 0, d = n.data.play_obj, s = n.data.play_list;
-                    t.globalData.play_list = s, d.info_type = o, d.play_now = !0, wx.setNavigationBarTitle({
-                        title: n.data.play_obj.title
-                    });
-                    for (r = 0; r < s.length; r++) s[r].id == d.id ? (_ = r, s[r].play_now = !0) : s[r].play_now = !1, 
-                    2 == d.type && r > 2 && (s[r].hide = "hide"), s[r].time = e.sec2min(s[r].time_length);
-                    if (t.globalData.play_index = _, 1 == s.length ? l.setData({
-                        no_prev_hide: "icon-on-none",
-                        no_next_hide: "icon-next-none"
-                    }) : 0 == _ ? l.setData({
-                        no_prev_hide: "icon-on-none"
-                    }) : _ == s.length - 1 && l.setData({
-                        no_next_hide: "icon-next-none"
-                    }), l.setData({
-                        play_obj: d,
-                        play_list: s,
-                        play_end: e.sec2min(d.time_length),
-                        like: n.data.like ? "1" : "0",
-                        rand_list: n.data.rand_list ? n.data.rand_list : {},
-                        share: n.data.share,
-                        info_id: a.id,
-                        info_type: o,
-                        parent: n.data.parent ? n.data.parent : {},
-                        xcx_control_hide: n.data.global.pay_hide ? n.data.global.pay_hide : 0,
-                        hide: 0
-                    }), 2 == d.type) {
-                        e.stop(l), e.init_play(l, d, s);
-                        for (var p = getCurrentPages(), r = 0; r < p.length; r++) p[r].setData({
-                            play_count: null
-                        });
-                        if (_ > 0) {
-                            for (r = 0; r < s.length; r++) r <= _ + 1 && (s[r].hide = "");
-                            l.setData({
-                                play_list: s
-                            });
-                        }
-                        l.videoContext = wx.createVideoContext("video"), l.videoContext.play();
-                    } else e.bgm = wx.getBackgroundAudioManager(), !0 !== e.bgm.paused ? t.globalData.play_obj && parseInt(i) == parseInt(t.globalData.play_obj.id) && parseInt(o) == parseInt(t.globalData.play_obj.info_type) ? e.play(l) : (t.globalData.play_obj = d, 
-                    e.init_play(l, d, s), e.play(l, !0)) : (console.info("没有后台播放，开始播放新内容"), e.init_play(l, d, s), 
-                    e.play(l, !0));
-                    e.play_add(d.id, o, l);
-                } else {
-                    e.error_back("播放失败，请稍后再试");
-                    var h = {
-                        member_id: t.globalData.member_id,
-                        member_token: t.globalData.member_token,
-                        result: n.data
-                    };
-                    e.add_error(JSON.stringify(h));
-                }
-            }
-        });
+          });
+        }
+
+      var s = e.api_url + "/story/getPlayInfo.json";
+      e.request_m({
+        url: s,
+        data: {
+          storyId: i,
+          templateId: templateId,
+          type: o
+        },
+        callback: function(n) {
+          if ("200" == n.data.code) {
+            wx.hideLoading();
+            var playBack = l.play_currentstroy(n.data.data.currentStory);
+            l.setData({
+              play_obj: n.data.data.currentStory,
+              play_list: n.data.data.stories,
+              playBack: playBack
+            });
+          }
+        }
+      });
+
+        // var s = e.api_url + "/index/play";
+        // 1 == n && (s = e.api_url + "/index/like_play", t.globalData.like_play = 1), e.request_m({
+        //     url: s,
+        //     data: {
+        //         id: i,
+        //         type: o
+        //     },
+        //     callback: function(n) {
+        //         if ("y" == n.data.status) {
+        //             wx.hideLoading();
+        //             var _ = 0, d = n.data.play_obj, s = n.data.play_list;
+        //             t.globalData.play_list = s, d.info_type = o, d.play_now = !0, wx.setNavigationBarTitle({
+        //                 title: n.data.play_obj.title
+        //             });
+        //             for (r = 0; r < s.length; r++) s[r].id == d.id ? (_ = r, s[r].play_now = !0) : s[r].play_now = !1, 
+        //             2 == d.type && r > 2 && (s[r].hide = "hide"), s[r].time = e.sec2min(s[r].time_length);
+        //             if (t.globalData.play_index = _, 1 == s.length ? l.setData({
+        //                 no_prev_hide: "icon-on-none",
+        //                 no_next_hide: "icon-next-none"
+        //             }) : 0 == _ ? l.setData({
+        //                 no_prev_hide: "icon-on-none"
+        //             }) : _ == s.length - 1 && l.setData({
+        //                 no_next_hide: "icon-next-none"
+        //             }), l.setData({
+        //                 play_obj: d,
+        //                 play_list: s,
+        //                 play_end: e.sec2min(d.time_length),
+        //                 like: n.data.like ? "1" : "0",
+        //                 rand_list: n.data.rand_list ? n.data.rand_list : {},
+        //                 share: n.data.share,
+        //                 info_id: a.id,
+        //                 info_type: o,
+        //                 parent: n.data.parent ? n.data.parent : {},
+        //                 xcx_control_hide: n.data.global.pay_hide ? n.data.global.pay_hide : 0,
+        //                 hide: 0
+        //             }), 2 == d.type) {
+        //                 e.stop(l), e.init_play(l, d, s);
+        //                 for (var p = getCurrentPages(), r = 0; r < p.length; r++) p[r].setData({
+        //                     play_count: null
+        //                 });
+        //                 if (_ > 0) {
+        //                     for (r = 0; r < s.length; r++) r <= _ + 1 && (s[r].hide = "");
+        //                     l.setData({
+        //                         play_list: s
+        //                     });
+        //                 }
+        //                 l.videoContext = wx.createVideoContext("video"), l.videoContext.play();
+        //             } else e.bgm = wx.getBackgroundAudioManager(), !0 !== e.bgm.paused ? t.globalData.play_obj && parseInt(i) == parseInt(t.globalData.play_obj.id) && parseInt(o) == parseInt(t.globalData.play_obj.info_type) ? e.play(l) : (t.globalData.play_obj = d, 
+        //             e.init_play(l, d, s), e.play(l, !0)) : (console.info("没有后台播放，开始播放新内容"), e.init_play(l, d, s), 
+        //             e.play(l, !0));
+        //             e.play_add(d.id, o, l);
+        //         } else {
+        //             e.error_back("播放失败，请稍后再试");
+        //             var h = {
+        //                 member_id: t.globalData.member_id,
+        //                 member_token: t.globalData.member_token,
+        //                 result: n.data
+        //             };
+        //             e.add_error(JSON.stringify(h));
+        //         }
+        //     }
+        // });
+    },
+    play_currentstroy:function(story){
+      var play_back = wx.playBackgroundAudio({
+        dataUrl: story.contenturl,
+        title: story.storyname,
+        coverImgUrl: story.storyicon,
+        success: function (res) {
+
+        },
+        fail: function (res) {
+
+        },
+        complete: function (res) {
+
+        },
+      });
+
+      play_back.onTimeUpdate(function() {
+        console.log(bgMusic.currentTime)
+      })
+
+
+      play_back.play();
+
+      return play_back;
     },
     onReady: function(a) {},
     play: function(a) {

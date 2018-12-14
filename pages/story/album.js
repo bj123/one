@@ -20,7 +20,7 @@ Page({
         coupon_list_hide: "hide",
         pay_success_hide: "hide",
         order_success_hide: "hide",
-        buy: !1,
+        buy: false,
         sort_asc_hide: "hide",
         sort_desc_hide: "",
         story_sort: "desc",
@@ -69,10 +69,13 @@ Page({
                 xcx_control_hide: s.data.data.showConfig.IS_NOT_XCX_CONTROL_HIDE == "true" ? true : false,
                 share_reward: s.data.data.shareReward,
                 desc_list: introductions,
-                desc_hide: s.data.data.is_buy ? "hide" : "",
-                story_hide: s.data.data.is_buy ? "" : "hide",
+                desc_hide: s.data.data.isbuy == "true" ? "hide" : "",
+                story_hide: s.data.data.isbuy == "true" ? "" : "hide",
                 story_list: s.data.data.stories,
-                buy: s.data.data.is_buy,
+                buy: s.data.data.isbuy == "true" ? true : false
+
+
+
                 // pay_id: t.id,
                 // album: s.data.album,
                 // story_count: s.data.album.chapter_count,
@@ -160,35 +163,58 @@ Page({
         });
     },
     go_play: function(i) {
-        var a = i.currentTarget.dataset, s = this;
-        if (1 != a.pay && s.data.isiphone && 0 != s.data.album.price) {
-          wx.showModal({
-            title: "温馨提示",
-            content: t.globalData.iosTip,
-            showCancel: !1,
-            confirmText: "我知道了",
-            success: function (t) {
-              t.confirm ? console.log("用户点击确定") : t.cancel && console.log("用户点击取消");
-            }
-          });
+      var a = i.currentTarget.dataset, s = this;
+      var d = a.id, o = "/pages/play/play?id=" + d + "&type=1&templateId=" + a.tempid;
+
+      if (s.data.buy || 0 == s.data.album.saleprice) {
+        wx.navigateTo({
+          url: o
+        });
+      } else {
+        // for (var h = s.data.story_list, c = !0, _ = 0; _ < h.length; _++) {
+        //   h[_].id.toString() == d && 1 == h[_].try_listen && (c = !1);
+        // }
+        if (!this.data.xcx_control_hide && a.pay != "1") {
+          // if (t.globalData.isiphone) {
+          //   return void e.error(t.globalData.iosTip);
+          // }
+          e.error("请购买后收听");
         } else {
-            var d = a.id, o = "/pages/play/play?id=" + d + "&type=1";
-            if (s.data.buy || 0 == s.data.album.price) {
-              wx.navigateTo({
-                url: o
-              });
-            } else {
-                for (var h = s.data.story_list, c = !0, _ = 0; _ < h.length; _++) {
-                  h[_].id.toString() == d && 1 == h[_].try_listen && (c = !1);
-                }
-                if (c && 1 != this.data.xcx_control_hide) {
-                    if (t.globalData.isiphone) return void e.error(t.globalData.iosTip);
-                    e.error("请购买后收听");
-                } else wx.navigateTo({
-                    url: o
-                });
-            }
+          wx.navigateTo({
+            url: o
+          });
         }
+      }
+
+
+        // if (1 != a.pay && s.data.isiphone && 0 != s.data.album.price) {
+        //   wx.showModal({
+        //     title: "温馨提示",
+        //     content: t.globalData.iosTip,
+        //     showCancel: !1,
+        //     confirmText: "我知道了",
+        //     success: function (t) {
+        //       t.confirm ? console.log("用户点击确定") : t.cancel && console.log("用户点击取消");
+        //     }
+        //   });
+        // } else {
+        //     var d = a.id, o = "/pages/play/play?id=" + d + "&type=1";
+        //     if (s.data.buy || 0 == s.data.album.price) {
+        //       wx.navigateTo({
+        //         url: o
+        //       });
+        //     } else {
+        //         for (var h = s.data.story_list, c = !0, _ = 0; _ < h.length; _++) {
+        //           h[_].id.toString() == d && 1 == h[_].try_listen && (c = !1);
+        //         }
+        //         if (c && 1 != this.data.xcx_control_hide) {
+        //             if (t.globalData.isiphone) return void e.error(t.globalData.iosTip);
+        //             e.error("请购买后收听");
+        //         } else wx.navigateTo({
+        //             url: o
+        //         });
+        //     }
+        // }
     },
     sort: function(t) {
         var e = this.data.story_sort, i = this.data.story_list;

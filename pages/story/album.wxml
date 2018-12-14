@@ -59,7 +59,7 @@
 </view>
 <view class="classify-list pd-48 sort-list classify-lb {{album.saleprice>0?story_hide:''}}">
     <view class="item" wx:for="{{story_list}}" wx:key="album_detail_story_list">
-        <view bindtap="go_play" class="a" data-id="{{item.id}}" data-pay="{{item.isaudition}}">
+        <view bindtap="go_play" class="a" data-id="{{item.id}}" data-tempid="{{album.id}}" data-pay="{{item.isaudition}}">
             <image class="avatar" src="{{item.storyicon}}"></image>
             <view class="body">
                 <view class="t {{album.saleprice>0?'':'free'}}">{{item.storyname}}</view>
