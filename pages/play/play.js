@@ -54,7 +54,7 @@ Page({
         comment_count: "**",
         play_list: {},
         play_list_hide: "hide",
-        play: !1,
+        play: false,
         play_now: 0,
         play_count: "00:00",
         play_end: "**:**",
@@ -75,7 +75,7 @@ Page({
         parent: {},
         hide: false,
         xcx_control_hide: 1,
-      playBack:{}
+      backgroundAudioManager:{}
     },
     onLoad: function(a) {
       wx.showLoading({
@@ -129,11 +129,12 @@ Page({
         callback: function(n) {
           if ("200" == n.data.code) {
             wx.hideLoading();
-            var playBack = l.play_currentstroy(n.data.data.currentStory);
+            var backgroundAudioManager = l.play_currentstroy(n.data.data.currentStory);
             l.setData({
               play_obj: n.data.data.currentStory,
               play_list: n.data.data.stories,
-              playBack: playBack
+              backgroundAudioManager: backgroundAudioManager,
+              play:true
             });
           }
         }
@@ -203,33 +204,35 @@ Page({
         // });
     },
     play_currentstroy:function(story){
-      var play_back = wx.playBackgroundAudio({
-        dataUrl: story.contenturl,
-        title: story.storyname,
-        coverImgUrl: story.storyicon,
-        success: function (res) {
+      console.log(story.contenturl)
+      var backgroundAudioManager = wx.getBackgroundAudioManager();
+      backgroundAudioManager.src = story.contenturl;
+      backgroundAudioManager.title = story.storyname;
+      backgroundAudioManager.coverImgUrl = story.storyicon;
 
-        },
-        fail: function (res) {
-
-        },
-        complete: function (res) {
-
-        },
-      });
-
-      play_back.onTimeUpdate(function() {
-        console.log(bgMusic.currentTime)
+      backgroundAudioManager.onTimeUpdate(function(){
+        // console.log(backgroundAudioManager.currentTime)
       })
 
-
-      play_back.play();
-
-      return play_back;
+      backgroundAudioManager.play();
+      return backgroundAudioManager;
     },
     onReady: function(a) {},
     play: function(a) {
-        t.globalData.play ? e.pause(this) : e.play(this);
+      var self = this;
+      var backgroundAudioManager = self.data.backgroundAudioManager;
+      if (self.data.play) {
+        backgroundAudioManager.pause();
+        self.setData({
+          play: false
+        });
+      } else {
+        backgroundAudioManager.play();
+        self.setData({
+          play: true
+        });
+      }
+        // t.globalData.play ? e.pause(this) : e.play(this);
     },
     pause: function(a) {
         e.pause(this);

@@ -296,9 +296,9 @@ Page({
     },
     show_share_view: function(t) {
       console.log("show_share_view")
-        this.setData({
-            share_view_hide: ""
-        });
+      this.setData({
+          share_view_hide: ""
+      });
     },
     close_share_view: function(t) {
         this.setData({
