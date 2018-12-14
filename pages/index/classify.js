@@ -60,12 +60,12 @@ Page({
             that: this,
             clear: true,
             callback: function(a) {
-                for (var e = a.list, s = 0; s < e.length; s++) e[s].time = t.sec2min(e[s].time_length);
-                i.setData({
-                    list: e,
-                    xcx_control_hide: 1 == a.global.pay_hide,
-                    share: a.share
-                });
+                // for (var e = a.list, s = 0; s < e.length; s++) e[s].time = t.sec2min(e[s].time_length);
+                // i.setData({
+                //     list: e,
+                //     xcx_control_hide: 1 == a.global.pay_hide,
+                //     share: a.share
+                // });
             }
         });
     },
@@ -90,13 +90,13 @@ Page({
                 version: e.globalData.version
             },
             that: this,
-            clear: !1,
+            clear: false,
             callback: function(i) {
-                for (var e = a.data.list, s = 0; s < e.length; s++) e[s].time = t.sec2min(e[s].time_length);
-                a.setData({
-                    list: e,
-                    xcx_control_hide: 1 == i.global.pay_hide
-                });
+                // for (var e = a.data.list, s = 0; s < e.length; s++) e[s].time = t.sec2min(e[s].time_length);
+                // a.setData({
+                //     list: e,
+                //     xcx_control_hide: 1 == i.global.pay_hide
+                // });
             }
         });
     },

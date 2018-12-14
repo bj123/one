@@ -130,6 +130,7 @@ Page({
     },
     go_url: function(a) {
         var t = a.currentTarget.dataset.url;
+        console.log(t)
         wx.navigateTo({
             url: t
         });

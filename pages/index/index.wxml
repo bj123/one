@@ -6,7 +6,7 @@
         <image bindload="banner_load" bindtap="go_url" class="slide-image" data-url="/pages/story/free_unlock" mode="widthFix" src="{{free_album.banner_index}}"></image>
     </swiper-item>
     <swiper-item wx:for="{{banners}}" wx:key="index_banner">
-        <image bindload="banner_load" bindtap="go_url" class="slide-image" data-url="/pages/story/album?id={{item.introductionid}}&banner_id={{item.id}}" mode="widthFix" src="{{item.templateurl}}"></image>
+        <image bindload="banner_load" bindtap="go_url" class="slide-image" data-url="/pages/story/album?id={{item.id}}" mode="widthFix" src="{{item.templateurl}}"></image>
     </swiper-item>
 </swiper>
 <view class="classify">
