@@ -78,7 +78,7 @@ Page({
         xcx_control_hide: 1,
       templateId:0,
       backgroundAudioManager:{},
-      islike:"false"
+      islike:false
     },
     onLoad: function(a) {
       wx.showLoading({
@@ -121,6 +121,9 @@ Page({
           });
         }
 
+      l.setData({
+        templateId: templateId
+      });
       var s = e.api_url + "/story/getPlayInfo.json";
       e.request_m({
         url: s,
@@ -134,7 +137,6 @@ Page({
             wx.hideLoading();
             var backgroundAudioManager = l.play_currentstroy(n.data.data.currentStory);
             l.setData({
-              templateId: templateId,
               play_obj: n.data.data.currentStory,
               play_list: n.data.data.stories,
               backgroundAudioManager: backgroundAudioManager,
@@ -143,7 +145,7 @@ Page({
               no_prev_hide: parseInt(n.data.data.suffix) == 0 ? "icon-on-none":"",
               no_next_hide: parseInt(n.data.data.suffix) == n.data.data.stories.length-1 ? "icon-on-none" : ""
             });
-            i.setIsLike();
+            l.setIsLike();
           }
         }
       });
@@ -283,17 +285,16 @@ Page({
     like: function() {
       var i = this;
       e.request_m({
-        url: e.api_url + "/story/like",
+        url: e.api_url + "/story/updateLike.json",
         data: {
-          tmpId: this.data.templateId,
-          storyId: this.data.play_obj.id,
+          tempId: i.data.templateId,
+          storyId: i.data.play_obj.id,
           userId: t.globalData.member.id
         },
         callback: function(a) {
-          if ("200" == a.data.code) { 
-            i.setData({
-              islike: "true"
-            });
+          console.log(a)
+          if (a.data) { 
+            i.setIsLike()
           }
         }
       });
@@ -303,14 +304,15 @@ Page({
       e.request_m({
         url: e.api_url + "/story/isLike.json",
         data: {
-          tmpId: this.data.templateId,
+          tempId: this.data.templateId,
           storyId: this.data.play_obj.id,
           userId: t.globalData.member.id
         },
         callback: function (a) {
-          if ("200" == a.data.code) {   
+          
+          if (200 == a.statusCode) {
             self.setData({
-              islike: a.data.islike
+              islike: a.data
             });
           }
         }
