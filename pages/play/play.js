@@ -143,6 +143,7 @@ Page({
               no_prev_hide: parseInt(n.data.data.suffix) == 0 ? "icon-on-none":"",
               no_next_hide: parseInt(n.data.data.suffix) == n.data.data.stories.length-1 ? "icon-on-none" : ""
             });
+            i.setIsLike();
           }
         }
       });
@@ -297,7 +298,7 @@ Page({
         }
       });
     },
-    getIsLike:function(){
+    setIsLike:function(){
       var self = this;
       e.request_m({
         url: e.api_url + "/story/isLike.json",
@@ -317,19 +318,15 @@ Page({
     },
     next: function(a) {
       var storys = this.data.play_list;
-
       if (this.data.play_suffix == storys.length-1) {
         return;
       }
-
       var play_suffix = this.data.play_suffix+1;
-
       if (play_suffix == 1) {
         this.setData({
           no_prev_hide: ""
         })
       }
-
       if (storys.length-1 == play_suffix) {
         this.setData({
           no_next_hide: "icon-on-none"
@@ -340,29 +337,27 @@ Page({
         play_suffix: play_suffix,
         play_obj: (storys[play_suffix])
       })
+      this.setIsLike();
         // e.play_next(this, !0);
     },
     prev: function(a) {
       var storys = this.data.play_list;
-
       if (this.data.play_suffix == 0) {
         return;
       }
-
       var play_suffix = this.data.play_suffix-1;
       if (0 == play_suffix) {
         this.setData({
           no_prev_hide: "icon-on-none"
         })
       }
-      console.log(play_suffix);
-      
       this.play_currentstroy(storys[play_suffix]);
       this.setData({
         play_suffix: play_suffix,
         play_obj: (storys[play_suffix]),
         no_next_hide: ""
-      })
+      });
+      this.setIsLike();
         // e.play_prev(this, !0);
     },
     chose_play: function(a) {
