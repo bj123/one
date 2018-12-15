@@ -76,7 +76,9 @@ Page({
         parent: {},
         hide: false,
         xcx_control_hide: 1,
-      backgroundAudioManager:{}
+      templateId:0,
+      backgroundAudioManager:{},
+      islike:"false"
     },
     onLoad: function(a) {
       wx.showLoading({
@@ -132,6 +134,7 @@ Page({
             wx.hideLoading();
             var backgroundAudioManager = l.play_currentstroy(n.data.data.currentStory);
             l.setData({
+              templateId: templateId,
               play_obj: n.data.data.currentStory,
               play_list: n.data.data.stories,
               backgroundAudioManager: backgroundAudioManager,
@@ -276,26 +279,41 @@ Page({
             play_list_hide: "hide"
         });
     },
-    like: function(a) {
-        var i = this;
-        e.request_m({
-            url: e.api_url + "/opera/like",
-            data: {
-                id: i.data.play_obj.id,
-                type: i.data.play_obj.info_type
-            },
-            callback: function(a) {
-                if ("y" == a.data.status) {
-                    var o = i.data.play_obj, n = i.data.play_list;
-                    "1" == a.data.add ? (o.like = !0, e.success("已添加到我喜欢的")) : (o.like = !1, e.success("已取消喜欢"));
-                    for (var l = 0; l < n.length; l++) parseInt(n[l].id) == parseInt(o.id) && (n[l].like = o.like);
-                    i.setData({
-                        play_obj: o,
-                        play_list: n
-                    }), t.globalData.play_obj = o, t.globalData.play_list = n;
-                }
-            }
-        });
+    like: function() {
+      var i = this;
+      e.request_m({
+        url: e.api_url + "/story/like",
+        data: {
+          tmpId: this.data.templateId,
+          storyId: this.data.play_obj.id,
+          userId: t.globalData.member.id
+        },
+        callback: function(a) {
+          if ("200" == a.data.code) { 
+            i.setData({
+              islike: "true"
+            });
+          }
+        }
+      });
+    },
+    getIsLike:function(){
+      var self = this;
+      e.request_m({
+        url: e.api_url + "/story/isLike.json",
+        data: {
+          tmpId: this.data.templateId,
+          storyId: this.data.play_obj.id,
+          userId: t.globalData.member.id
+        },
+        callback: function (a) {
+          if ("200" == a.data.code) {   
+            self.setData({
+              islike: a.data.islike
+            });
+          }
+        }
+      });
     },
     next: function(a) {
       var storys = this.data.play_list;

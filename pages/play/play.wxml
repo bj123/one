@@ -40,7 +40,7 @@
             </view>
             <view class="entry">
                 <view class="item">
-                    <view bindtap="like" class="a {{play_obj.like=='1'?'active':''}}">
+                    <view bindtap="like" class="a {{islike=='true'?'active':''}}">
                         <icon class="icon-heart"></icon>
                     </view>
                 </view>
