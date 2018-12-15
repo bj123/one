@@ -168,8 +168,8 @@
             <view class="roll">
                 <view class="item" wx:for="{{play_list}}" wx:key="play_list">
                     <view bindtap="chose_play" class="a {{item.play_now?'active':''}}" data-id="{{item.id}}">
-                        <image class="avatar" src="{{item.icon}}"></image>
-                                          {{item.title}}
+                        <image class="avatar" src="{{item.storyicon}}"></image>
+                                          {{item.storyname}}
                                    </view>
                 </view>
             </view>
