@@ -51,6 +51,7 @@ Page({
         info_id: "",
         info_type: "",
         play_obj: {},
+        play_suffix:0,
         comment_count: "**",
         play_list: {},
         play_list_hide: "hide",
@@ -134,7 +135,10 @@ Page({
               play_obj: n.data.data.currentStory,
               play_list: n.data.data.stories,
               backgroundAudioManager: backgroundAudioManager,
-              play:true
+              play:true,
+              play_suffix: parseInt(n.data.data.suffix),
+              no_prev_hide: parseInt(n.data.data.suffix) == 0 ? "icon-on-none":"",
+              no_next_hide: parseInt(n.data.data.suffix) == n.data.data.stories.length-1 ? "icon-on-none" : ""
             });
           }
         }
@@ -294,10 +298,54 @@ Page({
         });
     },
     next: function(a) {
-        e.play_next(this, !0);
+      var storys = this.data.play_list;
+
+      if (this.data.play_suffix == storys.length-1) {
+        return;
+      }
+
+      var play_suffix = this.data.play_suffix+1;
+
+      if (play_suffix == 1) {
+        this.setData({
+          no_prev_hide: ""
+        })
+      }
+
+      if (storys.length-1 == play_suffix) {
+        this.setData({
+          no_next_hide: "icon-on-none"
+        })
+      }
+      this.play_currentstroy(storys[play_suffix]);
+      this.setData({
+        play_suffix: play_suffix,
+        play_obj: (storys[play_suffix])
+      })
+        // e.play_next(this, !0);
     },
     prev: function(a) {
-        e.play_prev(this, !0);
+      var storys = this.data.play_list;
+
+      if (this.data.play_suffix == 0) {
+        return;
+      }
+
+      var play_suffix = this.data.play_suffix-1;
+      if (0 == play_suffix) {
+        this.setData({
+          no_prev_hide: "icon-on-none"
+        })
+      }
+      console.log(play_suffix);
+      
+      this.play_currentstroy(storys[play_suffix]);
+      this.setData({
+        play_suffix: play_suffix,
+        play_obj: (storys[play_suffix]),
+        no_next_hide: ""
+      })
+        // e.play_prev(this, !0);
     },
     chose_play: function(a) {
         var i = this, o = a.currentTarget.dataset.id, n = t.globalData.play_list, l = t.globalData.play_index;
