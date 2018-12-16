@@ -25,7 +25,7 @@
     <template is="_nodata" data="{{content:content,nodata_hide:nodata_hide}}" wx:if="{{course_list.length == 0}}"></template>
 </view>
 <view class="buy-list course-list {{course_hide}}">
-    <view bindtap="go_course" class="entry" data-id="{{item.id}}" wx:for="{{course_list}}" wx:key="my_order_course">
+    <view bindtap="go_album" class="entry" data-id="{{item.id}}" wx:for="{{course_list}}" wx:key="my_order_course">
         <view class="time">
             <view class="pull-left">订单号：{{item.id}}#{{userId}}</view>
             <view class="pull-right">{{item.createtime}}</view>
