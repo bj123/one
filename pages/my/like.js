@@ -27,7 +27,7 @@ Page({
                 type: r.data.type
             },
             that: this,
-            clear: !0,
+            clear: true,
             callback: function(t) {
                 var a = r.handler_data_story(t.like_story_list), e = r.handler_data_chapter(t.like_chapter_list), i = t.story_count > 20, o = (t.chapter_count, 
                 {

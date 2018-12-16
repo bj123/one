@@ -9,41 +9,41 @@
     </view>
 </view>
 <view class="buy-list {{album_hide}}">
-    <view bindtap="go_album" class="entry" data-id="{{item.info_id}}" wx:for="{{album_list}}" wx:key="{{my_order_album}}">
+    <view bindtap="go_album" class="entry" data-id="{{item.id}}" wx:for="{{album_list}}" wx:key="my_order_album">
         <view class="time">
-            <view class="pull-left">订单号：{{item.order_num}}</view>
-            <view class="pull-right">{{item.create_time}}</view>
+            <view class="pull-left">订单号：{{item.id}}#{{userId}}</view>
+            <view class="pull-right">{{item.createtime}}</view>
         </view>
         <view class="item">
-            <image class="avatar" mode="aspectFit" src="{{item.album.icon}}"></image>
+            <image class="avatar" mode="aspectFit" src="{{item.templateurl}}"></image>
             <view class="body">
-                <view class="span">{{item.album.title}}</view>
-                <view class="p">{{item.album.memo}}</view>
+                <view class="span">{{item.templatename}}</view>
+                <view class="p">{{item.templatedesc}}</view>
             </view>
         </view>
     </view>
-    <template is="_nodata" data="{{content:content,nodata_hide:nodata_hide}}" wx:if="{{!album_list.length}}"></template>
+    <template is="_nodata" data="{{content:content,nodata_hide:nodata_hide}}" wx:if="{{course_list.length == 0}}"></template>
 </view>
 <view class="buy-list course-list {{course_hide}}">
-    <view bindtap="go_course" class="entry" data-id="{{item.info_id}}" wx:for="{{course_list}}" wx:key="{{my_order_course}}">
+    <view bindtap="go_course" class="entry" data-id="{{item.id}}" wx:for="{{course_list}}" wx:key="my_order_course">
         <view class="time">
-            <view class="pull-left">订单号：{{item.order_num}}</view>
-            <view class="pull-right">{{item.create_time}}</view>
+            <view class="pull-left">订单号：{{item.id}}#{{userId}}</view>
+            <view class="pull-right">{{item.createtime}}</view>
         </view>
         <view class="item">
-            <image class="avatar" mode="widthFix" src="{{item.course.icon}}"></image>
+            <image class="avatar" mode="widthFix" src="{{item.templateurl}}"></image>
             <view class="body">
-                <view class="span">{{item.course.title}}</view>
-                <view class="p">{{item.course.memo}}</view>
-                <view class="play hide" style="display: none;">
-                                          共有 {{item.course.chapter_count}} 微课
+                <view class="span">{{item.templatename}}</view>
+                <view class="p">{{item.templatedesc}}</view>
+                <view class="play">
+                                          共有 {{item.chaptercount}} 微课
                                    </view>
-                <view class="play hide" style="display: none;">
+                <view class="play">
                     <icon class="icon-play" type=""></icon>
-                                          {{item.course.play_count}}
+                                          {{item.subcount}}
                                    </view>
             </view>
         </view>
     </view>
-    <template is="_nodata" data="{{content:content,nodata_hide:nodata_hide}}" wx:if="{{!course_list.length}}"></template>
+    <template is="_nodata" data="{{content:content,nodata_hide:nodata_hide}}" wx:if="{{course_list.length == 0}}"></template>
 </view>
