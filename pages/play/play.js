@@ -214,6 +214,7 @@ Page({
         // });
     },
     play_currentstroy:function(story){
+      var self = this;
       console.log(story.contenturl)
       var backgroundAudioManager = wx.getBackgroundAudioManager();
       backgroundAudioManager.src = story.contenturl;
@@ -223,6 +224,8 @@ Page({
       backgroundAudioManager.onTimeUpdate(function(){
         // console.log(backgroundAudioManager.currentTime)
       })
+
+      console.log(backgroundAudioManager)
 
       backgroundAudioManager.play();
       return backgroundAudioManager;
