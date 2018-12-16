@@ -1,23 +1,23 @@
 <import src="/pages/tpl/_nodata.wxml"></import>
 <import src="/pages/tpl/_nomore.wxml"></import>
 <view class="story-info">
-    <image class="avatar" mode="aspectFit" src="{{info.icon}}"></image>
+    <image class="avatar" mode="aspectFit" src="{{storyicon}}"></image>
     <view class="body">
-        <view class="span">{{info.title}}</view>
-        <view class="p">{{info.memo}}</view>
+        <view class="span">{{storyname}}</view>
+        <view class="p">{{storydesc}}</view>
     </view>
 </view>
 <view class="message">
-    <view class="title">留言 {{comment_count}} 条</view>
+    <view class="title">留言 {{count}} 条</view>
     <view class="item" wx:for="{{list}}" wx:key="comment_index_list">
-        <image class="avatar" src="{{item.member.icon}}"></image>
+        <image class="avatar" src="{{item.user.avatarurl}}"></image>
         <view class="body">
             <view class="t">
-                <view class="name">{{item.member.name}}</view>
-                <view class="time">{{item.create_time}}</view>
+                <view class="name">{{item.user.nickname}}</view>
+                <view class="time">{{item.createtime}}</view>
             </view>
             <view class="text">{{item.content}}</view>
-            <view class="p">来自：{{item.info.title}}</view>
+            <view class="p">来自：{{storyname}}</view>
             <view class="line"></view>
         </view>
     </view>

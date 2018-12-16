@@ -80,14 +80,14 @@
 <block wx:if="{{album.saleprice>0}}">
     <view class="message {{comment_hide}}">
         <view class="item" wx:for="{{comment_list}}" wx:key="album_comment_list">
-            <image class="avatar" src="{{item.member.icon}}"></image>
+            <image class="avatar" src="{{item.user.avatarurl}}"></image>
             <view class="body">
                 <view class="t">
-                    <view class="name">{{item.member.name}}</view>
-                    <view class="time">{{item.create_time}}</view>
+                    <view class="name">{{item.user.nickname}}</view>
+                    <view class="time">{{item.createtime}}</view>
                 </view>
                 <view class="text">{{item.content}}</view>
-                <view class="p">来自：{{item.story.title}}</view>
+                <view class="p">来自：{{item.stroyname}}</view>
                 <view class="line"></view>
             </view>
         </view>

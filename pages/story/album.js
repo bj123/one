@@ -72,7 +72,8 @@ Page({
                 desc_hide: s.data.data.isbuy == "true" ? "hide" : "",
                 story_hide: s.data.data.isbuy == "true" ? "" : "hide",
                 story_list: s.data.data.stories,
-                buy: s.data.data.isbuy == "true" ? true : false
+                buy: s.data.data.isbuy == "true" ? true : false,
+                comment_list: s.data.data.comments
 
 
 

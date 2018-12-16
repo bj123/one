@@ -50,7 +50,7 @@
                     </view>
                 </view>
                 <view class="item">
-                    <navigator class="a" url="/pages/comment/index?id={{play_obj.id}}&type={{play_obj.info_type}}">
+                    <navigator class="a" url="/pages/comment/index?storyid={{play_obj.id}}&tempid={{play_obj.templateid}}&storyicon={{play_obj.storyicon}}&storyname={{play_obj.storyname}}&storydesc={{play_obj.storydesc}}&storyid={{play_obj.id}}&templateid={{play_obj.templateid}}">
                         <icon class="icon-comment"></icon>
                         <view class="number">{{play_obj.comment_count}}</view>
                     </navigator>
