@@ -215,18 +215,27 @@ Page({
     },
     play_currentstroy:function(story){
       var self = this;
-      console.log(story.contenturl)
       var backgroundAudioManager = wx.getBackgroundAudioManager();
       backgroundAudioManager.src = story.contenturl;
       backgroundAudioManager.title = story.storyname;
       backgroundAudioManager.coverImgUrl = story.storyicon;
 
+      var stroy_time = story.storytime;
+      var stroy_min = parseInt(stroy_time.split(":")[0]);
+      var stroy_sec = parseInt(stroy_time.split(":")[1]);
+      var stroy_totle = stroy_min * 60 + stroy_sec;
+
       backgroundAudioManager.onTimeUpdate(function(){
-        // console.log(backgroundAudioManager.currentTime)
-      })
-
-      console.log(backgroundAudioManager)
-
+        var play_time = parseInt(backgroundAudioManager.currentTime);
+        var min = (parseInt(play_time / 60) + "").length > 1 ? parseInt(play_time / 60) + "" : "0" + parseInt(play_time / 60);
+        var sec = ((play_time % 60) + "").length > 1 ? (play_time % 60) + "" : "0" + (play_time % 60);
+        var show_play_time = min + ":" + sec;
+        var show_process = (play_time / stroy_totle) * 100
+        self.setData({
+          show_play_time: show_play_time,
+          play_percent: show_process
+        }); 
+      });
       backgroundAudioManager.play();
       return backgroundAudioManager;
     },
