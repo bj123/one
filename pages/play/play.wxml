@@ -20,7 +20,7 @@
                     <image src="https://cj.cunzhanggushi.com/public/images/svg/player_icon_teachingmaterial.svg"></image>
                 </navigator> -->
                 
-                <view class="pull-left">{{play_obj.playcount}}</view>
+                <view class="pull-left">{{show_play_time}}</view>
                 <view class="body-view">
                     <progress color="#fd6363" percent="{{play_percent}}" strokeWidth="3"></progress>
                 </view>
