@@ -90,10 +90,10 @@ Page({
       var userid = app.globalData.member.id
       var n = wx.getSystemInfoSync(), d = JSON.stringify(n);
       t.request_m({
-        url: t.api_url + "/story/getCommentByStoryId.json",
+        url: t.api_url + "/story/insertComment.json",
         data: {
           userId: userid,
-          storyId: i.data.storyId,
+          storyId: i.data.storyid,
           content: e,
           templateId: i.data.templateid
         },
