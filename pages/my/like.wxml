@@ -9,19 +9,19 @@
     </view>
 </view>
 <view class="like-list {{story_hide}}">
-    <view bindtap="go_play" class="item {{item.story.album.status!=1?'gray':''}}" data-id="{{item.info_id}}" data-play-type="{{item.story.album.type}}" data-status="{{item.story.album.status}}" data-type="1" wx:for="{{like_story_list}}" wx:key="{{my_like_story}}">
-        <image class="n-sale" src="https://api.cunzhanggushi.com/public/images/n_sale.png" wx:if="{{item.story.album.status==0}}"></image>
-        <image class="avatar" mode="aspectFill" src="{{item.story.icon}}"></image>
+    <view bindtap="go_play" class="item {{item.status!=1?'gray':''}}" data-id="{{item.id}}" data-play-type="1" data-status="{{item.status}}" data-type="1" data-template="{{item.templateid}}" wx:for="{{like_story_list}}" wx:key="my_like_story">
+        <image class="n-sale" src="https://api.cunzhanggushi.com/public/images/n_sale.png" wx:if="{{item.status==0}}"></image>
+        <image class="avatar" mode="aspectFill" src="{{item.storyicon}}"></image>
         <view class="body">
-            <view class="span">{{item.story.title}}</view>
-            <view class="p">{{item.story.memo}}</view>
+            <view class="span">{{item.storyname}}</view>
+            <view class="p">{{item.story.storydesc}}</view>
             <view class="play">
                 <icon class="icon-time" type=""></icon>
-                                   {{item.story.time}}
+                                   {{item.storytime}}
                             </view>
             <view class="play">
                 <icon class="icon-play" type=""></icon>
-                                   {{item.story.play_count_format}}
+                                   {{item.playcount}}
                             </view>
         </view>
     </view>
@@ -29,7 +29,7 @@
     <template is="_nomore" data="{{load_obj:load_obj}}"></template>
 </view>
 <view class="like-list like-chapter {{chapter_hide}}">
-    <view bindtap="go_play" class="item {{item.chapter.course.status!=1?'gray':''}}" data-id="{{item.info_id}}" data-play-type="{{item.chapter.course.type}}" data-status="{{item.chapter.course.status}}" data-type="2" wx:for="{{like_chapter_list}}" wx:key="{{my_like_chapter}}">
+    <view bindtap="go_play" class="item {{item.chapter.course.status!=1?'gray':''}}" data-id="{{item.info_id}}" data-play-type="1" data-status="{{item.status}}" data-template="{{item.templateid}}" data-type="2" wx:for="{{like_chapter_list}}" wx:key="{{my_like_chapter}}">
         <image class="n-sale" mode="aspectFit" src="https://api.cunzhanggushi.com/public/images/n_sale.png" wx:if="{{item.chapter.course.status==0}}"></image>
         <image class="avatar" mode="aspectFill" src="{{item.chapter.icon}}"></image>
         <view class="body">
