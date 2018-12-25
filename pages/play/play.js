@@ -78,7 +78,8 @@ Page({
         xcx_control_hide: 1,
       templateId:0,
       backgroundAudioManager:{},
-      islike:false
+      islike:false,
+        show_play_time:"00:00"
     },
     onLoad: function(a) {
       wx.showLoading({
