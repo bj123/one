@@ -98,7 +98,7 @@ Page({
           templateId: i.data.templateid
         },
         callback: function (a) {
-          "y" == a.data.status ? (i.setData({
+          true == a.data ? (i.setData({
             content: ""
           }), t.success("留言成功，请等待系统审核")) : t.error("留言失败，请稍后再试");
         }
