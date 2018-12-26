@@ -63,22 +63,22 @@ Page({
     //     }
     // });
   },
-  onReachBottom: function () {
-    var e = this, i = this.data.pid + 1;
-    this.setData({
-      pid: i
-    }), t.get_info({
-      url: a,
-      data: {
-        pid: e.data.pid,
-        id: e.data.id,
-        type: e.data.type
-      },
-      that: this,
-      clear: !1,
-      callback: function (t) { }
-    });
-  },
+//   onReachBottom: function () {
+//     var e = this, i = this.data.pid + 1;
+//     this.setData({
+//       pid: i
+//     }), t.get_info({
+//       url: a,
+//       data: {
+//         pid: e.data.pid,
+//         id: e.data.id,
+//         type: e.data.type
+//       },
+//       that: this,
+//       clear: !1,
+//       callback: function (t) { }
+//     });
+//   },
   like: function (a) {
     var e = this, i = a.currentTarget.dataset.id;
     t.like_comment(e, i);
