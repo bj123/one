@@ -237,6 +237,41 @@ Page({
           play_percent: show_process
         }); 
       });
+
+      backgroundAudioManager.onEnded(function(){
+        var play_type = t.globalData.play_type
+
+        if (play_type == 1) {
+          var storys = self.data.play_list;
+          if (self.data.play_suffix == storys.length - 1) {
+            self.setData({
+              play: false
+            });
+          } else {
+            self.next();
+          }
+        }
+
+        if (play_type == 2) {
+          var storys = self.data.play_list;
+          if (self.data.play_suffix == storys.length - 1) {
+            self.setData({
+              play_suffix: -1
+            });
+            self.next();
+          } else {
+            self.next();
+          }
+        }
+
+        if (play_type == 3) {
+          self.setData({
+            play_suffix: self.data.play_suffix - 1
+          });
+          self.next();
+        } 
+      });
+
       backgroundAudioManager.play();
       return backgroundAudioManager;
     },
@@ -376,26 +411,33 @@ Page({
         // e.play_prev(this, !0);
     },
     chose_play: function(a) {
-        var i = this, o = a.currentTarget.dataset.id, n = t.globalData.play_list, l = t.globalData.play_index;
-        if (n) {
-            for (var _ = 0; _ < n.length; _++) n[_].play_now = !1, n[_].id == o && i.data.play_obj.id != o && (l = _);
-            if ("*" == n[l].file_path && 1 != this.data.xcx_control_hide) return t.globalData.isiphone ? void e.error(t.globalData.iosTip) : (2 == n[l].type ? e.error("请购买后收看") : e.error("购买后才能播放哦"), 
-            !1);
-            l > 0 ? i.setData({
-                no_prev_hide: ""
-            }) : i.setData({
-                no_prev_hide: "icon-on-none"
-            }), 1 == n.length || l == n.length - 1 ? i.setData({
-                no_next_hide: "icon-next-none"
-            }) : i.setData({
-                no_next_hide: ""
-            }), n[l].play_now = !0, 2 == n[l].type && n[l + 1] && "hide" == n[l + 1].hide && (n[l + 1].hide = ""), 
-            this.setData({
-                play_obj: n[l],
-                play_list: n
-            }), t.globalData.play_obj = n[l], t.globalData.play_index = l, t.globalData.play_list = n, 
-            e.init_play(i, n[l], n), e.play(i, !0);
-        }
+      var self = this;
+      var index = a.currentTarget.dataset.index;
+      self.setData({
+        play_suffix: index-1
+      });
+      self.next();
+
+        // var i = this, o = a.currentTarget.dataset.id, n = t.globalData.play_list, l = t.globalData.play_index;
+        // if (n) {
+        //     for (var _ = 0; _ < n.length; _++) n[_].play_now = !1, n[_].id == o && i.data.play_obj.id != o && (l = _);
+        //     if ("*" == n[l].file_path && 1 != this.data.xcx_control_hide) return t.globalData.isiphone ? void e.error(t.globalData.iosTip) : (2 == n[l].type ? e.error("请购买后收看") : e.error("购买后才能播放哦"), 
+        //     !1);
+        //     l > 0 ? i.setData({
+        //         no_prev_hide: ""
+        //     }) : i.setData({
+        //         no_prev_hide: "icon-on-none"
+        //     }), 1 == n.length || l == n.length - 1 ? i.setData({
+        //         no_next_hide: "icon-next-none"
+        //     }) : i.setData({
+        //         no_next_hide: ""
+        //     }), n[l].play_now = !0, 2 == n[l].type && n[l + 1] && "hide" == n[l + 1].hide && (n[l + 1].hide = ""), 
+        //     this.setData({
+        //         play_obj: n[l],
+        //         play_list: n
+        //     }), t.globalData.play_obj = n[l], t.globalData.play_index = l, t.globalData.play_list = n, 
+        //     e.init_play(i, n[l], n), e.play(i, !0);
+        // }
     },
     set_playoption: function(a) {
         var i = this, o = a.currentTarget.dataset.type;

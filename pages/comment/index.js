@@ -23,7 +23,6 @@ Page({
         templateId: e.tempid
       },
       callback: function (a) {
-        console.log(a.data.data.length);
         l.setData({
           count: a.data.data.length,
           storyicon: e.storyicon,
@@ -34,7 +33,8 @@ Page({
         })
         if ("200" == a.data.code) {
           l.setData({
-            list: a.data.data
+            list: a.data.data,
+            load_obj: { loading: "hide", nomore: "" }
           });
         }
       }

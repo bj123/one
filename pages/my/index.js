@@ -29,9 +29,7 @@ Page({
                   newer_hide: ""
                 })
               };
-
-              console.log(userInfo)
-
+              
               var orderCount = 0;
               if (userInfo.buytemplateid) {
                 var orders = userInfo.buytemplateid.split(",");
